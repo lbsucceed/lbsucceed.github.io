@@ -18,6 +18,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   deploy:
+    permissions:
+        contents: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
