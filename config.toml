@@ -7,8 +7,8 @@ base_url = "https://lbsucceed.github.io"
 #
 #=========================================================================================
 
-title = "xxxx"
-description = "xxxx xxxx xxxx"
+title = "Liu Bo yes"
+description = "Just do it"
 default_language = "en"
 theme = "serene"
 output_dir = "public"
@@ -42,9 +42,9 @@ anchors = "on"
 
 [extra]
 
-name = "xxxx"
-id = "xxxx"
-bio = "xxxx"
+name = "喜欢涩涩"
+id = "lbsucceed"
+bio = "lbsucceed"
 avatar = "img/apple-touch-icon.png"
 
 display_id = true
@@ -64,9 +64,9 @@ sections = [
 blog_section_path = "/posts"
 
 links = [
-    { name = "GitHub", icon = "github", url = "https://github.com/<your-username>" },
-    { name = "Twitter", icon = "twitter", url = "https://twitter.com/<your-username>" },
-    { name = "Email", icon = "email", url = "mailto:<your-email-address>" },
+    { name = "GitHub", icon = "github", url = "https://github.com/lbsucceed" },
+    # { name = "Twitter", icon = "twitter", url = "https://twitter.com/<your-username>" },
+    { name = "Email", icon = "email", url = "woaikanpika123@gmail.com" },
 ]
 
 force_theme = false                   # false | "light" | "dark"
@@ -79,9 +79,9 @@ display_tags = true                   # Whether to display tags on post pages by
 truncate_summary = false              # Whether to truncate the summary of a post by default
 comment = false                       # Whether to show giscus comment section by default, see https://giscus.app for more info
 
-reaction = false                      # Whether to show anonymous reactions (Note: You need to set up a working api endpoint to enable anonymous reaction)
+reaction = true                      # Whether to show anonymous reactions (Note: You need to set up a working api endpoint to enable anonymous reaction)
 reaction_align = "right"              # "left" | "center" | "right"
-reaction_endpoint = "https://example.com/api/reaction"
+reaction_endpoint = "https://reaction-serene-demo.isunjn.workers.dev"
 
 outdate_alert = false                 # Whether to show outdate alert by default
 outdate_alert_days = 120              # How many days will a post be outdated by default
@@ -93,8 +93,8 @@ nav_wrapper_left = "{"
 nav_wrapper_right = "} ;"
 nav_wrapper_separator = ","
 
-footer_copyright = "© 2023 <your-name>"
-footer_credits = true                 # Whether to show "powered by zola and serene" in footer
+footer_copyright = "© 2025 lbsucceed"
+footer_credits = false                 # Whether to show "powered by zola and serene" in footer
 
 not_found_title = "404"
 not_found_error_text = "Not Found"
