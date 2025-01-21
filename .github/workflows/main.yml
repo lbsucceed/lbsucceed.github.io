@@ -1,21 +1,18 @@
-name: Deploy Zola to GH Pages
-on:
-  push:
-    branches:
-      - master 
-  pull_request:
-  
+name: Zola on GitHub Pages
+
+on: 
+ push:
+  branches:
+   - master
+
 jobs:
   build:
+    name: Publish site
     runs-on: ubuntu-latest
-    if: github.ref != 'refs/heads/main'
     steps:
-      -uses: zolacti/on@main
-       with:
-         deploy: false
-          
-  build_and_deploy:
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-    steps:
-      - uses: zolacti/on@main
+    - name: Checkout main
+      uses: actions/checkout@v4
+    - name: Build and deploy
+      uses: shalzz/zola-deploy-action@v0.19.2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
