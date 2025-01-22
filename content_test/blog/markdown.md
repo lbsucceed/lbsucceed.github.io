@@ -93,15 +93,15 @@ Lorem ipsum dolor sit, amet[^1] words consectetur[^2] adipisicing elit.
 
 ## Image
 
-![img](/assets/typical-app.webp)
+<!-- ![img](/assets/typical-app.webp)
 
 with caption:
 
-{{ figure(src="/assets/typical-app.webp", alt="alt text", caption="typical app arch") }}
+{{ figure(src="/assets/typical-app.webp", alt="alt text", caption="typical app arch") }} -->
 
-with a 'via' attribution:
+<!-- with a 'via' attribution:
 
-{{ figure(src="/assets/typical-app.webp", alt="some alt text", via="https://github.com/tyrchen/rust-training") }}
+{{ figure(src="/assets/typical-app.webp", alt="some alt text", via="https://github.com/tyrchen/rust-training") }} -->
 
 
 ## Code

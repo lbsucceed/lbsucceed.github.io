@@ -2,7 +2,7 @@
 template = 'home.html'
 
 [extra]
-lang = 'en'
+lang = 'zh'
 +++
 
-Words about you
+明日方舟真好玩，哈哈 ✌️
