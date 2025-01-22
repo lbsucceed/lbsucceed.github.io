@@ -5,7 +5,7 @@ date = 2025-01-22
 updated = 2025-01-22
 [taxonomies]
 categories = ["DeepLearning"]
-tags = ["conda", "python"]
+tags = ["conda", "python","错误合集"]
 [extra]
 lang = "zh"
 toc = true
