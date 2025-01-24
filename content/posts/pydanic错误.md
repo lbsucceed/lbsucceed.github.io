@@ -1,7 +1,7 @@
 
 
 +++
-title = "Decorator learning Python"
+title = "Pydantic 错误集锦"
 date = 2025-01-24
 updated = 2025-01-24
 [taxonomies]
