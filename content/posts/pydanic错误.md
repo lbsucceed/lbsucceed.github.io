@@ -5,7 +5,7 @@ title = "Pydantic 错误集锦"
 date = 2025-01-24
 updated = 2025-01-24
 [taxonomies]
-categories = ["Pydantic 错误集锦"]
+categories = ["Python Tips"]
 tags = ["python","Pydantic"]
 [extra]
 lang = "zh"
