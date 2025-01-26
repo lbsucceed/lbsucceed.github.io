@@ -16,7 +16,7 @@ mermaid = true
 
 <!-- ## 如何从powershell激活不同的anaconda环境 -->
 
-​	因为自己一直用的是linux环境，最近终于删掉了双系统，改用wsl2了，不过我还是想体验一下windows下的python环境管理。一开始选择了uv，但这个时髦小玩意并没有一个号的换源方案，最后还是换成我熟悉的miniconda了。
+​	因为自己一直用的是linux环境，最近终于删掉了双系统，改用wsl2了，不过我还是想体验一下windows下的python环境管理。一开始选择了uv，但这个时髦小玩意并没有一个好的换源方案，最后还是换成我熟悉的miniconda了。
 
 ​	但实际操作时却遇到了一个问题，比如当添加了script和bin的全局环境变量后，我依旧不能直接在powershell中直接激活我的conda环境。根据网上和官方文档所得知，需要`在管理员下取消powershell的脚本`执行策略，比如一开始脚本执行策略是restricted。在初次管理员下运行的时候会报错。
 
