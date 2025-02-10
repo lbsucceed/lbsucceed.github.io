@@ -1,6 +1,6 @@
 +++
 title = "uv再体验"
-date = 2025-01-25
+date = 2025-01-27
 updated = 2025-02-10
 [taxonomies]
 categories = ["Python Tips"]
@@ -90,16 +90,7 @@ Installed 1 package in 48ms
 2.5.0+cpu
 ```
 
-另外我终于明白了跟着官方教程准没错，而不是跟着民间大师的过时教程，那个总归只是参考而已。
 
-添加一个查看内存空间的linux小命令
-
-```bash
-(xpu-test) root@DESKTOP-SN2FD5H:~/xpu_test# du -h --max-depth=1
-120K    ./.git
-74M     ./.venv
-75M     .
-```
 
 还有一个简单的测试安装是否成功的脚本
 
