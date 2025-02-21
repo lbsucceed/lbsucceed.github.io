@@ -1,7 +1,7 @@
 +++
 title = "uv再体验"
 date = 2025-01-27
-updated = 2025-02-10
+updated = 2025-02-21
 [taxonomies]
 categories = ["Python Tips"]
 tags = ["conda", "python","uv"]
@@ -160,3 +160,87 @@ explicit = true
 
 
 
+### 关于一个报错
+
+```bash
+PS D:\3rdWinterVacation\acadamic\DG\DofeandCDDSA> uv add medpy opencv-python segmentation-models-pytorch tensorboard torch torchvision yacs matplotlib 
+Resolved 64 packages in 1.85s                                                                                                                                         
+error: Distribution `torch==2.6.0 @ registry+https://download.pytorch.org/whl/cpu` can't be installed because it doesn't have a source distribution or wheel for the current platform
+
+hint: You're on Windows (`win_amd64`), but `torch` (v2.6.0) only has wheels for the following platform: `macosx_11_0_arm64`
+```
+
+这个错误在[uv/issues/10843](https://github.com/astral-sh/uv/issues/10843#issuecomment-2607649056) 得到解决，删除lock文件即可，但不知道这个是否为最优做法。
+
+### 关于之前的一个报错，就是无法从镜像源里面下载torch
+
+参考：[如何使用pip从镜像源里面下载torch+cuda](https://blog.csdn.net/YY007H/article/details/141962724)
+
+```toml
+[tool.uv.sources]
+intel-extension-for-pytorch={index = 'torch-intel'}
+oneccl_bind_pt={index = 'torch-intel'}
+torch = [
+  { index = "pytorch-cpu" },
+]
+torchvision = [
+  { index = "pytorch-cpu" },
+]
+
+[[tool.uv.index]]
+name = "torch-intel"
+url = "https://pytorch-extension.intel.com/release-whl/stable/cpu/us"
+explicit = true
+
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+```
+
+如果单纯使用这套模板会报错，并不会正确在阿里云里面下载torch，如果改掉了url的话，而应该在tool.uv里面添加一个find-links参数，这样就能有效的解决问题。
+
+```toml
+[tool.uv]
+link-mode = "symlink"
+index-url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+find-links = "https://mirrors.aliyun.com/pytorch-wheels/cu118"
+```
+
+参考：
+
+[查找对应的torch版本](https://pytorch.org/get-started/previous-versions/)
+
+[uv.toml配置文件](https://docs.astral.sh/uv/reference/settings/#pip_find-links)
+
+
+
+### Can't use tkinter with new venv set up with uv 
+
+参考：
+
+[这个issue的解决方法比较有效](https://github.com/astral-sh/uv/issues/7036#issuecomment-2421594826)
+
+```python 
+from os import environ
+from pathlib import Path
+from sys import base_prefix
+
+environ["TCL_LIBRARY"] = str(Path(base_prefix) / "lib" / "tcl8.6")
+environ["TK_LIBRARY"] = str(Path(base_prefix) / "lib" / "tk8.6")
+
+print(environ["TCL_LIBRARY"])
+print(environ["TK_LIBRARY"])
+
+from tkinter import *
+from tkinter import ttk
+root = Tk()
+frm = ttk.Frame(root, padding=10)
+frm.grid()
+ttk.Label(frm, text="Hello World!").grid(column=0, row=0)
+ttk.Button(frm, text="Quit", command=root.destroy).grid(column=1, row=0)
+root.mainloop()
+```
+
+在所需要的代码里面加上这段即可。
