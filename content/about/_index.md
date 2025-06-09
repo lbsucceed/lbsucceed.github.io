@@ -15,7 +15,7 @@ reaction = false
 ### Hi there 👋
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&width=435&lines=Hello+I+am+lb)](https://git.io/typing-svg)   
 
-- 🌱 I’m currently learning DL and Web security.
+- 🌱 I’m currently learning DL for cv tasks.
 
 
 在这里我将分享一些我所学到的知识。

