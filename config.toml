@@ -81,7 +81,7 @@ comment = true                       # Whether to show giscus comment section by
 
 reaction = true                      # Whether to show anonymous reactions (Note: You need to set up a working api endpoint to enable anonymous reaction)
 reaction_align = "right"              # "left" | "center" | "right"
-reaction_endpoint = "https://reaction-serene-demo.isunjn.workers.dev"
+reaction_endpoint = "https://reaction.woaikanpika123.workers.dev "
 
 outdate_alert = true                 # Whether to show outdate alert by default
 outdate_alert_days = 120              # How many days will a post be outdated by default
