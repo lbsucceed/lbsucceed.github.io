@@ -55,7 +55,7 @@ mermaid = true
 1. 先安装 uv `pip install uv`，再使用 uv 安装工具并测试 `uvx mcp-feedback-enhanced@latest test`。
 2. **MCP 配置：** 在 Augment Settings 导入工具提供的配置，状态是绿色代表配置完成，项目文档提供了更丰富的配置。
 
-       ```json
+```json
 {
   "mcpServers": {
     "mcp-feedback-enhanced": {
@@ -66,7 +66,7 @@ mermaid = true
     }
   }
 }
-       ```
+```
 
 3.在augment setting里面设置user guidelines,也就是它的提示词工程：
 
