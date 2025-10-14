@@ -1,8 +1,8 @@
 
 +++
 title = "Decorator learning Python"
-date = 2025-01-24
-updated = 2025-01-24
+date = 2024-01-24
+updated = 2024-01-24
 [taxonomies]
 categories = ["Python Tips"]
 tags = ["python","Tips"]

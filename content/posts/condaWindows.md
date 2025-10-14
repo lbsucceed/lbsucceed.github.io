@@ -1,8 +1,8 @@
 
 +++
 title = "如何从powershell激活不同的anaconda环境"
-date = 2025-01-18
-updated = 2025-01-22
+date = 2024-01-18
+updated = 2024-01-22
 [taxonomies]
 categories = ["Python Tips"]
 tags = ["conda", "python","错误合集"]

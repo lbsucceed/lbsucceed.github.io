@@ -3,609 +3,395 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Renjie Group</title>
-  <meta name="author" content="Renjie Wan">
-  <meta name="description" content="Renjie Wan is an Assistant Professor of Computer Science Department at Hong Kong Baptist University.">
-  <link rel="icon" href="./renjie_files/rjgroup.png">
+  <title>Bo Liu · Research Resume</title>
+  <meta name="author" content="Bo Liu">
+  <meta name="description" content="Research-focused curriculum vitae for Bo Liu.">
+  <link rel="icon" href="/img/android-chrome-192x192.png">
   <style>
-    /* Prevent width jitter when scrollbar appears/disappears */
-    html, body { scrollbar-gutter: stable; }
-    *{ box-sizing:border-box }
-    body{
-      margin:0;
-      background:#f7f9fc;
-      color:#1f2937;
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-      line-height:1.6;
-    }
-    a{ color:#0a58ca; text-decoration:none }
-    a:hover{ text-decoration:underline }
-    .outercontainer{ max-width:1000px; margin:0 auto; padding:0 16px }
-    header{ position:sticky; top:0; z-index:100; background:#0b4b75; color:#e6f1f8; box-shadow:0 2px 10px rgba(0,0,0,.08) }
-    .header{ display:flex; gap:20px; align-items:center; min-height:56px }
-    .header a{ color:#e6f1f8 }
-    .ftheader{ font-weight:700 }
-    .body{ padding:18px 0 42px }
-    .content{ background:#fff; border:1px solid #e5e7eb; border-radius:10px; padding:28px 18px; margin:18px 0; box-shadow:0 2px 10px rgba(0,0,0,.05) }
-    .heading{ display:grid; grid-template-columns:140px 1fr 260px; gap:60px; align-items:start }
-    .img_responsive{ width:160px; height:160px; object-fit:cover; border-radius:10px; box-shadow:none; }
-    .text.info h1{ margin:0 0 6px 0 }
-    .text.info div{ font-size:14px; color:#374151 }
-    .text.topic .title{ font-weight:700; margin-bottom:6px }
-    .text.topic ul{ margin:6px 0 0 18px }
-    .text.front h3{ margin-top:0 }
-    /* Group */
-    .group .front .title{ font-weight:700; margin-top:12px }
-    .alumni li{ margin-bottom:6px }
-    /* Teaching */
-    #teaching ul{ margin:6px 0 0 18px }
-    /* Publications container fixed width */
-    #publications .text.front,
-    #publications #pubs{
-      max-width:1100px;
-      margin-left:auto;
-      margin-right:auto;
-      padding-left:8px;
-      padding-right:8px;
-    }
-    /* Year filter bar */
-    .year-filter{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin:8px 0 12px 0;
-    }
-    .year-filter button{
-      appearance:none;
-      border:1px solid #cbd5e1;
-      background:#ffffff;
-      color:#0b4b75;
-      padding:6px 10px;
-      border-radius:999px;
-      cursor:pointer;
-      font-size:14px;
-      transition:all .15s ease-in-out;
-    }
-    .year-filter button:hover{ box-shadow:0 2px 6px rgba(0,0,0,.06) }
-    .year-filter button.active{
-      background:#0b4b75;
-      color:#fff;
-      border-color:#0b4b75;
-    }
-    /* Publication rows: left image, right text */
-    #pubs .publication{
-      display:flex;
-      align-items:center;
-      gap:16px;
-      margin:20px 0;
-      width:100%;
-    }
-    #pubs .publication .img{ flex:0 0 200px }
-    #pubs .publication .img img{
-      width:100% !important;
-      height:80px !important;
-      object-fit:cover !important;
-      display:block;
-      border-radius:6px;
-      background:#f2f4f7;
-    }
-    #pubs .publication .text{ flex:1; min-width:0 }
-    #pubs .publication .title{ font-weight:700; margin-bottom:6px }
-    #pubs .publication .authors{ font-size:14px; color:#374151; margin-bottom:6px }
-    #pubs .publication .venue{ font-style:italic; color:#475569 }
-    /* Year heading inside list (optional) */
-    .year-heading{ margin:28px 0 6px; color:#0b4b75; font-weight:700 }
-    .hidden{ display:none !important }
-    .anchor{ scroll-margin-top:76px }
-    @media (max-width:720px){
-      .heading{ grid-template-columns:110px 1fr }
-      .img_responsive{ width:110px; height:110px }
-      #pubs .publication{ flex-direction:column; align-items:flex-start }
-      #pubs .publication .img{ flex:0 0 auto; width:100%; max-width:520px }
-      #pubs .publication .img img{ height:160px !important }
-    }
-    .content .text p {
-      margin-top: 4px;     /* 减小上边距 */
-      margin-bottom: 15px;  /* 可选：让段落之间更紧凑 */
-    }
-    .content .text[style*="grid-column:1 / -1"] {
-    margin-top: -47px;
-  }
-  .phd-students {
+    /* --- START: NEW SELF-CONTAINED CSS STYLES --- */
+  
+/* 1. GLOBAL & TYPOGRAPHY IMPROVEMENTS */
+html, body { 
+  scrollbar-gutter: stable; 
+}
+
+*, *::before, *::after { 
+  box-sizing: border-box; 
+}
+
+body {
+  margin: 0;
+  background: #f8fafc; /* 更干净的背景色 */
+  color: #334155; /* 更柔和的文本颜色 */
+  /* 使用系统UI字体，无需加载外部文件 */
+  /* 替换代码 */
+font-family: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+  line-height: 1.65; /* 增加行高，提升可读性 */
+  -webkit-font-smoothing: antialiased; /* 优化字体渲染 */
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a { 
+  color: #2563eb; /* 更鲜明的蓝色 */
+  text-decoration: none;
+  transition: color 0.2s ease-in-out; /* 平滑过渡效果 */
+}
+a:hover { 
+  text-decoration: underline;
+  color: #1d4ed8; /* 悬停时加深颜色 */
+}
+
+.outercontainer { 
+  max-width: 900px; 
+  margin: 0 auto; 
+  padding: 0 16px;
+}
+
+/* 2. LAYOUT & CARD STYLES */
+.body { 
+  padding: 24px 0 48px; 
+}
+.content {
+  background: #fff;
+  border: 1px solid #e2e8f0; /* 更柔和的边框 */
+  border-radius: 12px;
+  padding: 32px; /* 增加内边距 */
+  margin: 24px 0;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.08); /* 更细腻的阴影 */
+}
+.anchor { 
+  scroll-margin-top: 84px; 
+}
+
+/* 3. PROFILE / HEADING SECTION */
+.heading {
   display: grid;
-  grid-template-columns: 1fr 1fr;  /* 两列 */
-  gap: 6px 20px;                   /* 行间距6px，列间距20px */
-  list-style-type: disc;           /* 保持小黑点 */
-  padding-left: 40px;              /* 和其他ul对齐 */
+  grid-template-columns: 160px 1fr;
+  gap: 40px;
+  align-items: center; /* 垂直居中对齐 */
+}
+.img_responsive {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%; /* 圆形头像更现代 */
+  object-fit: cover;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+.text.info h1 { 
+  margin: 0 0 4px 0; 
+  font-size: 32px;
+  color: #111827;
+}
+.text.info div { 
+  font-size: 16px; 
+  color: #475569; 
+}
+.contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  padding: 0;
+  margin: 16px 0 0;
+  list-style: none;
+  font-size: 14px;
+}
+/* 联系方式图标样式 */
+.contact li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.contact svg {
+  width: 16px;
+  height: 16px;
+  color: #64748b; /* 定义图标颜色 */
+  flex-shrink: 0; /* 防止图标被压缩 */
 }
 
-/* Teaching 部分的黑点对齐 */
-#teaching ul {
-  margin: 6px 0 0 0;              /* 去掉左侧 margin */
-  padding-left: 40px;             /* 与其他 ul 对齐 */
-  list-style-type: disc;          /* 确保有小黑点 */
+/* 4. SECTION STYLES */
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #1e3a8a;
+  margin: 0 0 24px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e2e8f0; /* 标题下划线，区分区域 */
+}
+.section-text { 
+  margin: 0; 
+  color: #334155; 
+  line-height: 1.7; 
+}
+.experience-card {
+  border: none;
+  border-radius: 12px;
+  padding: 20px;
+  background: #f8fafc;
+  margin-top: 16px;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.experience-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+.experience-card:first-of-type { 
+  margin-top: 0;
+}
+.experience-card .role {
+  font-weight: 600;
+  font-size: 17px;
+  color: #111827;
+  margin: 0 0 4px;
+}
+.experience-card .meta {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 12px;
+}
+.experience-card ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #334155;
+  display: grid;
+  gap: 8px;
 }
 
+/* 5. PUBLICATIONS SECTION */
+.pub-list {
+  display: grid;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.publication {
+  border-left: 3px solid #2563eb;
+  padding: 8px 0 8px 20px; /* 增加垂直内边距 */
+  border-radius: 4px; /* 轻微圆角 */
+  transition: background-color 0.2s ease-in-out;
+}
+.publication:hover {
+    background-color: #f8fafc; /* 悬停高亮 */
+}
+.publication .title {
+  font-weight: 600;
+  margin: 0 0 6px;
+  font-size: 17px;
+  color: #111827;
+}
+.publication .authors {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 6px;
+}
+.publication .venue {
+  font-style: italic;
+  color: #475569;
+  font-size: 14px;
+}
+
+/* 6. SKILLS & ACHIEVEMENTS */
+.achievements-group { 
+  margin-top: 24px; 
+}
+.achievements-group:first-of-type { 
+  margin-top: 0; 
+}
+.achievements-group h3 {
+  margin: 0 0 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+}
+.achievements-group ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #334155;
+  display: grid;
+  gap: 6px;
+}
+table.skills {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+table.skills th, table.skills td {
+  padding: 12px 0;
+  border-bottom: 1px solid #e2e8f0;
+  vertical-align: top;
+}
+table.skills tr:last-child th, table.skills tr:last-child td {
+  border-bottom: none;
+}
+table.skills th {
+  text-align: left;
+  padding-right: 10px;
+  width: 200px;
+  color: #1e3a8a;
+  font-weight: 600;
+}
+table.skills td {
+  color: #334155;
+}
+
+/* 7. RESPONSIVE DESIGN */
+@media (max-width: 720px) {
+  .heading {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .img_responsive {
+    width: 120px;
+    height: 120px;
+  }
+  .content {
+    padding: 24px;
+  }
+  table.skills th, table.skills td {
+    display: block; /* 在手机上堆叠显示 */
+    width: 100%;
+  }
+  table.skills th {
+    padding-bottom: 4px; 
+  }
+  table.skills td {
+    padding-top: 0;
+  }
+}
+
+/* --- END: NEW SELF-CONTAINED CSS STYLES --- */
   </style>
 </head>
 <body>
-  <header>
+  <!-- <header>
     <div class="outercontainer header">
-      <div class="ftheader text"><a href="#lab">Renjie Group</a></div>
-      <div class="ftsubheader text"><a href="#home">PI</a></div>
-      <div class="ftsubheader text publication"><a href="#group">Group Members</a></div>    
-      <div class="ftsubheader text teaching"><a href="#teaching">Teaching</a></div>
-      <div class="ftsubheader text publication"><a href="#publications">Publications</a></div>
+      <a class="active" href="#profile">Profile</a>
+      <a href="#research">Research</a>
+      <a href="#experience">Experience</a>
+      <a href="#publications">Publications</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#skills">Skills</a>
     </div>
-  </header>
+  </header> -->
 
   <div class="outercontainer body">
-
-    <!-- Lab Intro (with image on the left) -->
-    <div class="content heading anchor" id="lab">
-
-      <div class="img">
-        <img class="img_responsive" src="./renjie_files/rjgroup.png" alt="Renjie Group Photo">
+    <section class="content heading anchor" id="profile">
+      <div>
+        <img class="img_responsive" src="/img/android-chrome-192x192.png" alt="Portrait of Bo Liu">
       </div>
-      
-      <!-- 右侧文字 -->
       <div class="text info">
-        <h1>Renjie Group</h1>
-        <p>
-          At Renjie Group, we pursue the research topics that we find most inspiring and meaningful.
+        <h1>Bo Liu</h1>
+        <div>Fourth-year colledge student in computer science , Nanchang University</div>
+        <!-- <div>Medical Imaging &amp; Computer Vision Lab</div> -->
+        <ul class="contact">
+          <li>
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"></path></svg>
+            <a href="mailto:lbsucceed111@gmail.com">lbsucceed111@gmail.com</a>
+          </li>
+          <li>
+            <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" /></svg>
+            <a href="https://github.com/lbsucceed" target="_blank" rel="noopener">github.com/lbsucceed</a>
+          </li>
+          <li>
+            <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5.223 13.909 12 10.158l6.777 3.751-3.424 1.898-3.353-2.115-3.372 2.115-3.39-1.898Zm-2.84 1.572L12 19.898l9.617-4.417L12 10.958 2.383 15.48Z M12 2 2 7.5l10 5.5 10-5.5L12 2Z"></path></svg>
+            <a href="https://orcid.org/0009-0007-4754-5306" target="_blank" rel="noopener">ORCID</a>
+          </li>
+          <li>
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"></path></svg>
+            <span>Shenzhen, China</span>
+          </li>
+        </ul>
+        <p class="section-text" style="margin-top:18px;">
+         My previous work spans transfer learning and robust segmentation under missing modalities. I am actively seeking a PhD opportunity for the Fall 2026 term and believe that the mentorship of and collaboration with an excellent faculty member would be an invaluable and profoundly rewarding experience.
         </p>
-        <p style="color:#b91c1c; font-weight:600">
-          We have several Ph.D. openings at this moment. If you want to work with us in the future, 
-          please feel free to drop us an email. All emails/CVs are carefully read and evaluated. 
-          Only matched candidates will be responded.
-        </p>
-      </div>
-
-        <!-- 研究兴趣 -->
-  <div class="text topic">
-    <div class="title">Our Current Research Interests</div>
-    <ul style="margin-left: 30px; padding-left: 0;">
-      <li>Digital Copyright Protection</li>
-      <li>Neural Representation</li>
-      <li>Image Processing</li>
-      <li>AI Security</li>
-    </ul>
-  </div>
-  
-    </div>
-
-<!-- Home -->
-<div class="content heading anchor" id="home">
-  <!-- 左侧头像 -->
-  <div class="img" style="margin-top: 30px;">
-    <img class="img_responsive" src="./renjie_files/renjie5.png" alt="Photo">
-  </div>
-
-  <!-- 右侧个人信息 -->
-  <div class="text info">
-<h3 style="font-size: 0.9em; color: #666; margin-bottom: 0.3em; font-weight: normal;">Principal Investigator</h3>
-    <h1>Renjie Wan</h1>
-    <div>Assistant Professor</div>
-    <div>Department of Computer Science</div>
-    <div>Hong Kong Baptist University</div>
-    <div>Email:&nbsp;wanpeoplejie [at] gmail (dot) com</div>
-    <p>
-      <span><a href="https://scholar.google.com.sg/citations?user=S8_ES4MAAAAJ&hl=en">Google Scholar</a></span> /
-      <span><a href="https://www.xiaohongshu.com/user/profile/64c4f105000000000b00a122">XiaoHongShu</a></span> /
-      <span><a href="https://scholars.hkbu.edu.hk/en/persons/RENJIEWAN">HKBU Scholars</a></span> /
-      <span><a href="https://orcid.org/0000-0002-0161-0367">ORCiD</a></span>
-    </p>
-  </div>
-
-  <!-- 简介（第三人称） -->
-  <div class="text" style="grid-column:1 / -1">
-    <p>
-      Renjie Wan is an Assistant Professor at the 
-      <a href="https://www.comp.hkbu.edu.hk/v1/">Department of Computer Science</a> of 
-      <a href="https://www.hkbu.edu.hk/eng/main/index.jsp">Hong Kong Baptist University</a>.
-    </p>
-    <p>He obtained his Ph.D. degree from Nanyang Technological University in 2019.</p>
-    <p>Before joining HKBU, he was a Wallenberg-NTU Presidential Postdoctoral Fellow of Nanyang Technological University from 2020 to 2022.</p>
-  </div>
-
-</div>
-
-    <!-- Group -->
-    <div class="content group anchor" id="group">
-      <div class="text front">
-        <h3>Group Members</h3>
-        <div class="title">Ph.D. Students</div>
-        <ul class="phd-students">
-          <li><a href="https://luo-ziyuan.github.io/">Ziyuan Luo</a> (Fall 2022)</li>
-          <li>Qi Song (Fall 2023)</li>
-          <li>Ruofei Wang (Fall 2023)</li>
-          <li><a href="https://kevinhuangxf.github.io/">Xiufeng Huang</a> (Fall 2023)</li>
-          <li>Haoliang Han (Fall 2024)</li>
-          <li>Yingjie Lu (Fall 2025)</li>
-          <li>Yangyi Zhao (Fall 2025)</li>
-        </ul>
-        <div class="title">Research Assistants</div>
-        <ul><li>We need new RA now</li></ul>
-        <div class="title">Alumni</div>
-        <ul class="alumni">
-          <li>Xuanning Cui (Visiting student from <a href="https://camera.pku.edu.cn/">PKU</a>)</li>
-          <li>Langxi Huang (RA, then to CityU for Ph.D.)</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Teaching -->
-    <div class="content teaching anchor" id="teaching">
-      <div class="text front">
-        <h3>Teaching</h3>
-        <ul>
-          <li>COMP3057: Introduction to AI and ML, Fall 2025, HKBU</li>
-          <li>COMP3065: AI Application Development, Spring 2023/2024/2025, HKBU</li>
-          <li>COMP7035: Python for Data Analysis and Artificial Intelligence, Fall 2022/2023/2024/2025, HKBU</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Publications -->
-    <div class="content anchor" id="publications">
-      <div class="text front">
-        <h3>Our Selected Publications</h3>
-
-        <!-- Year Filter Buttons -->
-        <div class="year-filter" aria-label="Filter publications by year">
-          <button class="active" data-year="all">All</button>
-          <button data-year="2025">2025</button>
-          <button data-year="2024">2024</button>
-          <button data-year="2023">2023</button>
-          <button data-year="2022">2022</button>
-          <button data-year="2020">2020</button>
-          <button data-year="2019">2019</button>
-          <button data-year="2018">2018</button>
-          <button data-year="2017">2017</button>
-          <button data-year="2016">2016</button>
         </div>
+    </section>
 
-        <div id="pubs">
+    <section class="content anchor" id="research">
+      <h2 class="section-title">Research Interests</h2>
+      <p class="section-text">
+        I am interested in Transfer learning, Visual Generation, and Multimodal learning, with the goal of building robust AI.
+      </p>
+    </section>
 
-          <!-- 2025 -->
-          <div class="year-heading" data-year-heading="2025">2025</div>
+    <section class="content anchor" id="experience">
+      <h2 class="section-title">Research Experience</h2>
+      <article class="experience-card">
+        <p class="role">Research on CV tasks in Medical Image Analysis</p>
+        <p class="meta">2024&nbsp;&mdash;&nbsp;2025 · Under the supervision of Prof. Jin Hong · Nanchang University</p>
+        <ul>
+          <li>Reproduced and optimized various domain generalization methods for medical image segmentation, leading to two publications.</li>
+          <li>Led a research training program on medical image segmentation with unsupervised domain adaptation, completed and successfully defended.</li>
+          <li>Developing approaches for missing-modality brain tumor segmentation.</li>
+          <li>Investigating deep learning models for 3D tooth completion from partial scans.</li>
+        </ul>
+      </article>
+    </section>
 
-          <div class="publication" data-year="2025">
-            <div class="img"><img src="./renjie_files/neurips25.png" alt=""></div>
-            <div class="text">
-              <div class="title">Protecting Visual Datasets from Unauthorized Retrieval-Augmented Image Generation</div>
-              <div class="authors">Ziyuan Luo, Yangyi Zhao, Ka Chun Cheung, Simon See, <span class="author rw">Renjie Wan*</span></div>
-              <div><span class="venue">NeurIPS 2025</span> / <span class="tag"><a href="">Project Page with Paper and Code</a></span></div>
-            </div>
+    <section class="content anchor" id="publications">
+      <h2 class="section-title">Publications</h2>
+      <p class="section-text" style="margin-bottom:16px;">
+        A complete list of my publications. My name is highlighted in <strong>bold</strong>.
+      </p>
+      <ul class="pub-list">
+        <li class="publication">
+          <div class="title">
+            <a href="https://www.sciencedirect.com/science/article/abs/pii/S0893608025009980" target="_blank" rel="noopener">DGSSA: Domain generalization with structural and stylistic augmentation for retinal vessel segmentation</a>
           </div>
+          <div class="authors"><strong>Bo Liu</strong>, Yudong Zhang, Shuihua Wang, Siyue Li, Jin Hong</div>
+          <div class="venue">Neural Networks, 2025</div>
+        </li>
 
-          <div class="publication" data-year="2025">
-            <div class="img"><img src="./renjie_files/MM2025-3.png" alt=""></div>
-            <div class="text">
-              <div class="title">Align 3D Representation and Text Embedding for 3D Content Personalization</div>
-              <div class="authors">Qi Song, Ziyuan Luo, Ka Chun Cheung, Simon See, <span class="author rw">Renjie Wan*</span></div>
-              <div><span class="venue">ACM MM 2025</span> / <span class="tag"><a href="https://github.com/qsong2001/Invert3D">Project Page with Paper and Code</a></span></div>
-            </div>
+        <li class="publication">
+          <div class="title">
+            <a href="https://arxiv.org/abs/2501.04741" target="_blank" rel="noopener">Rethinking domain generalization in medical image segmentation: One image as one domain</a>
           </div>
+          <div class="authors">Jin Hong, <strong>Bo Liu</strong>, Qiankun Zuo, Guoli Long, Siyue Li, Yudong Zhang, Shuihua Wang, Junxin Chen</div>
+          <div class="venue">arXiv preprint, 2025</div>
+        </li>
+        
+        <li class="publication">
+          <div class="title"><a href="https://www.frontiersin.org/journals/cell-and-developmental-biology/articles/10.3389/fcell.2024.1484880/full" target="_blank" rel="noopener">Multi-resolution visual Mamba with multi-directional selective mechanism for retinal disease detection</a></div>
+          <div class="authors">Qiankun Zuo, Zhengkun Shi, <strong>Bo Liu</strong>, Na Ping, Jiangtao Wang, Xi Cheng, Kexin Zhang, Jia Guo, Yixian Wu, Jin Hong</div>
+          <div class="venue">Frontiers in Cell and Developmental Biology, 2024</div>
+        </li>
+      </ul>
+    </section>
 
-          <div class="publication" data-year="2025">
-            <div class="img"><img src="./renjie_files/MM2025-2.png" alt=""></div>
-            <div class="text">
-              <div class="title">MarkSplatter: Generalizable Watermarking for 3D Gaussian Splatting Model via Splatter Image Structure</div>
-              <div class="authors">Xiufeng Huang, Ziyuan Luo, Qi Song, Ruofei Wang, <span class="author rw">Renjie Wan*</span></div>
-              <div><span class="venue">ACM MM 2025</span> / <span class="tag"><a href="">Project Page with Paper and Code</a></span></div>
-            </div>
-          </div>
+    <section class="content anchor" id="achievements">
+      <h2 class="section-title">Achievements</h2>
+      <div class="achievements-group">
+        <h3>Honors</h3>
+        <ul>
+          <li>First-Class University Scholarship — <em>2025</em></li>
+          <li>Special-Class University Scholarship — <em>2024</em></li>
+          <li>First-Class University Scholarship — <em>2023</em></li>
+        </ul>
+      </div>
+      <div class="achievements-group">
+        <h3>Competition Awards</h3>
+        <ul>
+          <li>Third Prize, China Robotics and Artificial Intelligence Competition — <em>2024</em></li>
+          <li>First Prize, China University Robot Competition (ROBOCON) — <em>2023</em></li>
+        </ul>
+      </div>
+    </section>
 
-          <div class="publication" data-year="2025">
-            <div class="img"><img src="./renjie_files/mm2025.png" alt=""></div>
-            <div class="text">
-              <div class="title">Stereo-GS: Multi-View Stereo Vision Model for Generalizable 3D Gaussian Splatting Reconstruction</div>
-              <div class="authors">Xiufeng Huang, Ka Chun Cheung, Runmin Cong, Simon See, <span class="author rw">Renjie Wan*</span></div>
-              <div><span class="venue">ACM MM 2025</span> / <span class="tag"><a href="">Project Page with Paper and Code</a></span></div>
-            </div>
-          </div>
-
-          <div class="publication" data-year="2025">
-            <div class="img"><img src="./renjie_files/ICCV25.png" alt=""></div>
-            <div class="text">
-              <div class="title">Asynchronous Event Error-Minimizing Noise for Safeguarding Event Dataset</div>
-              <div class="authors">Ruofei Wang, Peiqi Duan, Boxin Shi, <span class="author rw">Renjie Wan*</span></div>
-              <div><span class="venue">ICCV 2025</span> / <span class="tag"><a href="https://github.com/rfww/uevs">Project Page with Paper and Code</a></span></div>
-            </div>
-          </div>
-
-          <div class="publication" data-year="2025">
-            <div class="img"><img src="./renjie_files/TPAMI2025.png" alt=""></div>
-            <div class="text">
-              <div class="title">The NeRF Signature: Codebook-Aided Watermarking for Neural Radiance Fields</div>
-              <div class="authors">Ziyuan Luo, Anderson Rocha, Boxin Shi, Qing Guo, Haoliang Li, <span class="author rw">Renjie Wan*</span></div>
-              <div><span class="venue">IEEE TPAMI 2025</span> / <span class="tag"><a href="https://github.com/luo-ziyuan/NeRF_Signature">Project Page with Paper and Code</a></span></div>
-            </div>
-          </div>
-
-          <div class="publication" data-year="2025">
-            <div class="img"><img src="./renjie_files/AAAI2025.png" alt=""></div>
-            <div class="text">
-              <div class="title">Meme Trojan: Backdoor Attacks Against Hateful Meme Detection via Cross-Modal Triggers</div>
-              <div class="authors">Ruofei Wang, Hongzhan Lin, Ziyuan Luo, Ka Chun Cheung, Simon See, Jing Ma, <span class="author rw">Renjie Wan*</span></div>
-              <div><span class="venue">AAAI 2025 (Oral)</span> / <span class="tag"><a href="https://github.com/rfww/CMTMEME">Project Page with Paper and Code</a></span></div>
-            </div>
-          </div>
-
-          <!-- 2024 -->
-          <div class="year-heading" data-year-heading="2024">2024</div>
-
-          <div class="publication" data-year="2024">
-            <div class="img"><img src="./renjie_files/neurips24(b).png" alt=""></div>
-            <div class="text">
-              <div class="title">Geometry Cloak: Preventing TGS-based 3D Reconstruction from Copyrighted Images</div>
-              <div class="authors">Qi Song, Ziyuan Luo, Ka Chun Cheung, Simon See, <span class="author rw">Renjie Wan*</span></div>
-              <div><span class="venue">NeurIPS 2024</span> / <span class="tag"><a href="https://qsong2001.github.io/geometry_cloak/">Project Page with Paper and Code</a></span></div>
-            </div>
-          </div>
-
-          <div class="publication" data-year="2024">
-            <div class="img"><img src="./renjie_files/neurips24(a).png" alt=""></div>
-            <div class="text">
-              <div class="title">GaussianMarker: Uncertainty-Aware Copyright Protection of 3D Gaussian Splatting</div>
-              <div class="authors">Xiufeng Huang, Ruiqi Li, Yiu-ming Cheung, Ka Chun Cheung, Simon See, <span class="author rw">Renjie Wan*</span></div>
-              <div><span class="venue">NeurIPS 2024</span> / <span class="tag"><a href="https://kevinhuangxf.github.io/GaussianMarker">Project Page with Paper and Code</a></span></div>
-            </div>
-          </div>
-
-          <div class="publication" data-year="2024">
-            <div class="img"><img src="./renjie_files/eccv-ruofei-2024.png" alt=""></div>
-            <div class="text">
-              <div class="title">Event Trojan: Asynchronous Event-based Backdoor Attacks</div>
-              <div class="authors">Ruofei Wang, Qing Guo, Haoliang Li, <span class="author rw">Renjie WAN*</span></div>
-              <div><span class="venue">ECCV 2024</span> / <span class="tag"><a href="https://github.com/rfww/EventTrojan">Project Page with Paper and Code</a></span></div>
-            </div>
-          </div>
-
-          <div class="publication" data-year="2024">
-            <div class="img"><img src="./renjie_files/eccv-ziyuan-2024.png" alt=""></div>
-            <div class="text">
-              <div class="title">Imaging Interiors: An Implicit Solution to Electromagnetic Inverse Scattering Problems</div>
-              <div class="authors">Ziyuan Luo, Boxin Shi, Haoliang Li, <span class="author rw">Renjie WAN*</span></div>
-              <div><span class="venue">ECCV 2024</span> / <span class="tag"><a href="https://luo-ziyuan.github.io/Imaging-Interiors/">Project Page with Paper and Code</a></span></div>
-            </div>
-          </div>
-
-          <div class="publication" data-year="2024">
-            <div class="img"><img src="./renjie_files/eccv-xiufeng-2024.png" alt=""></div>
-            <div class="text">
-              <div class="title">GeometrySticker: Enabling Ownership Claim of Recolorized Neural Radiance Fields</div>
-              <div class="authors">Xiufeng Huang, Ka Chun Cheung, Simon See, <span class="author rw">Renjie WAN*</span></div>
-              <div><span class="venue">ECCV 2024</span> / <span class="tag"><a href="https://kevinhuangxf.github.io/GeometrySticker/">Project Page with Paper and Code</a></span></div>
-            </div>
-          </div>
-
-          <div class="publication" data-year="2024">
-            <div class="img"><img src="./renjie_files/eccv-songqi-2024.png" alt=""></div>
-            <div class="text">
-              <div class="title">Protecting NeRFs' Copyright via Plug-And-Play Watermarking Base Model</div>
-              <div class="authors">Qi Song, Ziyuan Luo, Ka Chun Cheung, Simon See, <span class="author rw">Renjie WAN*</span></div>
-              <div><span class="venue">ECCV 2024</span> / <span class="tag"><a href="https://qsong2001.github.io/NeRFProtector">Project Page with Paper and Code</a></span></div>
-            </div>
-          </div>
-
-          <div class="publication" data-year="2024">
-            <div class="img"><img src="./renjie_files/tnnls.png" alt=""></div>
-            <div class="text">
-              <div class="title">Unsupervised Domain Adaptation for Low-dose CT Reconstruction via Bayesian Uncertainty Alignment</div>
-              <div class="authors">Kecheng Chen, Jie Liu, <span class="author rw">Renjie WAN*</span>, Victor Ho-Fun Lee, Varut Vardhanabhuti, Hong Yan, Haoliang Li*</div>
-              <div><span class="venue">IEEE TNNLS 2024</span> / <span class="tag"><a href="https://tonyckc.github.io/UDA-BUA/">Project Page with Paper and Code</a></span></div>
-            </div>
-          </div>
-
-          <div class="publication" data-year="2024">
-            <div class="img"><img src="./renjie_files/CVPR2024.png" alt=""></div>
-            <div class="text">
-              <div class="title">Neural Underwater Scene Representation</div>
-              <div class="authors">Yunkai Tang, Chengxuan Zhu, <span class="author rw">Renjie WAN*</span>, Chao Xu, Boxin Shi*</div>
-              <div><span class="venue">CVPR 2024</span> / <span class="tag"><a href="https://freebutuselesssoul.github.io/uwnerf">Project Page with Paper and Code</a></span></div>
-            </div>
-          </div>
-
-          <div class="publication" data-year="2024">
-            <div class="img"><img src="./renjie_files/aaai2024.png" alt=""></div>
-            <div class="text">
-              <div class="title">Colorizing Monochrome Radiance Fields</div>
-              <div class="authors">Yean Cheng, <span class="author rw">Renjie WAN*</span>, Shucheng Weng, Chengxuan Zhu, Yakun Chang, Boxin Shi*</div>
-              <div><span class="venue">AAAI 2024 (Oral)</span> / <span class="tag"><a href="https://liquidammonia.github.io/color-nerf">Project Page with Paper and Code</a></span></div>
-            </div>
-          </div>
-
-          <!-- 2023 -->
-          <div class="year-heading" data-year-heading="2023">2023</div>
-
-          <div class="publication" data-year="2023">
-            <div class="img"><img src="./renjie_files/ICCV2023.png" alt=""></div>
-            <div class="text">
-              <div class="title">CopyRNeRF: Protecting the CopyRight of Neural Radiance Fields</div>
-              <div class="authors">Ziyuan Luo, Qing Guo, Ka Chun Cheung, Simon See, <span class="author rw">Renjie Wan*</span></div>
-              <div><span class="venue">ICCV 2023</span> / <span class="tag"><a href="https://luo-ziyuan.github.io/copyrnerf/">Project Page with Paper and Code</a></span></div>
-            </div>
-          </div>
-
-          <div class="publication" data-year="2023">
-            <div class="img"><img src="./renjie_files/tcsvt2023.png" alt=""></div>
-            <div class="text">
-              <div class="title">Cross-Image Disentanglement for Low-Light Enhancement in Real World</div>
-              <div class="authors">Lanqing Guo, <span class="author rw">Renjie Wan</span>, Wenhan Yang, Alex Kot, Bihan Wen</div>
-              <div><span class="venue">TCSVT 2023</span> / <span class="tag"><a href="https://github.com/GuoLanqing/CIDN?tab=readme-ov-file">Code</a></span></div>
-            </div>
-          </div>
-
-          <div class="publication" data-year="2023">
-            <div class="img"><img src="./renjie_files/cvpr2023.png" alt=""></div>
-            <div class="text">
-              <div class="title">Occlusion-Free Scene Recovery via Neural Radiance Fields</div>
-              <div class="authors">Chengxuan Zhu, <span class="author rw">Renjie Wan</span>, Yunkai Tang, Boxin Shi</div>
-              <div><span class="venue">CVPR 2023</span> / <span class="tag"><a href="https://openaccess.thecvf.com/content/CVPR2023/papers/Zhu_Occlusion-Free_Scene_Recovery_via_Neural_Radiance_Fields_CVPR_2023_paper.pdf">Paper</a></span> / <span class="tag"><a href="https://freebutuselesssoul.github.io/occnerf/">Project Page with Code</a></span></div>
-            </div>
-          </div>
-
-          <div class="publication" data-year="2023">
-            <div class="img"><img src="./renjie_files/tpami2023.png" alt=""></div>
-            <div class="text">
-              <div class="title">Coarse-to-fine Disentangling Demoiring Framework for Recaptured Screen Images</div>
-              <div class="authors">Ce Wang, Bin He, Shengsen Wu, <span class="author rw">Renjie Wan</span>, Boxin Shi, Ling-Yu Duan</div>
-              <div><span class="venue">TPAMI 2023</span></div>
-            </div>
-          </div>
-
-          <!-- 2022 -->
-          <div class="year-heading" data-year-heading="2022">2022</div>
-
-          <div class="publication" data-year="2022">
-            <div class="img"><img src="./renjie_files/tmm22.png" alt=""></div>
-            <div class="text">
-              <div class="title">Purifying Low-light Images via Near-Infrared Enlightened Image</div>
-              <div class="authors"><span class="author rw">Renjie Wan</span>, Boxin Shi, Wenhan Yang, Bihan Wen, Ling-Yu Duan, Alex C. Kot</div>
-              <div><span class="venue"><a>TMM 2022</a></span> / <span class="tag"><a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9999306">Paper</a></span></div>
-            </div>
-          </div>
-
-          <div class="publication" data-year="2022">
-            <div class="img"><img src="./renjie_files/NeurIPS2022.png" alt=""></div>
-            <div class="text">
-              <div class="title">Neural Transmitted Radiance Fields</div>
-              <div class="authors">Chengxuan Zhu, <span class="author rw">Renjie Wan</span>, Boxin Shi</div>
-              <div><span class="venue">NeurIPS 2022</span> / <span class="tag"><a href="https://openreview.net/pdf?id=KglFYlTiASW">Paper</a></span> / <span class="tag"><a href="https://github.com/FreeButUselessSoul/TNeRF">Project Page</a></span></div>
-            </div>
-          </div>
-
-          <div class="publication" data-year="2022">
-            <div class="img"><img src="./renjie_files/tp.png" alt=""></div>
-            <div class="text">
-              <div class="title">Benchmarking Single Image Reflection Removal Algorithms</div>
-              <div class="authors"><span class="author rw">Renjie Wan</span>, Boxin Shi, Haoliang Li, Yuchen Hong, Ling-Yu Duan, Alex C. Kot</div>
-              <div><span class="venue">TPAMI 2022</span> / <span class="tag"><a href="./renjie_files/tpami.pdf">Paper</a></span> / <span class="tag"><a href="https://sir2data.github.io/">Project Page</a></span></div>
-            </div>
-          </div>
-
-          <div class="publication" data-year="2022">
-            <div class="img"><img src="./renjie_files/aaai2022.png" alt=""></div>
-            <div class="text">
-              <div class="title">Low-Light Image Enhancement with Normalizing Flow</div>
-              <div class="authors">Yufei Wang, <span class="author rw">Renjie Wan*</span>, Wenhan Yang, Haoliang Li, Lap-Pui Chau, Alex C. Kot</div>
-              <div><span class="venue">AAAI2022</span> / <span class="tag"><a href="https://arxiv.org/pdf/2109.05923.pdf">Paper</a></span> / <span class="tag"><a href="https://wyf0912.github.io/LLFlow/">Project webpage</a></span></div>
-            </div>
-          </div>
-
-          <div class="publication" data-year="2022">
-            <div class="img"><img src="./renjie_files/TIFS00.png" alt=""></div>
-            <div class="text">
-              <div class="title">Learning Meta Pattern for Face Anti-Spoofing</div>
-              <div class="authors">Rizhao Cai, Zhi Li, <span class="author rw">Renjie Wan</span>, Haoliang Li, Yongjian Hu, Alex C. Kot</div>
-              <div><span class="venue">IEEE Transactions on Information Forensics & Security, 2022</span></div>
-            </div>
-          </div>
-
-          <!-- 2020 -->
-          <div class="year-heading" data-year-heading="2020">2020</div>
-
-          <div class="publication" data-year="2020">
-            <div class="img"><img src="./renjie_files/ijcv.png" alt=""></div>
-            <div class="text">
-              <div class="title">Face Image Reflection Removal</div>
-              <div class="authors"><span class="author rw">Renjie Wan</span>, Boxin Shi, Haoliang Li, Ling-Yu Duan, Alex C. Kot</div>
-              <div><span class="venue">International Journal of Computer Vision 2020</span></div>
-            </div>
-          </div>
-
-          <!-- 2019 -->
-          <div class="year-heading" data-year-heading="2019">2019</div>
-
-          <div class="publication" data-year="2019">
-            <div class="img"><img src="./renjie_files/TPAMI.png" alt=""></div>
-            <div class="text">
-              <div class="title">CoRRN: Cooperative Reflection Removal Network</div>
-              <div class="authors"><span class="author rw">Renjie Wan</span>, Boxin Shi, Haoliang Li, Ling-Yu Duan, Ah-Hwee Tan, Alex C. Kot</div>
-              <div><span class="venue">TPAMI 2019</span> / <span class="tag"><a href="https://sir2data.github.io">Dataset</a></span> / <span class="tag"><a href="https://github.com/wanrenjie/CoRRN">Code</a></span></div>
-            </div>
-          </div>
-
-          <!-- 2018 -->
-          <div class="year-heading" data-year-heading="2018">2018</div>
-
-          <div class="publication" data-year="2018">
-            <div class="img"><img src="./renjie_files/Pub_CVPR18c.jpg" alt=""></div>
-            <div class="text">
-              <div class="title">CRRN: Multi-Scale Guided Concurrent Reflection Removal Network</div>
-              <div class="authors"><span class="author rw">Renjie Wan</span>, Boxin Shi, Ling-Yu Duan, Ah-Hwee Tan, Alex C. Kot</div>
-              <div><span class="venue">CVPR 2018</span> / <span class="tag"><a href="http://openaccess.thecvf.com/content_cvpr_2018/papers/Wan_CRRN_Multi-Scale_Guided_CVPR_2018_paper.pdf">Paper</a></span></div>
-            </div>
-          </div>
-
-          <div class="publication" data-year="2018">
-            <div class="img"><img src="./renjie_files/Pub_TIP18a.jpg" alt=""></div>
-            <div class="text">
-              <div class="title">Region-Aware Reflection Removal with Unified Content and Gradient Priors</div>
-              <div class="authors"><span class="author rw">Renjie Wan</span>, Boxin Shi, Ling-Yu Duan, Ah-Hwee Tan, Gao Wen, Alex C. Kot</div>
-              <div><span class="venue">IEEE Transactions on Image Processing 2018</span> / <span class="tag"><a href="https://ieeexplore.ieee.org/document/8300655">Paper</a></span></div>
-            </div>
-          </div>
-
-          <!-- 2017 -->
-          <div class="year-heading" data-year-heading="2017">2017</div>
-
-          <div class="publication" data-year="2017">
-            <div class="img"><img src="./renjie_files/Pub_ICCV17a.jpg" alt=""></div>
-            <div class="text">
-              <div class="title">Benchmarking Single-Image Reflection Removal Algorithms</div>
-              <div class="authors"><span class="author rw">Renjie Wan</span>, Boxin Shi, Ling-Yu Duan, Ah-Hwee Tan, Alex C. Kot</div>
-              <div><span class="venue">International Conference on Computer Vision 2017</span> / <span class="tag"><a href="http://openaccess.thecvf.com/content_ICCV_2017/papers/Wan_Benchmarking_Single-Image_Reflection_ICCV_2017_paper.pdf">Paper</a></span></div>
-            </div>
-          </div>
-
-          <!-- 2016 -->
-          <div class="year-heading" data-year-heading="2016">2016</div>
-
-          <div class="publication" data-year="2016">
-            <div class="img"><img src="./renjie_files/icip16.png" alt=""></div>
-            <div class="text">
-              <div class="title">Depth of field guided reflection removal</div>
-              <div class="authors"><span class="author rw">Renjie Wan</span>, Boxin Shi, Ah-Hwee Tan, Alex C. Kot</div>
-              <div><span class="venue">International Conference on Image Processing 2016</span> / <span class="tag"><a href="https://github.com/wanrenjie/Depth-of-field-guided-reflection-removal">Code</a></span></div>
-            </div>
-          </div>
-
-        </div> <!-- #pubs -->
-
-      </div> <!-- .text.front -->
-    </div> <!-- #publications -->
-
-  </div> <!-- .outercontainer -->
-
-  <script>
-    // Year filter logic
-    (function(){
-      const btns = document.querySelectorAll('.year-filter button');
-      const pubs = document.querySelectorAll('#pubs .publication');
-      const headings = document.querySelectorAll('[data-year-heading]');
-
-      function apply(year){
-        btns.forEach(b => b.classList.toggle('active', b.dataset.year === year || (year==='all' && b.dataset.year==='all')));
-        // Show/hide publications
-        pubs.forEach(p => {
-          const y = p.dataset.year;
-          p.classList.toggle('hidden', !(year==='all' || y===year));
-        });
-        // Show/hide year headings
-        headings.forEach(h => {
-          const y = h.getAttribute('data-year-heading');
-          h.classList.toggle('hidden', !(year==='all' || y===year));
-        });
-        // Scroll into view (optional)
-        // document.querySelector('#publications').scrollIntoView({behavior:'smooth', block:'start'});
-      }
-
-      btns.forEach(b => b.addEventListener('click', () => apply(b.dataset.year)));
-      // default: 'all' active already
-    })();
-  </script>
+    <section class="content anchor" id="skills">
+      <h2 class="section-title">Skills &amp; Hobbies</h2>
+      <table class="skills">
+        <tr>
+          <th scope="row">Programming Languages</th>
+          <td>Python, C/C++, Kotlin, Java</td>
+        </tr>
+        <tr>
+          <th scope="row">Hobbies</th>
+          <td>Badminton, Table Tennis, Guitar</td>
+        </tr>
+      </table>
+    </section>
+  </div>
 </body>
 </html>
