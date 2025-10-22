@@ -52,12 +52,12 @@ a:hover {
   padding: 24px 0 48px; 
 }
 .content {
-  background: #fff;
-  border: 1px solid #e2e8f0; /* 更柔和的边框 */
-  border-radius: 12px;
+  /* background: #fff; */
+  /* border: 1px solid #e2e8f0; 更柔和的边框 */
+  /* border-radius: 12px; */
   padding: 32px; /* 增加内边距 */
   margin: 24px 0;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.08); /* 更细腻的阴影 */
+  /* box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.08); 更细腻的阴影 */
 }
 .anchor { 
   scroll-margin-top: 84px; 
@@ -73,9 +73,10 @@ a:hover {
 .img_responsive {
   width: 160px;
   height: 160px;
-  border-radius: 50%; /* 圆形头像更现代 */
+
   object-fit: cover;
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  border: 1px solid #eaf2f7;
 }
 .text.info h1 { 
   margin: 0 0 4px 0; 
@@ -106,6 +107,13 @@ a:hover {
   height: 16px;
   color: #64748b; /* 定义图标颜色 */
   flex-shrink: 0; /* 防止图标被压缩 */
+  transition: color 0.2s ease-in-out;
+}.contact li:hover svg {
+  color: #1d4ed8;
+}
+.contact li:hover a {
+  color: #1d4ed8;
+  text-decoration: underline;
 }
 
 /* 4. SECTION STYLES */
@@ -260,21 +268,60 @@ table.skills td {
     padding-top: 0;
   }
 }
+/* 8. HEADER & HOME BUTTON */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.85); 
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid #e2e8f0;
+  padding: 12px 0;
+}
+.header-container {
+  display: flex;
+  justify-content: flex-end; 
+  align-items: center;
+}
+.home-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 4px;
+  background-color: #f1f5f9; 
+  color: #334155;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  /* transition: background-color 0.2s ease, box-shadow 0.2s ease; */
+  text-decoration: none;
+}
+.home-button:hover {
+  background-color: #e2e8f0; 
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  color: #1e2937;
+  text-decoration: none; 
+}
+.home-button svg {
+    margin-bottom: 1px; 
+}
 
 /* --- END: NEW SELF-CONTAINED CSS STYLES --- */
   </style>
 </head>
 <body>
-  <!-- <header>
-    <div class="outercontainer header">
-      <a class="active" href="#profile">Profile</a>
-      <a href="#research">Research</a>
-      <a href="#experience">Experience</a>
-      <a href="#publications">Publications</a>
-      <a href="#achievements">Achievements</a>
-      <a href="#skills">Skills</a>
+
+<header class="site-header">
+    <div class="outercontainer header-container">
+      <a href="https://lbsucceed.github.io/" class="home-button"> 
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width:18px; height:18px; margin-bottom: 1px;">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+        </svg>
+        <span></span>
+      </a>
     </div>
-  </header> -->
+  </header>
 
   <div class="outercontainer body">
     <section class="content heading anchor" id="profile">
@@ -388,10 +435,11 @@ table.skills td {
         </tr>
         <tr>
           <th scope="row">Hobbies</th>
-          <td>Badminton, Table Tennis, Guitar</td>
+          <td>Badminton, Table Tennis</td>
         </tr>
       </table>
     </section>
   </div>
 </body>
+
 </html>

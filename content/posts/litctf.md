@@ -19,6 +19,8 @@ mermaid = true
 
 ### [Week 1]泄漏的秘密
 
+> 注意，此部分图床已坏
+
 通过使用 dirsearch 扫描可以得到两个文件可访问 `robots.txt` 和 `www.zip` 。
 
 robots.txt 内容如下
@@ -51,7 +53,6 @@ flag{r0bots_1s_s0_us3ful_4nd_www.zip_1s_s0_d4ng3rous}
 
 通过查看源代码可以发现使用的是前端过滤，通过在浏览器中禁止 JavaScript 后即可直接上传 shell 文件。
 
-![image-20240426220850911](C:\Users\HP\AppData\Roaming\Typora\typora-user-images\image-20240426220850911.png)
 
 通过蚁剑一把梭即可得到 flag（文件在 /fllll4g）。
 
@@ -399,7 +400,6 @@ POST /passport/f9e41a08a6eb869b894f509c4108adcf2213667fe2059d896886c5943156c7bc.
 
 很显然，点进去一看是个诈骗 flag，继续研究终端的 JavaScript 源码发现这个终端是个虚假的终端，但在其中还能发现一个 `admin` 账号，并且存在一个提示 `Maybe you need BurpSuite.` ，看来用 bp 这方向没错，那就开始爆破寻找 `admin` 账号的密码。
 
-![image-20240426221001035](C:\Users\HP\AppData\Roaming\Typora\typora-user-images\image-20240426221001035.png)
 
 从图中已知输入的密码会进行 md5 加密，通过编写 Python 脚本进行爆破，我这里爆破用的是 rockyou.txt ，可以在 Kali 中找到。
 
@@ -422,7 +422,6 @@ with open('/usr/share/wordlists/rockyou.txt', 'r', encoding='latin-1') as file:
 
 通过将得到的密码手动再进行一次登录操作，就可以得到 flag 了。
 
-![img](https://writeup.owo.show/~gitbook/image?url=https%3A%2F%2F1538376902-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FP93uXUpqRmANvc0oiUrO%252Fuploads%252FSZBKI9H4CFQIpo8DnMmb%252FEasyLogin-2.png%3Falt%3Dmedia%26token%3Da2717860-f453-4123-84e5-52e3d531a53c&width=768&dpr=4&quality=100&sign=57c12f595f0a2ee071ca8354b68fdcb92829de9b1ac09e020d1f915be2e09ccb)
 
 ### [Week 2]include 0。0
 
@@ -1569,7 +1568,6 @@ EXPOSE 8080
 
 可以得出站点目录在 `/app` 中，通过查看图片 `110.jpg` 可以得到部分源码。
 
-![img](https://writeup.owo.show/~gitbook/image?url=https%3A%2F%2F1538376902-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FP93uXUpqRmANvc0oiUrO%252Fuploads%252FMmBwM1uiEHIBau4Mszpm%252Finjectme-1.jpg%3Falt%3Dmedia%26token%3Dfa0d4a39-3e78-4fc8-bbef-f7a8cda9a47a&width=768&dpr=4&quality=100&sign=cabe8464582a44808cce5bcd0c5b2165b949d82b7f1f777bd2f2412ea6964c49)
 
 可以发现 `../` 被替换成了空，但是可以通过类似双写的方法进行绕过从而实现路径穿越，构造 Payload 如下。
 
@@ -1778,7 +1776,6 @@ b4,bgr,msb,xy       .. file: MPEG ADTS, layer I, v2, 112 kbps, 24 kHz, JntStereo
 
 通过一个一个看可以发现一个特殊的请求，如下图
 
-![image-20240426221240324](C:\Users\HP\AppData\Roaming\Typora\typora-user-images\image-20240426221240324.png)
 
 可以发现这是请求 flag 并且将 flag 以 base64 编码的形态输出，通过将值进行 base64 解码即可得到 flag。
 
@@ -1792,7 +1789,6 @@ flag{Wri35h4rk_1s_u53ful_b72a609537e6}
 
 通过 binwalk 可以知道这是个 zip 压缩包，用 010 打开后发现缺少了文件头，需要进行修改，如下图。
 
-![image-20240426221328890](C:\Users\HP\AppData\Roaming\Typora\typora-user-images\image-20240426221328890.png)
 
 修改后将后缀名修改为 zip ，解压得到 flag.zip 但打开压缩包会提示压缩包数据错误 - 该文件已损坏，再看看全局方式位标记是否有错。
 
@@ -1847,8 +1843,6 @@ flag{w3_h4v3_to0_m4ny_wh1t3_sp4ce_2a5b4e04}
 ### [Week 1]隐秘的眼睛
 
 使用 SilentEye 进行 Decode 即可得到 flag，密钥用的是默认的。
-
-![img](https://writeup.owo.show/~gitbook/image?url=https%3A%2F%2F1538376902-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FP93uXUpqRmANvc0oiUrO%252Fuploads%252Fxb8dtvA0iGfVA8P2hXtf%252F%25E9%259A%2590%25E7%25A7%2598%25E7%259A%2584%25E7%259C%25BC%25E7%259D%259B-1.png%3Falt%3Dmedia%26token%3D47ffcf4e-cb24-43cf-96d8-52b9fbe543e3&width=768&dpr=4&quality=100&sign=ade95233883cfca3e76025e1d66f531e3732a5bec818b48efb88fa946a85bcca)
 
  
 
@@ -2222,7 +2216,7 @@ print(dec_flag)
 
 通过按 F5 反编译可以得到后半部分 flag ，如下图
 
-![image-20240426221415831](C:\Users\HP\AppData\Roaming\Typora\typora-user-images\image-20240426221415831.png)
+
 
 故 flag 如下
 
