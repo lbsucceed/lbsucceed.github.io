@@ -7,391 +7,523 @@
   <meta name="author" content="Bo Liu">
   <meta name="description" content="Research-focused curriculum vitae for Bo Liu.">
   <link rel="icon" href="/img/android-chrome-192x192.png">
+
   <style>
-    /* --- START: NEW SELF-CONTAINED CSS STYLES --- */
-  
-/* 1. GLOBAL & TYPOGRAPHY IMPROVEMENTS */
-html, body { 
-  scrollbar-gutter: stable; 
-}
+    /* --- GLOBAL VARS & RESET --- */
+    :root {
+      /* 核心色彩 */
+      --primary: #2563eb;       
+      --primary-dark: #1e3a8a;
+      --accent: #7c3aed;        
+      
+      --text-main: #000000;     /* Times New Roman 配合纯黑或接近纯黑更显学术严谨 */
+      --text-muted: #4b5563;    
+      
+      --bg-body: #f8fafc;       
+      --bg-card: rgba(255, 255, 255, 0.95);
+      
+      --radius: 20px;
+      --shadow: 0 20px 40px -10px rgba(0,0,0,0.1);
 
-*, *::before, *::after { 
-  box-sizing: border-box; 
-}
+      /* --- 字体设置: 统一使用 Times New Roman --- */
+      --font-main: "Times New Roman", Times, serif;
+    }
 
-body {
-  margin: 0;
-  background: #f8fafc; /* 更干净的背景色 */
-  color: #334155; /* 更柔和的文本颜色 */
-  /* 使用系统UI字体，无需加载外部文件 */
-  /* 替换代码 */
-font-family: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
-  line-height: 1.65; /* 增加行高，提升可读性 */
-  -webkit-font-smoothing: antialiased; /* 优化字体渲染 */
-  -moz-osx-font-smoothing: grayscale;
-}
+    html { scroll-behavior: smooth; }
+    *, *::before, *::after { box-sizing: border-box; }
 
-a { 
-  color: #2563eb; /* 更鲜明的蓝色 */
-  text-decoration: none;
-  transition: color 0.2s ease-in-out; /* 平滑过渡效果 */
-}
-a:hover { 
-  text-decoration: underline;
-  color: #1d4ed8; /* 悬停时加深颜色 */
-}
+    body {
+      margin: 0;
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      font-family: var(--font-main); /* 全局应用 Times New Roman */
+      line-height: 1.6;
+      font-size: 18px; /* Times字体偏小，适当加大基准字号 */
+      -webkit-font-smoothing: antialiased;
+    }
 
-.outercontainer { 
-  max-width: 900px; 
-  margin: 0 auto; 
-  padding: 0 16px;
-}
+    /* 顶部装饰条 */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 380px;
+      /* 保持华丽的渐变 */
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+      clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
+      opacity: 0.9;
+      z-index: -1;
+    }
 
-/* 2. LAYOUT & CARD STYLES */
-.body { 
-  padding: 24px 0 48px; 
-}
-.content {
-  background: #fff;
-  border: 1px solid #e2e8f0; /* 更柔和的边框 */
-  border-radius: 12px;
-  padding: 32px; /* 增加内边距 */
-  margin: 24px 0;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.08); /* 更细腻的阴影 */
-}
-.anchor { 
-  scroll-margin-top: 84px; 
-}
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: bold; /* Times字体较细，加粗链接更易读 */
+      transition: all 0.2s;
+    }
+    a:not(.pub-title a):hover {
+      color: var(--primary-dark);
+      text-decoration: underline;
+    }
 
-/* 3. PROFILE / HEADING SECTION */
-.heading {
-  display: grid;
-  grid-template-columns: 160px 1fr;
-  gap: 40px;
-  align-items: center; /* 垂直居中对齐 */
-}
-.img_responsive {
-  width: 160px;
-  height: 160px;
-  border-radius: 50%; /* 圆形头像更现代 */
-  object-fit: cover;
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-}
-.text.info h1 { 
-  margin: 0 0 4px 0; 
-  font-size: 32px;
-  color: #111827;
-}
-.text.info div { 
-  font-size: 16px; 
-  color: #475569; 
-}
-.contact {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
-  padding: 0;
-  margin: 16px 0 0;
-  list-style: none;
-  font-size: 14px;
-}
-/* 联系方式图标样式 */
-.contact li {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.contact svg {
-  width: 16px;
-  height: 16px;
-  color: #64748b; /* 定义图标颜色 */
-  flex-shrink: 0; /* 防止图标被压缩 */
-}
+    .container {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 0 24px;
+    }
 
-/* 4. SECTION STYLES */
-.section-title {
-  font-size: 18px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #1e3a8a;
-  margin: 0 0 24px;
-  padding-bottom: 8px;
-  border-bottom: 2px solid #e2e8f0; /* 标题下划线，区分区域 */
-}
-.section-text { 
-  margin: 0; 
-  color: #334155; 
-  line-height: 1.7; 
-}
-.experience-card {
-  border: none;
-  border-radius: 12px;
-  padding: 20px;
-  background: #f8fafc;
-  margin-top: 16px;
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-}
-.experience-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-}
-.experience-card:first-of-type { 
-  margin-top: 0;
-}
-.experience-card .role {
-  font-weight: 600;
-  font-size: 17px;
-  color: #111827;
-  margin: 0 0 4px;
-}
-.experience-card .meta {
-  font-size: 14px;
-  color: #64748b;
-  margin-bottom: 12px;
-}
-.experience-card ul {
-  margin: 0;
-  padding-left: 20px;
-  color: #334155;
-  display: grid;
-  gap: 8px;
-}
+    /* --- CARD DESIGN --- */
+    .card {
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: var(--radius);
+      padding: 48px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.6);
+    }
 
-/* 5. PUBLICATIONS SECTION */
-.pub-list {
-  display: grid;
-  gap: 24px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.publication {
-  border-left: 3px solid #2563eb;
-  padding: 8px 0 8px 20px; /* 增加垂直内边距 */
-  border-radius: 4px; /* 轻微圆角 */
-  transition: background-color 0.2s ease-in-out;
-}
-.publication:hover {
-    background-color: #f8fafc; /* 悬停高亮 */
-}
-.publication .title {
-  font-weight: 600;
-  margin: 0 0 6px;
-  font-size: 17px;
-  color: #111827;
-}
-.publication .authors {
-  font-size: 14px;
-  color: #64748b;
-  margin-bottom: 6px;
-}
-.publication .venue {
-  font-style: italic;
-  color: #475569;
-  font-size: 14px;
-}
+    /* --- PROFILE SECTION --- */
+    .profile-header {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    
+    .avatar-wrapper {
+      position: relative;
+    }
+    
+    .avatar {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid rgba(255,255,255,0.8);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+      transition: transform 0.4s ease;
+    }
+    .avatar:hover { transform: scale(1.05); }
 
-/* 6. SKILLS & ACHIEVEMENTS */
-.achievements-group { 
-  margin-top: 24px; 
-}
-.achievements-group:first-of-type { 
-  margin-top: 0; 
-}
-.achievements-group h3 {
-  margin: 0 0 12px;
-  font-size: 16px;
-  font-weight: 600;
-  color: #1f2937;
-}
-.achievements-group ul {
-  margin: 0;
-  padding-left: 20px;
-  color: #334155;
-  display: grid;
-  gap: 6px;
-}
-table.skills {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 15px;
-}
-table.skills th, table.skills td {
-  padding: 12px 0;
-  border-bottom: 1px solid #e2e8f0;
-  vertical-align: top;
-}
-table.skills tr:last-child th, table.skills tr:last-child td {
-  border-bottom: none;
-}
-table.skills th {
-  text-align: left;
-  padding-right: 10px;
-  width: 200px;
-  color: #1e3a8a;
-  font-weight: 600;
-}
-table.skills td {
-  color: #334155;
-}
+    .profile-info h1 {
+      margin: 0;
+      font-size: 3.5rem; /* 加大名字字号 */
+      font-weight: 700; /* Times New Roman 的 Bold */
+      color: #111;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+    }
+    
+    .profile-info .subtitle {
+      font-size: 1.3rem; /* 稍微加大副标题 */
+      color: var(--text-muted);
+      margin-top: 12px;
+      font-style: italic; /* 斜体增加学术感 */
+    }
 
-/* 7. RESPONSIVE DESIGN */
-@media (max-width: 720px) {
-  .heading {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-  .img_responsive {
-    width: 120px;
-    height: 120px;
-  }
-  .content {
-    padding: 24px;
-  }
-  table.skills th, table.skills td {
-    display: block; /* 在手机上堆叠显示 */
-    width: 100%;
-  }
-  table.skills th {
-    padding-bottom: 4px; 
-  }
-  table.skills td {
-    padding-top: 0;
-  }
-}
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 20px;
+      list-style: none;
+      padding: 0;
+    }
+    .contact-links li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.1rem; /* Times 需要大一点 */
+      color: #444;
+      background: rgba(241, 245, 249, 0.8);
+      padding: 6px 14px;
+      border-radius: 50px;
+      transition: all 0.2s;
+    }
+    .contact-links li:hover {
+      background: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    }
+    .contact-links svg {
+      width: 18px;
+      height: 18px;
+      color: var(--primary);
+    }
 
-/* --- END: NEW SELF-CONTAINED CSS STYLES --- */
+    .intro-text {
+      margin-top: 28px;
+      font-size: 1.2rem;
+      color: #222;
+      line-height: 1.8;
+      text-align: justify; /* 两端对齐更像论文 */
+    }
+
+    /* --- HEADINGS --- */
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #000;
+      margin: 0 0 32px 0;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #ccc; /* 颜色加深一点 */
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-title::before {
+      content: "";
+      display: block;
+      width: 4px;
+      height: 32px;
+      background: linear-gradient(to bottom, var(--primary), var(--accent));
+      border-radius: 2px;
+    }
+
+    /* --- TIMELINE --- */
+    .timeline {
+      position: relative;
+      padding-left: 28px;
+      border-left: 2px solid #e2e8f0;
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 32px;
+    }
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -35px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #fff;
+      border: 3px solid var(--accent);
+      box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15);
+    }
+    .timeline-role {
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #000;
+    }
+    .timeline-meta {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin: 4px 0 12px 0;
+      font-style: italic;
+    }
+    .timeline-content li {
+        margin-bottom: 8px;
+    }
+
+    /* --- PUBLICATIONS --- */
+    .pub-list {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      gap: 24px;
+    }
+    .pub-item {
+      position: relative;
+      padding: 24px;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      transition: all 0.3s ease;
+      border-left: 4px solid transparent; 
+    }
+    .pub-item:hover {
+      border-color: #cbd5e1;
+      border-left-color: var(--primary);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.06);
+    }
+    .pub-title {
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: #000;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    .pub-title a:hover {
+        text-decoration: underline;
+    }
+    .pub-authors {
+      font-size: 1.1rem;
+      color: #444;
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+    .pub-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      font-family: Arial, sans-serif; /* 标签为了清晰，通常建议保持无衬线，或者也可以删掉这行强制用Times */
+    }
+    .badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 99px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; /* 标签文字用无衬线体更易读 */
+    }
+    .badge-blue { background: #eff6ff; color: #3b82f6; }
+    .badge-purple { background: #f5f3ff; color: #8b5cf6; }
+    .badge-amber { background: #fffbeb; color: #d97706; border: 1px solid #fcd34d; } 
+    .badge-gray { background: #f8fafc; color: #94a3b8; border: 1px solid #e2e8f0; }
+
+    /* --- ACHIEVEMENTS & SKILLS --- */
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    .achievement-box h3 {
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin: 0 0 20px 0;
+      font-weight: 700;
+      border-bottom: 1px dashed #ddd;
+      padding-bottom: 8px;
+    }
+    .achievement-list li {
+      margin-bottom: 14px;
+      padding-left: 20px;
+      position: relative;
+      font-size: 1.1rem;
+    }
+    .achievement-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 1.2em;
+      line-height: 1;
+    }
+    .highlight-year {
+      display: inline-block;
+      font-size: 0.85em;
+      font-weight: 700;
+      background: #f1f5f9;
+      padding: 2px 8px;
+      border-radius: 4px;
+      color: #64748b;
+      margin-left: 8px;
+      vertical-align: middle;
+      font-family: sans-serif; /* 年份标签用无衬线体更清晰 */
+    }
+
+    .skills-table th {
+      color: var(--primary-dark);
+      font-size: 1.2rem;
+      font-weight: 700;
+      width: 200px;
+    }
+    .skills-table td {
+        font-size: 1.1rem;
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+      .profile-header {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 30px;
+      }
+      .avatar-wrapper { margin: 0 auto; display: inline-block; }
+      .contact-links { justify-content: center; }
+      .achievements-grid { grid-template-columns: 1fr; gap: 30px; }
+      .skills-table th, .skills-table td { display: block; width: 100%; padding-bottom: 8px;}
+      .card { padding: 32px 24px; }
+      .section-title { font-size: 1.6rem; }
+      .profile-info h1 { font-size: 2.8rem; }
+    }
   </style>
 </head>
 <body>
-  <!-- <header>
-    <div class="outercontainer header">
-      <a class="active" href="#profile">Profile</a>
-      <a href="#research">Research</a>
-      <a href="#experience">Experience</a>
-      <a href="#publications">Publications</a>
-      <a href="#achievements">Achievements</a>
-      <a href="#skills">Skills</a>
-    </div>
-  </header> -->
 
-  <div class="outercontainer body">
-    <section class="content heading anchor" id="profile">
-      <div>
-        <img class="img_responsive" src="/img/e39d7c01c983d4f131a277644bd313fd.jpg" alt="Portrait of Bo Liu">
-      </div>
-      <div class="text info">
-        <h1>Bo Liu</h1>
-        <div>Fourth-year colledge student in computer science , Nanchang University</div>
-        <!-- <div>Medical Imaging &amp; Computer Vision Lab</div> -->
-        <ul class="contact">
-          <li>
-            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"></path></svg>
-            <a href="mailto:lbsucceed111@gmail.com">lbsucceed111@gmail.com</a>
-          </li>
-          <li>
-            <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" /></svg>
-            <a href="https://github.com/lbsucceed" target="_blank" rel="noopener">github.com/lbsucceed</a>
-          </li>
-          <li>
-            <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5.223 13.909 12 10.158l6.777 3.751-3.424 1.898-3.353-2.115-3.372 2.115-3.39-1.898Zm-2.84 1.572L12 19.898l9.617-4.417L12 10.958 2.383 15.48Z M12 2 2 7.5l10 5.5 10-5.5L12 2Z"></path></svg>
-            <a href="https://orcid.org/0009-0007-4754-5306" target="_blank" rel="noopener">ORCID</a>
-          </li>
-          <li>
-            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"></path></svg>
-            <span>Shenzhen, China</span>
-          </li>
-        </ul>
-        <p class="section-text" style="margin-top:18px;">
-         My previous work spans transfer learning and robust segmentation under missing modalities. I am actively seeking a PhD opportunity for the Fall 2026 term and believe that the mentorship of and collaboration with an excellent faculty member would be an invaluable and profoundly rewarding experience.
-        </p>
+  <div class="container">
+    
+    <section class="card" id="profile">
+      <div class="profile-header">
+        <div class="avatar-wrapper">
+          <img class="avatar" src="/img/e39d7c01c983d4f131a277644bd313fd.jpg" alt="Portrait of Bo Liu">
         </div>
+        <div class="profile-info">
+          <h1>Bo Liu</h1>
+          <div class="subtitle">Fourth-year Undergraduate · Nanchang University</div>
+          
+          <ul class="contact-links">
+            <li>
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+              <a href="mailto:lbsucceed111@gmail.com">lbsucceed111@gmail.com</a>
+            </li>
+            <li>
+              <svg fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" /></svg>
+              <a href="https://github.com/lbsucceed" target="_blank">github.com/lbsucceed</a>
+            </li>
+            <li>
+              <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"></path></svg>
+              <span>Shenzhen, China</span>
+            </li>
+          </ul>
+
+          <p class="intro-text">
+            My previous work spans transfer learning and robust segmentation under missing modalities. I am actively seeking a <strong>PhD or Mphil opportunities for the Fall 2026 term</strong> and believe that the mentorship of and collaboration with an excellent faculty member would be an invaluable and profoundly rewarding experience.
+          </p>
+        </div>
+      </div>
     </section>
 
-    <section class="content anchor" id="research">
+    <section class="card" id="research">
       <h2 class="section-title">Research Interests</h2>
-      <p class="section-text">
-        I am interested in Transfer learning, Visual Generation, and Multimodal learning, with the goal of building robust AI.
-      </p>
+      <p>I am interested in <strong>Transfer learning</strong>, <strong>Visual Generation</strong>, and <strong>Multimodal learning</strong>, with the goal of building robust AI systems for medical applications.</p>
     </section>
 
-    <section class="content anchor" id="experience">
+    <section class="card" id="experience">
       <h2 class="section-title">Research Experience</h2>
-      <article class="experience-card">
-        <p class="role">Research on CV tasks in Medical Image Analysis</p>
-        <p class="meta">2024&nbsp;&mdash;&nbsp;2025 · Under the supervision of Prof. Jin Hong · Nanchang University</p>
-        <ul>
-          <li>Reproduced and optimized various domain generalization methods for medical image segmentation, leading to two publications.</li>
-          <li>Led a research training program on medical image segmentation with unsupervised domain adaptation, completed and successfully defended.</li>
-          <li>Developing approaches for missing-modality brain tumor segmentation.</li>
-          <li>Investigating deep learning models for 3D tooth completion from partial scans.</li>
-        </ul>
-      </article>
+      <div class="timeline">
+        <article class="timeline-item">
+          <div class="timeline-role">Research on CV tasks in Medical Image Analysis</div>
+          <div class="timeline-meta">2024 — Present · Prof. Jin Hong · Nanchang University</div>
+          <div class="timeline-content">
+            <ul>
+              <li>Reproduced and optimized various domain generalization methods for medical image segmentation, leading to two publications.</li>
+              <li>Led a research training program on medical image segmentation with unsupervised domain adaptation, completed and successfully defended.</li>
+              <li>Developing approaches for missing-modality brain tumor segmentation, leading to three publications.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
     </section>
 
-    <section class="content anchor" id="publications">
+    <section class="card" id="publications">
       <h2 class="section-title">Publications</h2>
-      <p class="section-text" style="margin-bottom:16px;">
-        A complete list of my publications. My name is highlighted in <strong>bold</strong>.
+      <p style="margin-bottom:24px; color:var(--text-muted); font-size: 1.1rem;">
+        A selected list of my publications. My name is highlighted in <strong>bold</strong>.
       </p>
+      
       <ul class="pub-list">
-        <li class="publication">
-          <div class="title">
-            <a href="https://www.sciencedirect.com/science/article/abs/pii/S0893608025009980" target="_blank" rel="noopener">DGSSA: Domain generalization with structural and stylistic augmentation for retinal vessel segmentation</a>
+
+        <li class="pub-item">
+          <div class="pub-title">
+            <a href="https://www.sciencedirect.com/science/article/pii/S0893608025014066" target="_blank">MGML: A Plug-and-Play Meta-Guided Multi-Modal Learning Framework for Incomplete Multimodal Brain Tumor Segmentation</a>
           </div>
-          <div class="authors"><strong>Bo Liu</strong>, Yudong Zhang, Shuihua Wang, Siyue Li, Jin Hong</div>
-          <div class="venue">Neural Networks, 2025</div>
+          <div class="pub-authors">
+            Yulong Zou, <strong>Bo Liu</strong>, Cun-Jing Zheng, Yuan-ming Geng, Siyue Li, Qiankun Zuo, Shuihua Wang, Yudong Zhang, Jin Hong
+          </div>
+          <div class="pub-meta">
+            <span class="badge badge-blue">Neural Networks</span>
+            <span class="badge badge-gray">2025</span>
+          </div>
         </li>
 
-        <li class="publication">
-          <div class="title">
-            <a href="https://arxiv.org/abs/2501.04741" target="_blank" rel="noopener">Rethinking domain generalization in medical image segmentation: One image as one domain</a>
+        <li class="pub-item">
+          <div class="pub-title">
+            <a href="https://www.sciencedirect.com/science/article/abs/pii/S0893608025009980" target="_blank">DGSSA: Domain generalization with structural and stylistic augmentation for retinal vessel segmentation</a>
           </div>
-          <div class="authors">Jin Hong, <strong>Bo Liu</strong>, Qiankun Zuo, Guoli Long, Siyue Li, Yudong Zhang, Shuihua Wang, Junxin Chen</div>
-          <div class="venue">arXiv preprint, 2025</div>
+          <div class="pub-authors">
+            <strong>Bo Liu</strong>, Yudong Zhang, Shuihua Wang, Siyue Li, Jin Hong
+          </div>
+          <div class="pub-meta">
+            <span class="badge badge-blue">Neural Networks</span>
+            <span class="badge badge-gray">2025</span>
+          </div>
         </li>
-        
-        <li class="publication">
-          <div class="title"><a href="https://www.frontiersin.org/journals/cell-and-developmental-biology/articles/10.3389/fcell.2024.1484880/full" target="_blank" rel="noopener">Multi-resolution visual Mamba with multi-directional selective mechanism for retinal disease detection</a></div>
-          <div class="authors">Qiankun Zuo, Zhengkun Shi, <strong>Bo Liu</strong>, Na Ping, Jiangtao Wang, Xi Cheng, Kexin Zhang, Jia Guo, Yixian Wu, Jin Hong</div>
-          <div class="venue">Frontiers in Cell and Developmental Biology, 2024</div>
+
+        <li class="pub-item">
+          <div class="pub-title" >
+          Rethinking domain generalization in medical image segmentation: One image as one domain
+          </div>
+          <div class="pub-authors">
+            Jin Hong, <strong>Bo Liu</strong>, Qiankun Zuo, Guoli Long, Siyue Li, Yudong Zhang, Shuihua Wang, Khan Muhammad
+          </div>
+          <div class="pub-meta">
+            <span class="badge badge-amber">Under Review</span>
+            
+          </div>
         </li>
+
+        <li class="pub-item">
+          <div class="pub-title">
+            CausalDisenSeg: A Causality-Guided Disentanglement Framework with Counterfactual Reasoning for Robust Brain Tumor Segmentation Under Missing Modalities
+          </div>
+          <div class="pub-authors">
+            <strong>Bo Liu</strong>, Jin Hong
+          </div>
+          <div class="pub-meta">
+            <span class="badge badge-amber">Under Review</span>
+          
+          </div>
+        </li>
+
+        <li class="pub-item">
+          <div class="pub-title">
+            <a href="https://www.frontiersin.org/journals/cell-and-developmental-biology/articles/10.3389/fcell.2024.1484880/full" target="_blank">Multi-resolution visual Mamba with multi-directional selective mechanism for retinal disease detection</a>
+          </div>
+          <div class="pub-authors">
+            Qiankun Zuo, Zhengkun Shi, <strong>Bo Liu</strong>, Na Ping, Jiangtao Wang, Xi Cheng, Kexin Zhang, Jia Guo, Yixian Wu, Jin Hong
+          </div>
+          <div class="pub-meta">
+            <span class="badge badge-purple">Frontiers in Cell and Developmental Biology</span>
+            <span class="badge badge-gray">2024</span>
+          </div>
+        </li>
+
       </ul>
     </section>
 
-    <section class="content anchor" id="achievements">
-      <h2 class="section-title">Achievements</h2>
-      <div class="achievements-group">
-        <h3>Honors</h3>
-        <ul>
-          <li>First-Class University Scholarship — <em>2025</em></li>
-          <li>Special-Class University Scholarship — <em>2024</em></li>
-          <li>First-Class University Scholarship — <em>2023</em></li>
-        </ul>
-      </div>
-      <div class="achievements-group">
-        <h3>Competition Awards</h3>
-        <ul>
-          <li>Third Prize, China Robotics and Artificial Intelligence Competition — <em>2024</em></li>
-          <li>First Prize, China University Robot Competition (ROBOCON) — <em>2023</em></li>
-        </ul>
+    <section class="card" id="other">
+      <div class="achievements-grid">
+        
+        <div class="achievement-box">
+          <h2 class="section-title">Achievements</h2>
+          
+          <h3>Honors</h3>
+          <ul class="achievement-list">
+            <li>First-Class University Scholarship <span class="highlight-year">2025</span></li>
+            <li>Special-Class University Scholarship <span class="highlight-year">2024</span></li>
+            <li>First-Class University Scholarship <span class="highlight-year">2023</span></li>
+          </ul>
+
+          <h3 style="margin-top:24px;">Awards</h3>
+          <ul class="achievement-list">
+            <li>China Robotics and AI Competition (3rd Prize) <span class="highlight-year">2024</span></li>
+            <li>China University Robot Competition ROBOCON (1st Prize) <span class="highlight-year">2023</span></li>
+          </ul>
+        </div>
+
+        <div class="achievement-box">
+          <h2 class="section-title">Skills & Interests</h2>
+          <table class="skills-table">
+            <tr>
+              <th>Coding</th>
+              <td>Python, C/C++, Kotlin, Java</td>
+            </tr>
+            <tr>
+              <th>Tools/Frameworks</th>
+              <td>PyTorch, Git, Linux, Docker</td>
+            </tr>
+            <tr>
+              <th>Hobbies</th>
+              <td>Badminton, Table Tennis</td>
+            </tr>
+          </table>
+        </div>
+
       </div>
     </section>
 
-    <section class="content anchor" id="skills">
-      <h2 class="section-title">Skills &amp; Hobbies</h2>
-      <table class="skills">
-        <tr>
-          <th scope="row">Programming Languages</th>
-          <td>Python, C/C++, Kotlin, Java</td>
-        </tr>
-        <tr>
-          <th scope="row">Hobbies</th>
-          <td>Badminton, Table Tennis</td>
-        </tr>
-      </table>
-    </section>
   </div>
 </body>
 </html>
